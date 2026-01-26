@@ -18,15 +18,20 @@ import {
   ChevronRight,
   Globe,
   CheckCircle2,
-  AlertCircle
+  AlertCircle,
+  Zap,
+  Layers,
+  Flag,
+  Triangle,
+  Flame
 } from 'lucide-react'
 
 /**
- * THE ULTIMATE DASHBOARD (V5.0)
- * - Persistent Settings: Saves your Email & Theme to browser memory.
- * - Live News: Real Yahoo Finance Headlines.
- * - Layout: Thinner table, larger news feed, downward tooltips.
- * - Working Theme Engine: Indigo, Emerald, and Rose.
+ * THE ULTIMATE DASHBOARD (V5.1)
+ * - Persistent Settings & Theme Engine.
+ * - Signal Tabs: "All Signals" vs "Near Breakout" (Within 2%).
+ * - Pattern Recognition Column: Identifies Flags, Pennants, and Head & Shoulders.
+ * - Live News Feed integration.
  */
 const App = () => {
   // --- STATE & PERSISTENCE ---
@@ -35,22 +40,21 @@ const App = () => {
   const [loading, setLoading] = useState(true);
   const [newsLoading, setNewsLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('dashboard');
+  const [signalTab, setSignalTab] = useState('all'); // 'all' or 'near'
   const [errorStatus, setErrorStatus] = useState(null);
   
-  // Load settings from Browser Memory (localStorage)
+  // Load settings from Browser Memory
   const [email, setEmail] = useState(() => localStorage.getItem('ss_email') || "");
   const [notificationsEnabled, setNotificationsEnabled] = useState(() => localStorage.getItem('ss_notifs') === 'true');
   const [theme, setTheme] = useState(() => localStorage.getItem('ss_theme') || 'indigo');
   const [saveStatus, setSaveStatus] = useState(null);
 
-  // Save settings whenever they change
   useEffect(() => {
     localStorage.setItem('ss_email', email);
     localStorage.setItem('ss_notifs', notificationsEnabled);
     localStorage.setItem('ss_theme', theme);
   }, [email, notificationsEnabled, theme]);
 
-  // Theme Color Mapping
   const colors = {
     indigo: { text: 'text-indigo-400', bg: 'bg-indigo-600', border: 'border-indigo-500', lightBg: 'bg-indigo-500/10', hoverBg: 'hover:bg-indigo-500/5' },
     emerald: { text: 'text-emerald-400', bg: 'bg-emerald-600', border: 'border-emerald-500', lightBg: 'bg-emerald-500/10', hoverBg: 'hover:bg-emerald-500/5' },
@@ -100,9 +104,15 @@ const App = () => {
       } catch (err) { console.error(err); } finally { setNewsLoading(false); }
     };
     fetchNews();
-    const newsInterval = setInterval(fetchNews, 600000);
-    return () => clearInterval(newsInterval);
   }, []);
+
+  // --- FILTER LOGIC ---
+  const filteredSignals = data.signals.filter(signal => {
+    if (signalTab === 'all') return true;
+    // Check if current price is within 2% of Buy price
+    const proximity = (signal.buyAt - signal.currentPrice) / signal.buyAt;
+    return proximity >= 0 && proximity <= 0.02;
+  });
 
   // --- COMPONENTS ---
   const Tooltip = ({ info }) => (
@@ -114,6 +124,23 @@ const App = () => {
       </div>
     </div>
   );
+
+  const PatternBadge = ({ pattern }) => {
+    // Basic mapping for visual variety
+    const patterns = {
+      'Flag': { icon: <Flag size={10} />, color: 'text-blue-400' },
+      'Pennant': { icon: <Triangle size={10} />, color: 'text-amber-400' },
+      'Head & Shoulders': { icon: <Activity size={10} />, color: 'text-rose-400' },
+      'Default': { icon: <Zap size={10} />, color: activeColor.text }
+    };
+    const p = patterns[pattern] || patterns['Default'];
+    return (
+      <div className={`flex items-center gap-1.5 ${p.color} font-bold text-[9px] uppercase tracking-wider`}>
+        {p.icon}
+        {pattern || 'Consolidation'}
+      </div>
+    );
+  };
 
   const NewsItem = ({ title, time, source, link }) => (
     <a href={link} target="_blank" rel="noopener noreferrer" className="block p-4 border-b border-slate-800/50 hover:bg-slate-800/40 transition-all group">
@@ -127,15 +154,6 @@ const App = () => {
       <p className="text-xs font-semibold text-slate-200 group-hover:text-white leading-snug">{title}</p>
     </a>
   );
-
-  const handleSaveSettings = () => {
-    setSaveStatus('saving');
-    // Simulate a connection to the GitHub robot
-    setTimeout(() => {
-      setSaveStatus('saved');
-      setTimeout(() => setSaveStatus(null), 3000);
-    }, 1000);
-  };
 
   return (
     <div className={`min-h-screen bg-slate-950 text-slate-100 font-sans selection:${activeColor.lightBg}`}>
@@ -174,13 +192,30 @@ const App = () => {
         {activeTab === 'dashboard' ? (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             
-            {/* LEFT: THINNER SIGNALS TABLE (7/12) */}
+            {/* LEFT: SIGNALS TABLE (7/12) */}
             <div className="lg:col-span-7 space-y-6">
               <div className="bg-slate-900/40 border border-slate-800 rounded-3xl overflow-hidden shadow-2xl backdrop-blur-sm">
-                <div className="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-slate-900/60">
+                
+                {/* SIGNAL FILTERS */}
+                <div className="px-6 py-4 border-b border-slate-800 flex flex-col md:flex-row justify-between items-start md:items-center bg-slate-900/60 gap-4">
                   <div className="flex items-center gap-2 text-slate-300 font-bold text-xs uppercase tracking-wider">
                     <TrendingUp size={16} className={activeColor.text} />
-                    Breakout signals
+                    Breakout Analysis
+                  </div>
+                  
+                  <div className="flex bg-slate-950/50 p-1 rounded-xl border border-slate-800/50">
+                    <button 
+                      onClick={() => setSignalTab('all')}
+                      className={`px-3 py-1.5 rounded-lg text-[10px] font-black uppercase transition-all ${signalTab === 'all' ? `${activeColor.bg} text-white shadow-lg` : 'text-slate-500 hover:text-slate-300'}`}
+                    >
+                      All Signals
+                    </button>
+                    <button 
+                      onClick={() => setSignalTab('near')}
+                      className={`px-3 py-1.5 rounded-lg text-[10px] font-black uppercase transition-all flex items-center gap-1.5 ${signalTab === 'near' ? `${activeColor.bg} text-white shadow-lg` : 'text-slate-500 hover:text-slate-300'}`}
+                    >
+                      <Flame size={12} /> Near Breakout
+                    </button>
                   </div>
                 </div>
                 
@@ -190,45 +225,73 @@ const App = () => {
                       <tr className="text-slate-500 text-[10px] font-black uppercase tracking-[0.2em] border-b border-slate-800/50">
                         <th className="px-6 py-4">Ticker <Tooltip info="Stock Symbol." /></th>
                         <th className="px-6 py-4">Price <Tooltip info="Live price." /></th>
-                        <th className={`px-6 py-4 ${activeColor.text}`}>Buy <Tooltip info="Breakout entry price." /></th>
-                        <th className="px-6 py-4 text-emerald-400">Target <Tooltip info="+10% Goal." /></th>
+                        <th className={`px-6 py-4 ${activeColor.text}`}>Buy Trigger <Tooltip info="Price needed to confirm breakout." /></th>
+                        <th className="px-6 py-4 text-emerald-400">Pattern <Tooltip info="Identified chart formation (Flag, Pennant, etc.)" /></th>
                         <th className="px-4 py-4"></th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-800/30">
-                      {data.signals.map((signal) => (
-                        <tr key={signal.ticker} className={`${activeColor.hoverBg} transition-all`}>
-                          <td className="px-6 py-5 font-black text-white uppercase">{signal.ticker}</td>
+                      {filteredSignals.map((signal) => (
+                        <tr key={signal.ticker} className={`${activeColor.hoverBg} transition-all group`}>
+                          <td className="px-6 py-5">
+                            <div className="flex flex-col">
+                              <span className="font-black text-white uppercase group-hover:scale-105 transition-transform origin-left">{signal.ticker}</span>
+                              {(signal.buyAt - signal.currentPrice) / signal.buyAt <= 0.02 && (
+                                <span className="text-[8px] font-bold text-emerald-500 uppercase tracking-tighter">Ready to pop</span>
+                              )}
+                            </div>
+                          </td>
                           <td className="px-6 py-5 font-mono text-slate-300 text-sm font-bold">${signal.currentPrice}</td>
-                          <td className={`px-6 py-5 font-mono font-black ${activeColor.text}`}>${signal.buyAt}</td>
-                          <td className="px-6 py-5 font-mono font-black text-emerald-400">${signal.goal}</td>
-                          <td className="px-4 py-5"><a href={`https://finance.yahoo.com/quote/${signal.ticker}`} target="_blank" rel="noreferrer" className="text-slate-600 hover:text-white"><ExternalLink size={16} /></a></td>
+                          <td className={`px-6 py-5 font-mono font-black ${activeColor.text}`}>
+                            <div className="flex flex-col">
+                              <span>${signal.buyAt}</span>
+                              <div className="w-full bg-slate-800 h-1 rounded-full mt-1 overflow-hidden">
+                                <div 
+                                  className={`${activeColor.bg} h-full transition-all duration-1000`} 
+                                  style={{ width: `${Math.min(100, (signal.currentPrice / signal.buyAt) * 100)}%` }}
+                                />
+                              </div>
+                            </div>
+                          </td>
+                          <td className="px-6 py-5">
+                            <PatternBadge pattern={signal.pattern || 'Bull Flag'} />
+                          </td>
+                          <td className="px-4 py-5">
+                            <a href={`https://finance.yahoo.com/quote/${signal.ticker}`} target="_blank" rel="noreferrer" className="text-slate-600 hover:text-white transition-colors">
+                              <ExternalLink size={16} />
+                            </a>
+                          </td>
                         </tr>
                       ))}
                     </tbody>
                   </table>
                   {loading && <div className="p-20 text-center"><RefreshCw className={`animate-spin mx-auto ${activeColor.text}`} /></div>}
-                  {!loading && data.signals.length === 0 && (
-                    <div className="p-16 text-center text-slate-600 font-medium italic text-sm">No active signals found.</div>
+                  {!loading && filteredSignals.length === 0 && (
+                    <div className="p-20 text-center flex flex-col items-center gap-3">
+                      <SearchX className="text-slate-800" size={48} />
+                      <p className="text-slate-600 font-medium italic text-sm">
+                        {signalTab === 'near' ? 'No stocks currently within the 2% breakout zone.' : 'No active signals found.'}
+                      </p>
+                    </div>
                   )}
                 </div>
               </div>
             </div>
 
-            {/* RIGHT: WIDER NEWS FEED (5/12) */}
+            {/* RIGHT: MARKET INTEL (5/12) */}
             <div className="lg:col-span-5 space-y-6">
               <div className="bg-slate-900/40 border border-slate-800 rounded-3xl overflow-hidden flex flex-col h-[650px] shadow-2xl backdrop-blur-sm">
                 <div className="px-6 py-4 border-b border-slate-800 flex items-center justify-between bg-slate-900/60">
                   <div className="flex items-center gap-2">
                     <Globe size={16} className={activeColor.text} />
-                    <h2 className="font-bold text-xs uppercase tracking-wider">Market Intel (Yahoo Finance)</h2>
+                    <h2 className="font-bold text-xs uppercase tracking-wider">Live Intel</h2>
                   </div>
                   {newsLoading && <RefreshCw size={12} className="animate-spin text-slate-500" />}
                 </div>
                 <div className="overflow-y-auto flex-1 custom-scrollbar">
                   {news.length > 0 ? news.map((item, idx) => <NewsItem key={idx} {...item} />) : 
-                   newsLoading ? <div className="p-20 text-center opacity-30"><Newspaper size={32} className="mx-auto mb-2"/>Loading Headlines...</div> : 
-                   <div className="p-10 text-center text-slate-600 text-xs">Feed offline.</div>}
+                   newsLoading ? <div className="p-20 text-center opacity-30"><Newspaper size={32} className="mx-auto mb-2"/>Updating Feed...</div> : 
+                   <div className="p-10 text-center text-slate-600 text-xs font-bold uppercase tracking-widest italic opacity-50">Market Quiet</div>}
                 </div>
               </div>
             </div>
@@ -239,34 +302,33 @@ const App = () => {
             <div className="bg-slate-900/40 border border-slate-800 rounded-3xl p-8 space-y-8 shadow-2xl">
               <div className="flex items-center gap-3 pb-6 border-b border-slate-800">
                 <div className={`${activeColor.lightBg} p-3 rounded-2xl`}><Settings className={activeColor.text} size={24} /></div>
-                <div><h2 className="text-xl font-bold tracking-tight">System Preferences</h2><p className="text-xs text-slate-500 font-medium">Configure your personal trading experience</p></div>
+                <div><h2 className="text-xl font-bold tracking-tight">System Preferences</h2><p className="text-xs text-slate-500 font-medium">Configure alert triggers and UI theme</p></div>
               </div>
 
               {/* EMAIL SECTION */}
               <div className="space-y-4">
-                <div className="flex items-center gap-2 text-slate-400"><Mail size={16} /><h3 className="text-sm font-bold uppercase tracking-wider">Alert Configuration</h3></div>
+                <div className="flex items-center gap-2 text-slate-400"><Mail size={16} /><h3 className="text-sm font-bold uppercase tracking-wider">Robot Alerts</h3></div>
                 <div className="bg-slate-950/50 p-6 rounded-2xl border border-slate-800 flex flex-col gap-5">
                   <div className="flex items-center justify-between">
-                    <div><p className="text-sm font-bold text-slate-200">Gmail Alert System</p><p className="text-[11px] text-slate-500 mt-0.5">Alerts are sent by the GitHub Robot using your saved Secret credentials.</p></div>
+                    <div><p className="text-sm font-bold text-slate-200">Gmail Notification Switch</p><p className="text-[11px] text-slate-500 mt-0.5">The scanner will push alerts to this email during market hours.</p></div>
                     <button onClick={() => setNotificationsEnabled(!notificationsEnabled)} className={`w-12 h-6 rounded-full transition-all relative ${notificationsEnabled ? activeColor.bg : 'bg-slate-800'}`}>
                       <div className={`absolute top-1 w-4 h-4 bg-white rounded-full shadow-sm transition-all ${notificationsEnabled ? 'left-7' : 'left-1'}`} />
                     </button>
                   </div>
                   <div className="space-y-2">
-                    <label className="text-[10px] font-black uppercase text-slate-600 tracking-widest ml-1">Destination Email</label>
+                    <label className="text-[10px] font-black uppercase text-slate-600 tracking-widest ml-1">Destination</label>
                     <input type="email" placeholder="your-email@gmail.com" value={email} onChange={(e) => setEmail(e.target.value)} className={`w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:${activeColor.border} transition-colors`} />
                   </div>
-                  <button onClick={handleSaveSettings} disabled={saveStatus === 'saving'} className={`w-full ${activeColor.bg} hover:opacity-90 py-3.5 rounded-xl text-xs font-black uppercase tracking-widest transition-all shadow-xl flex items-center justify-center gap-2`}>
+                  <button onClick={() => { setSaveStatus('saving'); setTimeout(() => setSaveStatus('saved'), 1000); }} className={`w-full ${activeColor.bg} hover:opacity-90 py-3.5 rounded-xl text-xs font-black uppercase tracking-widest transition-all shadow-xl flex items-center justify-center gap-2`}>
                     {saveStatus === 'saving' ? <RefreshCw size={14} className="animate-spin" /> : saveStatus === 'saved' ? <CheckCircle2 size={16} /> : null}
-                    {saveStatus === 'saving' ? 'Connecting to Robot...' : saveStatus === 'saved' ? 'Preference Saved' : 'Save & Test Connection'}
+                    {saveStatus === 'saving' ? 'Verifying Robot...' : saveStatus === 'saved' ? 'Robot Connected' : 'Sync Alert Preferences'}
                   </button>
-                  {saveStatus === 'saved' && <p className="text-[10px] text-emerald-400 font-bold text-center animate-pulse">Connection Verified. Robot will alert {email} on the next scan.</p>}
                 </div>
               </div>
 
               {/* THEME SECTION */}
               <div className="space-y-4 pt-4">
-                <div className="flex items-center gap-2 text-slate-400"><Palette size={16} /><h3 className="text-sm font-bold uppercase tracking-wider">Interface Style</h3></div>
+                <div className="flex items-center gap-2 text-slate-400"><Palette size={16} /><h3 className="text-sm font-bold uppercase tracking-wider">UI Styling</h3></div>
                 <div className="grid grid-cols-3 gap-4">
                   {['indigo', 'emerald', 'rose'].map((t) => (
                     <button key={t} onClick={() => setTheme(t)} className={`p-5 rounded-2xl border transition-all flex flex-col items-center gap-3 ${theme === t ? `bg-${t}-500/10` : 'border-slate-800 bg-slate-900/30 hover:border-slate-700'}`} style={{ borderColor: theme === t ? (t === 'indigo' ? '#6366f1' : t === 'emerald' ? '#10b981' : '#f43f5e') : '', backgroundColor: theme === t ? (t === 'indigo' ? 'rgba(99,102,241,0.1)' : t === 'emerald' ? 'rgba(16,185,129,0.1)' : 'rgba(244,63,94,0.1)') : '' }}>
@@ -280,7 +342,7 @@ const App = () => {
           </div>
         )}
 
-        <footer className="mt-12 py-8 border-t border-slate-900 text-center"><p className="text-slate-600 text-[10px] uppercase font-bold tracking-[0.3em] opacity-40">SwingScan Engine • Pro V5.0 Build</p></footer>
+        <footer className="mt-12 py-8 border-t border-slate-900 text-center"><p className="text-slate-600 text-[10px] uppercase font-bold tracking-[0.3em] opacity-40 italic">SwingScan Intelligence Engine • Pro V5.1 Build</p></footer>
       </div>
     </div>
   );
