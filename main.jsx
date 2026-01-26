@@ -31,11 +31,11 @@ import {
 } from 'lucide-react'
 
 /**
- * THE ULTIMATE DASHBOARD (V5.7)
- * - Enhanced Pattern Recognition: Displays Bull Flag, Pennant, Flat Base.
- * - Localized Sync Time: Converts robot's UTC to your device's timezone.
- * - Precision: Strict 2-decimal rounding everywhere.
- * - Full Customization: Sorting, Watchlist, and Optional News.
+ * THE ULTIMATE DASHBOARD (V5.8)
+ * - Specific Pattern Recognition: Displays Bull Flag, Pennant, Flat Base labels.
+ * - Localized Sync Time: Automatically adjusts robot's UTC time to your local clock.
+ * - Precision: Forces 2-decimal rounding across all trading metrics.
+ * - Persistence: Watchlist, Sort, News-toggle, and Themes saved to browser memory.
  */
 const App = () => {
   // --- STATE & PERSISTENCE ---
@@ -47,6 +47,7 @@ const App = () => {
   const [signalTab, setSignalTab] = useState('all'); 
   const [errorStatus, setErrorStatus] = useState(null);
   
+  // Load settings from Browser Memory (localStorage)
   const [email, setEmail] = useState(() => localStorage.getItem('ss_email') || "");
   const [notificationsEnabled, setNotificationsEnabled] = useState(() => localStorage.getItem('ss_notifs') === 'true');
   const [theme, setTheme] = useState(() => localStorage.getItem('ss_theme') || 'indigo');
@@ -64,6 +65,7 @@ const App = () => {
   const [newTicker, setNewTicker] = useState("");
   const [saveStatus, setSaveStatus] = useState(null);
 
+  // Sync settings with localStorage
   useEffect(() => {
     localStorage.setItem('ss_email', email);
     localStorage.setItem('ss_notifs', notificationsEnabled);
@@ -80,11 +82,13 @@ const App = () => {
   };
   const activeColor = colors[theme];
 
+  // Helper for 2-decimal rounding
   const formatNum = (num) => {
     if (num === undefined || num === null || isNaN(num)) return "0.00";
     return parseFloat(num).toFixed(2);
   };
 
+  // Helper to convert UTC timestamp from robot to Local Time
   const formatSyncTime = (timestamp) => {
     if (!timestamp) return 'Connecting...';
     try {
@@ -116,7 +120,7 @@ const App = () => {
       setLoading(false);
     };
     fetchData();
-    const interval = setInterval(fetchData, 300000);
+    const interval = setInterval(fetchData, 300000); 
     return () => clearInterval(interval);
   }, []);
 
@@ -141,9 +145,9 @@ const App = () => {
     fetchNews();
   }, [showNews]);
 
-  // --- FILTER & SORT ---
-  const displaySignals = [...data.signals]
-    .filter(signal => {
+  // --- FILTER & SORT LOGIC ---
+  const getFilteredAndSortedSignals = () => {
+    let filtered = data.signals.filter(signal => {
       const ticker = signal.ticker.toUpperCase().trim();
       if (signalTab === 'all') return true;
       if (signalTab === 'near') {
@@ -154,8 +158,9 @@ const App = () => {
         return watchlist.map(t => t.toUpperCase().trim()).includes(ticker);
       }
       return true;
-    })
-    .sort((a, b) => {
+    });
+
+    return [...filtered].sort((a, b) => {
       let valA = a[sortConfig.key];
       let valB = b[sortConfig.key];
       if (sortConfig.key === 'ticker') {
@@ -165,6 +170,9 @@ const App = () => {
       valB = parseFloat(valB) || 0;
       return sortConfig.order === 'asc' ? valA - valB : valB - valA;
     });
+  };
+
+  const displaySignals = getFilteredAndSortedSignals();
 
   const addToWatchlist = () => {
     const cleanTicker = newTicker.trim().toUpperCase();
@@ -176,12 +184,12 @@ const App = () => {
 
   const removeFromWatchlist = (ticker) => setWatchlist(watchlist.filter(t => t !== ticker));
 
-  // --- COMPONENTS ---
+  // --- UI COMPONENTS ---
   const Tooltip = ({ info }) => (
     <div className="group relative inline-block ml-1.5 align-middle">
       <Info size={14} className={`text-slate-500 hover:${activeColor.text} cursor-help transition-colors`} />
       <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 hidden group-hover:block w-56 p-3 bg-slate-800 text-slate-200 text-[11px] font-medium leading-relaxed rounded-xl shadow-2xl border border-slate-700 z-50 animate-in fade-in zoom-in-95 duration-200">
-        <p className="normal-case tracking-normal">{info}</p>
+        <p className="normal-case tracking-normal font-sans">{info}</p>
         <div className="absolute bottom-full left-1/2 -translate-x-1/2 border-8 border-transparent border-b-slate-800"></div>
       </div>
     </div>
@@ -195,12 +203,11 @@ const App = () => {
       'Trend Breakout': { icon: <Zap size={10} />, color: 'text-indigo-400', bg: 'bg-indigo-400/10' }
     };
     
-    // Prioritize specific identified patterns, default to Trend Breakout if null/generic
-    const label = pattern && patterns[pattern] ? pattern : (pattern || 'Trend Breakout');
-    const p = patterns[label] || patterns['Trend Breakout'];
+    const label = pattern && patterns[pattern] ? pattern : 'Trend Breakout';
+    const p = patterns[label];
 
     return (
-      <div className={`inline-flex items-center gap-1.5 px-2 py-1 rounded-lg ${p.bg} ${p.color} font-black text-[9px] uppercase tracking-wider`}>
+      <div className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg ${p.bg} ${p.color} font-black text-[9px] uppercase tracking-wider shadow-sm border border-white/5`}>
         {p.icon}
         {label}
       </div>
@@ -211,7 +218,7 @@ const App = () => {
     <div className={`min-h-screen bg-slate-950 text-slate-100 font-sans selection:${activeColor.lightBg}`}>
       <div className="max-w-[1600px] mx-auto px-4 py-6">
         
-        {/* NAV */}
+        {/* NAV BAR */}
         <nav className="flex items-center justify-between mb-8 bg-slate-900/40 p-2 rounded-2xl border border-slate-800/50 backdrop-blur-md shadow-xl">
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-3 px-3">
@@ -232,9 +239,10 @@ const App = () => {
         {activeTab === 'dashboard' ? (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             
-            {/* SIGNALS */}
+            {/* LEFT: MAIN SIGNALS TABLE */}
             <div className={`${showNews ? 'lg:col-span-8' : 'lg:col-span-12'} space-y-6 transition-all duration-500`}>
               <div className="bg-slate-900/40 border border-slate-800 rounded-3xl overflow-hidden shadow-2xl backdrop-blur-sm">
+                
                 <div className="px-6 py-4 border-b border-slate-800 flex flex-col md:flex-row justify-between items-start md:items-center bg-slate-900/60 gap-4">
                   <div className="flex items-center gap-2 text-slate-300 font-bold text-xs uppercase tracking-wider"><TrendingUp size={16} className={activeColor.text} /> Breakout Analysis</div>
                   <div className="flex bg-slate-950/50 p-1 rounded-xl border border-slate-800/50">
@@ -265,15 +273,15 @@ const App = () => {
                           <td className="px-6 py-5">
                             <div className="flex flex-col">
                               <span className="font-black text-white uppercase text-lg tracking-tight group-hover:scale-105 transition-transform origin-left">{signal.ticker}</span>
-                              {watchlist.map(w => w.toUpperCase()).includes(signal.ticker.toUpperCase()) && <span className={`text-[8px] font-bold ${activeColor.text} uppercase`}>Watching</span>}
+                              {watchlist.map(w => w.toUpperCase()).includes(signal.ticker.toUpperCase()) && <span className={`text-[8px] font-bold ${activeColor.text} uppercase tracking-widest`}>Watching</span>}
                             </div>
                           </td>
                           <td className="px-6 py-5 font-mono text-slate-300 text-sm font-bold">${formatNum(signal.currentPrice)}</td>
                           <td className={`px-6 py-5 font-mono font-black ${activeColor.text} text-base`}>${formatNum(signal.buyAt)}</td>
                           <td className="px-6 py-5 font-mono font-black text-emerald-400 text-base">${formatNum(signal.goal)}</td>
                           <td className="px-6 py-5"><PatternBadge pattern={signal.pattern} /></td>
-                          <td className="px-6 py-5"><span className={`px-2 py-0.5 rounded-full text-[10px] font-black ${signal.rsi > 60 ? 'bg-amber-500/10 text-amber-500' : 'bg-slate-800 text-slate-400'}`}>{formatNum(signal.rsi)}</span></td>
-                          <td className="px-4 py-5"><a href={`https://finance.yahoo.com/quote/${signal.ticker}`} target="_blank" rel="noreferrer" className="text-slate-600 hover:text-white"><ExternalLink size={16} /></a></td>
+                          <td className="px-6 py-5"><span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${signal.rsi > 60 ? 'bg-amber-500/20 text-amber-500' : 'bg-slate-800 text-slate-400'}`}>{formatNum(signal.rsi)}</span></td>
+                          <td className="px-4 py-5"><a href={`https://finance.yahoo.com/quote/${signal.ticker}`} target="_blank" rel="noreferrer" className="text-slate-600 hover:text-white transition-colors"><ExternalLink size={16} /></a></td>
                         </tr>
                       ))}
                     </tbody>
@@ -290,7 +298,7 @@ const App = () => {
               </div>
             </div>
 
-            {/* NEWS */}
+            {/* RIGHT: OPTIONAL NEWS FEED */}
             {showNews && (
               <div className="lg:col-span-4 space-y-6 animate-in slide-in-from-right duration-500">
                 <div className="bg-slate-900/40 border border-slate-800 rounded-3xl overflow-hidden flex flex-col h-[700px] shadow-2xl backdrop-blur-sm">
@@ -314,7 +322,7 @@ const App = () => {
             )}
           </div>
         ) : (
-          /* SETTINGS */
+          /* SETTINGS PANEL */
           <div className="max-w-3xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-300 space-y-6">
             <div className="bg-slate-900/40 border border-slate-800 rounded-3xl p-8 space-y-8 shadow-2xl">
               <div className="flex items-center gap-3 pb-6 border-b border-slate-800">
@@ -322,7 +330,7 @@ const App = () => {
                 <div><h2 className="text-xl font-bold tracking-tight text-white">Preferences</h2><p className="text-xs text-slate-500 font-medium">Control watchlist, sorting, and UI styling</p></div>
               </div>
 
-              {/* SORT */}
+              {/* SORT CONFIG */}
               <div className="space-y-4">
                 <div className="flex items-center gap-2 text-slate-400"><ArrowUpDown size={16} /><h3 className="text-sm font-bold uppercase tracking-wider">Default Sort</h3></div>
                 <div className="bg-slate-950/50 p-6 rounded-2xl border border-slate-800 grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -340,12 +348,12 @@ const App = () => {
                 </div>
               </div>
 
-              {/* WATCHLIST */}
+              {/* WATCHLIST MANAGER */}
               <div className="space-y-4">
                 <div className="flex items-center gap-2 text-slate-400"><Star size={16} /><h3 className="text-sm font-bold uppercase tracking-wider">My Watchlist</h3></div>
                 <div className="bg-slate-950/50 p-6 rounded-2xl border border-slate-800 space-y-6">
                   <div className="flex gap-2">
-                    <input type="text" placeholder="Add Ticker (e.g. MSFT)" value={newTicker} onChange={(e) => setNewTicker(e.target.value)} onKeyPress={(e) => e.key === 'Enter' && addToWatchlist()} className="flex-1 bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-500 transition-colors uppercase text-slate-200" />
+                    <input type="text" placeholder="Add Ticker (e.g. MSFT)" value={newTicker} onChange={(e) => setNewTicker(e.target.value)} onKeyPress={(e) => e.key === 'Enter' && addToWatchlist()} className="flex-1 bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:border-indigo-500 uppercase text-slate-200" />
                     <button onClick={addToWatchlist} className={`${activeColor.bg} px-6 rounded-xl font-bold text-xs uppercase hover:opacity-90 shadow-lg flex items-center gap-2 text-white`}><Plus size={16} /> Add</button>
                   </div>
                   <div className="flex flex-wrap gap-2">
@@ -359,7 +367,7 @@ const App = () => {
                 </div>
               </div>
 
-              {/* VIEW MODE */}
+              {/* VIEW MODE & ALERTS */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="bg-slate-950/50 p-6 rounded-2xl border border-slate-800 flex items-center justify-between">
                     <div className="flex items-center gap-3">
@@ -387,7 +395,7 @@ const App = () => {
           </div>
         )}
 
-        <footer className="mt-12 py-8 border-t border-slate-900 text-center"><p className="text-slate-600 text-[10px] uppercase font-bold tracking-[0.3em] opacity-40 italic">SwingScan Intelligence Engine • V5.7 Build</p></footer>
+        <footer className="mt-12 py-8 border-t border-slate-900 text-center"><p className="text-slate-600 text-[10px] uppercase font-bold tracking-[0.3em] opacity-40 italic">SwingScan Intelligence Engine • V5.8 Build</p></footer>
       </div>
     </div>
   );
