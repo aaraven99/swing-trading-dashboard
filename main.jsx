@@ -23,15 +23,18 @@ import {
   Layers,
   Flag,
   Triangle,
-  Flame
+  Flame,
+  Star,
+  Plus,
+  X
 } from 'lucide-react'
 
 /**
- * THE ULTIMATE DASHBOARD (V5.1)
- * - Persistent Settings & Theme Engine.
- * - Signal Tabs: "All Signals" vs "Near Breakout" (Within 2%).
- * - Pattern Recognition Column: Identifies Flags, Pennants, and Head & Shoulders.
- * - Live News Feed integration.
+ * THE ULTIMATE DASHBOARD (V5.2)
+ * - Persistent Watchlist: Add/Remove tickers in Settings.
+ * - Watchlist Tab: Filter signals to only show your favorite stocks.
+ * - Pattern Recognition: Visual badges for Flags, Pennants, etc.
+ * - Downward Tooltips: Fixed positioning to prevent UI overlap.
  */
 const App = () => {
   // --- STATE & PERSISTENCE ---
@@ -40,20 +43,28 @@ const App = () => {
   const [loading, setLoading] = useState(true);
   const [newsLoading, setNewsLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('dashboard');
-  const [signalTab, setSignalTab] = useState('all'); // 'all' or 'near'
+  const [signalTab, setSignalTab] = useState('all'); // 'all', 'near', or 'watchlist'
   const [errorStatus, setErrorStatus] = useState(null);
   
-  // Load settings from Browser Memory
+  // Load settings from Browser Memory (localStorage)
   const [email, setEmail] = useState(() => localStorage.getItem('ss_email') || "");
   const [notificationsEnabled, setNotificationsEnabled] = useState(() => localStorage.getItem('ss_notifs') === 'true');
   const [theme, setTheme] = useState(() => localStorage.getItem('ss_theme') || 'indigo');
+  const [watchlist, setWatchlist] = useState(() => {
+    const saved = localStorage.getItem('ss_watchlist');
+    return saved ? JSON.parse(saved) : ['AAPL', 'TSLA', 'NVDA', 'AMD'];
+  });
+  
+  const [newTicker, setNewTicker] = useState("");
   const [saveStatus, setSaveStatus] = useState(null);
 
+  // Sync settings with localStorage
   useEffect(() => {
     localStorage.setItem('ss_email', email);
     localStorage.setItem('ss_notifs', notificationsEnabled);
     localStorage.setItem('ss_theme', theme);
-  }, [email, notificationsEnabled, theme]);
+    localStorage.setItem('ss_watchlist', JSON.stringify(watchlist));
+  }, [email, notificationsEnabled, theme, watchlist]);
 
   const colors = {
     indigo: { text: 'text-indigo-400', bg: 'bg-indigo-600', border: 'border-indigo-500', lightBg: 'bg-indigo-500/10', hoverBg: 'hover:bg-indigo-500/5' },
@@ -106,27 +117,43 @@ const App = () => {
     fetchNews();
   }, []);
 
-  // --- FILTER LOGIC ---
+  // --- LOGIC ---
   const filteredSignals = data.signals.filter(signal => {
     if (signalTab === 'all') return true;
-    // Check if current price is within 2% of Buy price
-    const proximity = (signal.buyAt - signal.currentPrice) / signal.buyAt;
-    return proximity >= 0 && proximity <= 0.02;
+    if (signalTab === 'near') {
+      const proximity = (signal.buyAt - signal.currentPrice) / signal.buyAt;
+      return proximity >= 0 && proximity <= 0.02;
+    }
+    if (signalTab === 'watchlist') {
+      return watchlist.includes(signal.ticker.toUpperCase());
+    }
+    return true;
   });
+
+  const addToWatchlist = () => {
+    const cleanTicker = newTicker.trim().toUpperCase();
+    if (cleanTicker && !watchlist.includes(cleanTicker)) {
+      setWatchlist([...watchlist, cleanTicker]);
+      setNewTicker("");
+    }
+  };
+
+  const removeFromWatchlist = (ticker) => {
+    setWatchlist(watchlist.filter(t => t !== ticker));
+  };
 
   // --- COMPONENTS ---
   const Tooltip = ({ info }) => (
     <div className="group relative inline-block ml-1.5 align-middle">
       <Info size={14} className={`text-slate-500 hover:${activeColor.text} cursor-help transition-colors`} />
       <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 hidden group-hover:block w-56 p-3 bg-slate-800 text-slate-200 text-[11px] font-medium leading-relaxed rounded-xl shadow-2xl border border-slate-700 z-50 animate-in fade-in zoom-in-95 duration-200">
-        <p className="normal-case tracking-normal">{info}</p>
+        <p className="normal-case tracking-normal font-sans">{info}</p>
         <div className="absolute bottom-full left-1/2 -translate-x-1/2 border-8 border-transparent border-b-slate-800"></div>
       </div>
     </div>
   );
 
   const PatternBadge = ({ pattern }) => {
-    // Basic mapping for visual variety
     const patterns = {
       'Flag': { icon: <Flag size={10} />, color: 'text-blue-400' },
       'Pennant': { icon: <Triangle size={10} />, color: 'text-amber-400' },
@@ -184,7 +211,7 @@ const App = () => {
                 <span className={`text-[10px] font-bold uppercase tracking-widest ${data.marketHealthy ? 'text-emerald-400' : 'text-rose-400'}`}>
                   Market: {data.marketHealthy ? 'Healthy' : 'Caution'}
                 </span>
-                <span className="text-[9px] text-slate-500 font-medium">Updated: {data.lastUpdated || 'Pending'}</span>
+                <span className="text-[9px] text-slate-500 font-medium tracking-tight">Sync: {data.lastUpdated || 'Pending'}</span>
              </div>
           </div>
         </nav>
@@ -200,21 +227,18 @@ const App = () => {
                 <div className="px-6 py-4 border-b border-slate-800 flex flex-col md:flex-row justify-between items-start md:items-center bg-slate-900/60 gap-4">
                   <div className="flex items-center gap-2 text-slate-300 font-bold text-xs uppercase tracking-wider">
                     <TrendingUp size={16} className={activeColor.text} />
-                    Breakout Analysis
+                    Active Breakouts
                   </div>
                   
                   <div className="flex bg-slate-950/50 p-1 rounded-xl border border-slate-800/50">
-                    <button 
-                      onClick={() => setSignalTab('all')}
-                      className={`px-3 py-1.5 rounded-lg text-[10px] font-black uppercase transition-all ${signalTab === 'all' ? `${activeColor.bg} text-white shadow-lg` : 'text-slate-500 hover:text-slate-300'}`}
-                    >
-                      All Signals
+                    <button onClick={() => setSignalTab('all')} className={`px-3 py-1.5 rounded-lg text-[10px] font-black uppercase transition-all ${signalTab === 'all' ? `${activeColor.bg} text-white shadow-lg` : 'text-slate-500 hover:text-slate-300'}`}>
+                      All
                     </button>
-                    <button 
-                      onClick={() => setSignalTab('near')}
-                      className={`px-3 py-1.5 rounded-lg text-[10px] font-black uppercase transition-all flex items-center gap-1.5 ${signalTab === 'near' ? `${activeColor.bg} text-white shadow-lg` : 'text-slate-500 hover:text-slate-300'}`}
-                    >
-                      <Flame size={12} /> Near Breakout
+                    <button onClick={() => setSignalTab('near')} className={`px-3 py-1.5 rounded-lg text-[10px] font-black uppercase transition-all flex items-center gap-1.5 ${signalTab === 'near' ? `${activeColor.bg} text-white shadow-lg` : 'text-slate-500 hover:text-slate-300'}`}>
+                      <Flame size={12} /> Near
+                    </button>
+                    <button onClick={() => setSignalTab('watchlist')} className={`px-3 py-1.5 rounded-lg text-[10px] font-black uppercase transition-all flex items-center gap-1.5 ${signalTab === 'watchlist' ? `${activeColor.bg} text-white shadow-lg` : 'text-slate-500 hover:text-slate-300'}`}>
+                      <Star size={12} /> Watchlist
                     </button>
                   </div>
                 </div>
@@ -224,9 +248,9 @@ const App = () => {
                     <thead>
                       <tr className="text-slate-500 text-[10px] font-black uppercase tracking-[0.2em] border-b border-slate-800/50">
                         <th className="px-6 py-4">Ticker <Tooltip info="Stock Symbol." /></th>
-                        <th className="px-6 py-4">Price <Tooltip info="Live price." /></th>
-                        <th className={`px-6 py-4 ${activeColor.text}`}>Buy Trigger <Tooltip info="Price needed to confirm breakout." /></th>
-                        <th className="px-6 py-4 text-emerald-400">Pattern <Tooltip info="Identified chart formation (Flag, Pennant, etc.)" /></th>
+                        <th className="px-6 py-4">Price <Tooltip info="Current live price." /></th>
+                        <th className={`px-6 py-4 ${activeColor.text}`}>Buy Trigger <Tooltip info="Price needed for breakout." /></th>
+                        <th className="px-6 py-4 text-emerald-400">Pattern <Tooltip info="Visual chart formation." /></th>
                         <th className="px-4 py-4"></th>
                       </tr>
                     </thead>
@@ -236,8 +260,8 @@ const App = () => {
                           <td className="px-6 py-5">
                             <div className="flex flex-col">
                               <span className="font-black text-white uppercase group-hover:scale-105 transition-transform origin-left">{signal.ticker}</span>
-                              {(signal.buyAt - signal.currentPrice) / signal.buyAt <= 0.02 && (
-                                <span className="text-[8px] font-bold text-emerald-500 uppercase tracking-tighter">Ready to pop</span>
+                              {watchlist.includes(signal.ticker.toUpperCase()) && (
+                                <span className={`text-[8px] font-bold ${activeColor.text} uppercase`}>Watching</span>
                               )}
                             </div>
                           </td>
@@ -246,21 +270,12 @@ const App = () => {
                             <div className="flex flex-col">
                               <span>${signal.buyAt}</span>
                               <div className="w-full bg-slate-800 h-1 rounded-full mt-1 overflow-hidden">
-                                <div 
-                                  className={`${activeColor.bg} h-full transition-all duration-1000`} 
-                                  style={{ width: `${Math.min(100, (signal.currentPrice / signal.buyAt) * 100)}%` }}
-                                />
+                                <div className={`${activeColor.bg} h-full transition-all duration-1000`} style={{ width: `${Math.min(100, (signal.currentPrice / signal.buyAt) * 100)}%` }} />
                               </div>
                             </div>
                           </td>
-                          <td className="px-6 py-5">
-                            <PatternBadge pattern={signal.pattern || 'Bull Flag'} />
-                          </td>
-                          <td className="px-4 py-5">
-                            <a href={`https://finance.yahoo.com/quote/${signal.ticker}`} target="_blank" rel="noreferrer" className="text-slate-600 hover:text-white transition-colors">
-                              <ExternalLink size={16} />
-                            </a>
-                          </td>
+                          <td className="px-6 py-5"><PatternBadge pattern={signal.pattern || 'Consolidation'} /></td>
+                          <td className="px-4 py-5"><a href={`https://finance.yahoo.com/quote/${signal.ticker}`} target="_blank" rel="noreferrer" className="text-slate-600 hover:text-white"><ExternalLink size={16} /></a></td>
                         </tr>
                       ))}
                     </tbody>
@@ -270,7 +285,7 @@ const App = () => {
                     <div className="p-20 text-center flex flex-col items-center gap-3">
                       <SearchX className="text-slate-800" size={48} />
                       <p className="text-slate-600 font-medium italic text-sm">
-                        {signalTab === 'near' ? 'No stocks currently within the 2% breakout zone.' : 'No active signals found.'}
+                        {signalTab === 'near' ? 'No stocks near breakout.' : signalTab === 'watchlist' ? 'No signals for your watchlist stocks yet.' : 'No active signals found.'}
                       </p>
                     </div>
                   )}
@@ -298,11 +313,45 @@ const App = () => {
           </div>
         ) : (
           /* SETTINGS VIEW */
-          <div className="max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-300">
+          <div className="max-w-3xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-300 space-y-6">
             <div className="bg-slate-900/40 border border-slate-800 rounded-3xl p-8 space-y-8 shadow-2xl">
+              
               <div className="flex items-center gap-3 pb-6 border-b border-slate-800">
                 <div className={`${activeColor.lightBg} p-3 rounded-2xl`}><Settings className={activeColor.text} size={24} /></div>
-                <div><h2 className="text-xl font-bold tracking-tight">System Preferences</h2><p className="text-xs text-slate-500 font-medium">Configure alert triggers and UI theme</p></div>
+                <div><h2 className="text-xl font-bold tracking-tight">Preferences</h2><p className="text-xs text-slate-500 font-medium">Manage watchlists, alerts, and styling</p></div>
+              </div>
+
+              {/* WATCHLIST MANAGER */}
+              <div className="space-y-4">
+                <div className="flex items-center gap-2 text-slate-400"><Star size={16} /><h3 className="text-sm font-bold uppercase tracking-wider">My Watchlist</h3></div>
+                <div className="bg-slate-950/50 p-6 rounded-2xl border border-slate-800 space-y-6">
+                  <div className="flex gap-2">
+                    <input 
+                      type="text" 
+                      placeholder="Enter Ticker (e.g. MSFT)" 
+                      value={newTicker} 
+                      onChange={(e) => setNewTicker(e.target.value)}
+                      onKeyPress={(e) => e.key === 'Enter' && addToWatchlist()}
+                      className="flex-1 bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-500 transition-colors uppercase"
+                    />
+                    <button onClick={addToWatchlist} className={`${activeColor.bg} px-6 rounded-xl font-bold text-xs uppercase flex items-center gap-2 hover:opacity-90 transition-all shadow-lg`}>
+                      <Plus size={16} /> Add
+                    </button>
+                  </div>
+                  
+                  <div className="flex flex-wrap gap-2">
+                    {watchlist.length > 0 ? watchlist.map((ticker) => (
+                      <div key={ticker} className="bg-slate-900 border border-slate-800 px-3 py-2 rounded-xl flex items-center gap-2 group animate-in zoom-in-95">
+                        <span className="font-bold text-xs text-slate-200">{ticker}</span>
+                        <button onClick={() => removeFromWatchlist(ticker)} className="text-slate-500 hover:text-rose-500 transition-colors">
+                          <X size={14} />
+                        </button>
+                      </div>
+                    )) : (
+                      <p className="text-xs text-slate-600 italic">Your watchlist is empty. Add some tickers to track them separately.</p>
+                    )}
+                  </div>
+                </div>
               </div>
 
               {/* EMAIL SECTION */}
@@ -310,18 +359,15 @@ const App = () => {
                 <div className="flex items-center gap-2 text-slate-400"><Mail size={16} /><h3 className="text-sm font-bold uppercase tracking-wider">Robot Alerts</h3></div>
                 <div className="bg-slate-950/50 p-6 rounded-2xl border border-slate-800 flex flex-col gap-5">
                   <div className="flex items-center justify-between">
-                    <div><p className="text-sm font-bold text-slate-200">Gmail Notification Switch</p><p className="text-[11px] text-slate-500 mt-0.5">The scanner will push alerts to this email during market hours.</p></div>
+                    <div><p className="text-sm font-bold text-slate-200">Gmail Notification Switch</p><p className="text-[11px] text-slate-500 mt-0.5">Push alerts for identified setups to your email.</p></div>
                     <button onClick={() => setNotificationsEnabled(!notificationsEnabled)} className={`w-12 h-6 rounded-full transition-all relative ${notificationsEnabled ? activeColor.bg : 'bg-slate-800'}`}>
                       <div className={`absolute top-1 w-4 h-4 bg-white rounded-full shadow-sm transition-all ${notificationsEnabled ? 'left-7' : 'left-1'}`} />
                     </button>
                   </div>
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-black uppercase text-slate-600 tracking-widest ml-1">Destination</label>
-                    <input type="email" placeholder="your-email@gmail.com" value={email} onChange={(e) => setEmail(e.target.value)} className={`w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:${activeColor.border} transition-colors`} />
-                  </div>
+                  <input type="email" placeholder="your-email@gmail.com" value={email} onChange={(e) => setEmail(e.target.value)} className={`w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-500 transition-colors`} />
                   <button onClick={() => { setSaveStatus('saving'); setTimeout(() => setSaveStatus('saved'), 1000); }} className={`w-full ${activeColor.bg} hover:opacity-90 py-3.5 rounded-xl text-xs font-black uppercase tracking-widest transition-all shadow-xl flex items-center justify-center gap-2`}>
                     {saveStatus === 'saving' ? <RefreshCw size={14} className="animate-spin" /> : saveStatus === 'saved' ? <CheckCircle2 size={16} /> : null}
-                    {saveStatus === 'saving' ? 'Verifying Robot...' : saveStatus === 'saved' ? 'Robot Connected' : 'Sync Alert Preferences'}
+                    {saveStatus === 'saving' ? 'Syncing...' : saveStatus === 'saved' ? 'Robot Synced' : 'Sync Alert Preferences'}
                   </button>
                 </div>
               </div>
@@ -342,7 +388,7 @@ const App = () => {
           </div>
         )}
 
-        <footer className="mt-12 py-8 border-t border-slate-900 text-center"><p className="text-slate-600 text-[10px] uppercase font-bold tracking-[0.3em] opacity-40 italic">SwingScan Intelligence Engine • Pro V5.1 Build</p></footer>
+        <footer className="mt-12 py-8 border-t border-slate-900 text-center"><p className="text-slate-600 text-[10px] uppercase font-bold tracking-[0.3em] opacity-40 italic">SwingScan Intelligence Engine • Pro V5.2 Build</p></footer>
       </div>
     </div>
   );
