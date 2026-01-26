@@ -194,11 +194,15 @@ const App = () => {
       'Flat Base': { icon: <Layers size={10} />, color: 'text-emerald-400', bg: 'bg-emerald-400/10' },
       'Trend Breakout': { icon: <Zap size={10} />, color: 'text-indigo-400', bg: 'bg-indigo-400/10' }
     };
-    const p = patterns[pattern] || patterns['Trend Breakout'];
+    
+    // Prioritize specific identified patterns, default to Trend Breakout if null/generic
+    const label = pattern && patterns[pattern] ? pattern : (pattern || 'Trend Breakout');
+    const p = patterns[label] || patterns['Trend Breakout'];
+
     return (
       <div className={`inline-flex items-center gap-1.5 px-2 py-1 rounded-lg ${p.bg} ${p.color} font-black text-[9px] uppercase tracking-wider`}>
         {p.icon}
-        {pattern || 'Setup Found'}
+        {label}
       </div>
     );
   };
