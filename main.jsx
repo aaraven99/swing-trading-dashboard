@@ -29,15 +29,17 @@ import {
   X,
   Eye,
   EyeOff,
-  HelpCircle
+  HelpCircle,
+  SortAsc,
+  ArrowUpDown
 } from 'lucide-react'
 
 /**
- * THE ULTIMATE DASHBOARD (V5.4)
- * - Improved Watchlist Logic: Clearer feedback when watched stocks aren't "signaling".
- * - Pattern Column Restored: Shows chart formations alongside Target & RSI.
+ * THE ULTIMATE DASHBOARD (V5.5)
+ * - Custom Sorting: Choose sort criteria and order in Settings.
+ * - Improved Watchlist Logic: Clearer feedback for quiet stocks.
+ * - Pattern Column: Shows formations alongside Target & RSI.
  * - Strict 2-decimal rounding for all data.
- * - Optional News Feed (Toggle in Settings).
  */
 const App = () => {
   // --- STATE & PERSISTENCE ---
@@ -59,6 +61,12 @@ const App = () => {
     return saved ? JSON.parse(saved) : ['AAPL', 'TSLA', 'NVDA'];
   });
   
+  // New Sorting State
+  const [sortConfig, setSortConfig] = useState(() => {
+    const saved = localStorage.getItem('ss_sort');
+    return saved ? JSON.parse(saved) : { key: 'ticker', order: 'asc' };
+  });
+  
   const [newTicker, setNewTicker] = useState("");
   const [saveStatus, setSaveStatus] = useState(null);
 
@@ -69,7 +77,8 @@ const App = () => {
     localStorage.setItem('ss_theme', theme);
     localStorage.setItem('ss_show_news', showNews);
     localStorage.setItem('ss_watchlist', JSON.stringify(watchlist));
-  }, [email, notificationsEnabled, theme, showNews, watchlist]);
+    localStorage.setItem('ss_sort', JSON.stringify(sortConfig));
+  }, [email, notificationsEnabled, theme, showNews, watchlist, sortConfig]);
 
   const colors = {
     indigo: { text: 'text-indigo-400', bg: 'bg-indigo-600', border: 'border-indigo-500', lightBg: 'bg-indigo-500/10', hoverBg: 'hover:bg-indigo-500/5' },
@@ -130,18 +139,41 @@ const App = () => {
   }, [showNews]);
 
   // --- LOGIC ---
-  const filteredSignals = data.signals.filter(signal => {
-    const ticker = signal.ticker.toUpperCase().trim();
-    if (signalTab === 'all') return true;
-    if (signalTab === 'near') {
-      const proximity = (signal.buyAt - signal.currentPrice) / signal.buyAt;
-      return proximity >= 0 && proximity <= 0.02;
-    }
-    if (signalTab === 'watchlist') {
-      return watchlist.some(t => t.toUpperCase().trim() === ticker);
-    }
-    return true;
-  });
+  const getFilteredAndSortedSignals = () => {
+    // 1. Filter
+    let filtered = data.signals.filter(signal => {
+      const ticker = signal.ticker.toUpperCase().trim();
+      if (signalTab === 'all') return true;
+      if (signalTab === 'near') {
+        const proximity = (signal.buyAt - signal.currentPrice) / signal.buyAt;
+        return proximity >= 0 && proximity <= 0.02;
+      }
+      if (signalTab === 'watchlist') {
+        return watchlist.some(t => t.toUpperCase().trim() === ticker);
+      }
+      return true;
+    });
+
+    // 2. Sort
+    return [...filtered].sort((a, b) => {
+      let valA = a[sortConfig.key];
+      let valB = b[sortConfig.key];
+
+      // Handle Ticker specifically for alphabetical sorting
+      if (sortConfig.key === 'ticker') {
+        return sortConfig.order === 'asc' 
+          ? valA.localeCompare(valB) 
+          : valB.localeCompare(valA);
+      }
+
+      // Handle numerical sorting
+      valA = parseFloat(valA) || 0;
+      valB = parseFloat(valB) || 0;
+      return sortConfig.order === 'asc' ? valA - valB : valB - valA;
+    });
+  };
+
+  const displaySignals = getFilteredAndSortedSignals();
 
   const addToWatchlist = () => {
     const cleanTicker = newTicker.trim().toUpperCase();
@@ -269,7 +301,7 @@ const App = () => {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-800/30">
-                      {filteredSignals.map((signal) => (
+                      {displaySignals.map((signal) => (
                         <tr key={signal.ticker} className={`${activeColor.hoverBg} transition-all group`}>
                           <td className="px-6 py-5">
                             <div className="flex flex-col">
@@ -294,7 +326,7 @@ const App = () => {
                     </tbody>
                   </table>
                   {loading && <div className="p-20 text-center"><RefreshCw className={`animate-spin mx-auto ${activeColor.text}`} /></div>}
-                  {!loading && filteredSignals.length === 0 && (
+                  {!loading && displaySignals.length === 0 && (
                     <div className="p-20 text-center flex flex-col items-center gap-3">
                       <SearchX className="text-slate-800" size={48} />
                       <div className="max-w-xs mx-auto">
@@ -340,7 +372,45 @@ const App = () => {
               
               <div className="flex items-center gap-3 pb-6 border-b border-slate-800">
                 <div className={`${activeColor.lightBg} p-3 rounded-2xl`}><Settings className={activeColor.text} size={24} /></div>
-                <div><h2 className="text-xl font-bold tracking-tight">Preferences</h2><p className="text-xs text-slate-500 font-medium">Control watchlist, layout, and style</p></div>
+                <div><h2 className="text-xl font-bold tracking-tight">Preferences</h2><p className="text-xs text-slate-500 font-medium">Control sorting, watchlist, and layout</p></div>
+              </div>
+
+              {/* SORT CONFIGURATION */}
+              <div className="space-y-4">
+                <div className="flex items-center gap-2 text-slate-400"><ArrowUpDown size={16} /><h3 className="text-sm font-bold uppercase tracking-wider">Sorting Preferences</h3></div>
+                <div className="bg-slate-950/50 p-6 rounded-2xl border border-slate-800 grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-black uppercase text-slate-600 tracking-widest ml-1">Sort By</label>
+                    <select 
+                      value={sortConfig.key} 
+                      onChange={(e) => setSortConfig({ ...sortConfig, key: e.target.value })}
+                      className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-500 appearance-none text-slate-200"
+                    >
+                      <option value="ticker">Ticker (A-Z)</option>
+                      <option value="currentPrice">Price</option>
+                      <option value="buyAt">Buy Trigger</option>
+                      <option value="goal">Target Price</option>
+                      <option value="rsi">RSI Value</option>
+                    </select>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-black uppercase text-slate-600 tracking-widest ml-1">Order</label>
+                    <div className="flex bg-slate-900 p-1 rounded-xl border border-slate-800">
+                      <button 
+                        onClick={() => setSortConfig({ ...sortConfig, order: 'asc' })}
+                        className={`flex-1 py-2 rounded-lg text-xs font-bold transition-all ${sortConfig.order === 'asc' ? `${activeColor.bg} text-white shadow-lg` : 'text-slate-500 hover:text-slate-300'}`}
+                      >
+                        Ascending
+                      </button>
+                      <button 
+                        onClick={() => setSortConfig({ ...sortConfig, order: 'desc' })}
+                        className={`flex-1 py-2 rounded-lg text-xs font-bold transition-all ${sortConfig.order === 'desc' ? `${activeColor.bg} text-white shadow-lg` : 'text-slate-500 hover:text-slate-300'}`}
+                      >
+                        Descending
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               {/* WATCHLIST MANAGER */}
@@ -415,7 +485,7 @@ const App = () => {
           </div>
         )}
 
-        <footer className="mt-12 py-8 border-t border-slate-900 text-center"><p className="text-slate-600 text-[10px] uppercase font-bold tracking-[0.3em] opacity-40 italic">SwingScan Intelligence Engine • V5.4 Build</p></footer>
+        <footer className="mt-12 py-8 border-t border-slate-900 text-center"><p className="text-slate-600 text-[10px] uppercase font-bold tracking-[0.3em] opacity-40 italic">SwingScan Intelligence Engine • V5.5 Build</p></footer>
       </div>
     </div>
   );
