@@ -32,11 +32,11 @@ import {
 } from 'lucide-react'
 
 /**
- * THE ULTIMATE DASHBOARD (V5.3)
+ * THE ULTIMATE DASHBOARD (V5.4)
+ * - Restored "Pattern" column alongside Target and RSI.
  * - Strict 2-decimal rounding for all data.
- * - Restored Target and RSI columns.
  * - Optional News Feed (Toggle in Settings).
- * - Fixed Watchlist filtering logic.
+ * - Persistent Watchlist & Theme Engine.
  */
 const App = () => {
   // --- STATE & PERSISTENCE ---
@@ -52,7 +52,7 @@ const App = () => {
   const [email, setEmail] = useState(() => localStorage.getItem('ss_email') || "");
   const [notificationsEnabled, setNotificationsEnabled] = useState(() => localStorage.getItem('ss_notifs') === 'true');
   const [theme, setTheme] = useState(() => localStorage.getItem('ss_theme') || 'indigo');
-  const [showNews, setShowNews] = useState(() => localStorage.getItem('ss_show_news') !== 'false'); // Default to true
+  const [showNews, setShowNews] = useState(() => localStorage.getItem('ss_show_news') !== 'false'); 
   const [watchlist, setWatchlist] = useState(() => {
     const saved = localStorage.getItem('ss_watchlist');
     return saved ? JSON.parse(saved) : ['AAPL', 'TSLA', 'NVDA'];
@@ -165,6 +165,22 @@ const App = () => {
     </div>
   );
 
+  const PatternBadge = ({ pattern }) => {
+    const patterns = {
+      'Flag': { icon: <Flag size={10} />, color: 'text-blue-400' },
+      'Pennant': { icon: <Triangle size={10} />, color: 'text-amber-400' },
+      'Head & Shoulders': { icon: <Activity size={10} />, color: 'text-rose-400' },
+      'Default': { icon: <Zap size={10} />, color: activeColor.text }
+    };
+    const p = patterns[pattern] || patterns['Default'];
+    return (
+      <div className={`flex items-center gap-1.5 ${p.color} font-bold text-[9px] uppercase tracking-wider`}>
+        {p.icon}
+        {pattern || 'Consolidation'}
+      </div>
+    );
+  };
+
   const NewsItem = ({ title, time, source, link }) => (
     <a href={link} target="_blank" rel="noopener noreferrer" className="block p-4 border-b border-slate-800/50 hover:bg-slate-800/40 transition-all group">
       <div className="flex justify-between items-start mb-1">
@@ -246,6 +262,7 @@ const App = () => {
                         <th className="px-6 py-4">Price <Tooltip info="Current live price." /></th>
                         <th className={`px-6 py-4 ${activeColor.text}`}>Buy Trigger <Tooltip info="Breakout entry price." /></th>
                         <th className="px-6 py-4 text-emerald-400">Target <Tooltip info="Expected +10% Goal." /></th>
+                        <th className="px-6 py-4">Pattern <Tooltip info="Chart formation." /></th>
                         <th className="px-6 py-4">RSI <Tooltip info="Relative Strength Index." /></th>
                         <th className="px-4 py-4"></th>
                       </tr>
@@ -264,6 +281,7 @@ const App = () => {
                           <td className="px-6 py-5 font-mono text-slate-300 text-sm font-bold">${formatNum(signal.currentPrice)}</td>
                           <td className={`px-6 py-5 font-mono font-black ${activeColor.text} text-base`}>${formatNum(signal.buyAt)}</td>
                           <td className="px-6 py-5 font-mono font-black text-emerald-400 text-base">${formatNum(signal.goal)}</td>
+                          <td className="px-6 py-5"><PatternBadge pattern={signal.pattern} /></td>
                           <td className="px-6 py-5">
                             <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${signal.rsi > 60 ? 'bg-amber-500/20 text-amber-500' : 'bg-slate-800 text-slate-400'}`}>
                               {formatNum(signal.rsi)}
@@ -378,7 +396,7 @@ const App = () => {
           </div>
         )}
 
-        <footer className="mt-12 py-8 border-t border-slate-900 text-center"><p className="text-slate-600 text-[10px] uppercase font-bold tracking-[0.3em] opacity-40 italic">SwingScan Intelligence Engine • V5.3 Final</p></footer>
+        <footer className="mt-12 py-8 border-t border-slate-900 text-center"><p className="text-slate-600 text-[10px] uppercase font-bold tracking-[0.3em] opacity-40 italic">SwingScan Intelligence Engine • V5.4 Build</p></footer>
       </div>
     </div>
   );
