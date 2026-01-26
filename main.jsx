@@ -35,11 +35,12 @@ import {
 } from 'lucide-react'
 
 /**
- * THE ULTIMATE DASHBOARD (V5.5)
- * - Custom Sorting: Choose sort criteria and order in Settings.
- * - Improved Watchlist Logic: Clearer feedback for quiet stocks.
- * - Pattern Column: Shows formations alongside Target & RSI.
- * - Strict 2-decimal rounding for all data.
+ * THE ULTIMATE DASHBOARD (V5.6)
+ * - Localized Sync Time: Converts robot's UTC time to your local timezone.
+ * - Custom Sorting: Choice of criteria saved in Settings.
+ * - Persistent Watchlist: Manual ticker tracking.
+ * - Optional News Feed: Controlled via Layout switch.
+ * - Precision: Strict 2-decimal rounding for all prices and indicators.
  */
 const App = () => {
   // --- STATE & PERSISTENCE ---
@@ -61,7 +62,7 @@ const App = () => {
     return saved ? JSON.parse(saved) : ['AAPL', 'TSLA', 'NVDA'];
   });
   
-  // New Sorting State
+  // Sorting State
   const [sortConfig, setSortConfig] = useState(() => {
     const saved = localStorage.getItem('ss_sort');
     return saved ? JSON.parse(saved) : { key: 'ticker', order: 'asc' };
@@ -91,6 +92,21 @@ const App = () => {
   const formatNum = (num) => {
     if (num === undefined || num === null || isNaN(num)) return "0.00";
     return parseFloat(num).toFixed(2);
+  };
+
+  // Helper to convert UTC timestamp from robot to Local Time
+  const formatSyncTime = (timestamp) => {
+    if (!timestamp) return 'Pending';
+    try {
+      // The robot sends time in YYYY-MM-DD HH:MM:SS format
+      // We append ' UTC' so the browser knows the source timezone
+      const date = new Date(timestamp.replace(' ', 'T') + 'Z'); 
+      if (isNaN(date.getTime())) return timestamp; // Fallback to raw string if parsing fails
+      
+      return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    } catch (e) {
+      return timestamp;
+    }
   };
 
   // --- DATA FETCHING ---
@@ -149,7 +165,8 @@ const App = () => {
         return proximity >= 0 && proximity <= 0.02;
       }
       if (signalTab === 'watchlist') {
-        return watchlist.some(t => t.toUpperCase().trim() === ticker);
+        // Precise matching for the watchlist tab
+        return watchlist.map(t => t.toUpperCase().trim()).includes(ticker);
       }
       return true;
     });
@@ -159,14 +176,12 @@ const App = () => {
       let valA = a[sortConfig.key];
       let valB = b[sortConfig.key];
 
-      // Handle Ticker specifically for alphabetical sorting
       if (sortConfig.key === 'ticker') {
         return sortConfig.order === 'asc' 
           ? valA.localeCompare(valB) 
           : valB.localeCompare(valA);
       }
 
-      // Handle numerical sorting
       valA = parseFloat(valA) || 0;
       valB = parseFloat(valB) || 0;
       return sortConfig.order === 'asc' ? valA - valB : valB - valA;
@@ -256,7 +271,9 @@ const App = () => {
                 <span className={`text-[10px] font-bold uppercase tracking-widest ${data.marketHealthy ? 'text-emerald-400' : 'text-rose-400'}`}>
                   Market: {data.marketHealthy ? 'Healthy' : 'Caution'}
                 </span>
-                <span className="text-[9px] text-slate-500 font-medium tracking-tight">Sync: {data.lastUpdated || 'Pending'}</span>
+                <span className="text-[9px] text-slate-500 font-medium tracking-tight">
+                  Synced: {formatSyncTime(data.lastUpdated)}
+                </span>
              </div>
           </div>
         </nav>
@@ -306,8 +323,8 @@ const App = () => {
                           <td className="px-6 py-5">
                             <div className="flex flex-col">
                               <span className="font-black text-white uppercase text-lg tracking-tight">{signal.ticker}</span>
-                              {watchlist.includes(signal.ticker.toUpperCase()) && (
-                                <span className={`text-[8px] font-bold ${activeColor.text} uppercase tracking-widest`}>Watched</span>
+                              {watchlist.map(w => w.toUpperCase()).includes(signal.ticker.toUpperCase()) && (
+                                <span className={`text-[8px] font-bold ${activeColor.text} uppercase tracking-widest`}>Watching</span>
                               )}
                             </div>
                           </td>
@@ -330,13 +347,13 @@ const App = () => {
                     <div className="p-20 text-center flex flex-col items-center gap-3">
                       <SearchX className="text-slate-800" size={48} />
                       <div className="max-w-xs mx-auto">
-                        <p className="text-slate-400 font-bold uppercase text-xs tracking-widest mb-1">
-                          {signalTab === 'watchlist' ? 'Watched Stocks Quiet' : 'No active signals found.'}
+                        <p className="text-slate-400 font-bold uppercase text-xs tracking-widest mb-1 text-center">
+                          {signalTab === 'watchlist' ? 'No Watched Signals' : 'Market Scanning...'}
                         </p>
-                        <p className="text-slate-600 text-[11px] leading-relaxed">
+                        <p className="text-slate-600 text-[11px] leading-relaxed text-center">
                           {signalTab === 'watchlist' 
-                            ? "Your watched stocks are being tracked, but they haven't met the 'Breakout' criteria in the robot's latest scan. They'll appear here as soon as they start trending!"
-                            : "The robot is monitoring the market. New opportunities will appear here automatically."}
+                            ? "Your watchlist stocks aren't signaling a breakout in the robot's latest scan. They'll show up here automatically when a setup is detected!"
+                            : "The robot is hunting for setups. New breakouts will appear here automatically."}
                         </p>
                       </div>
                     </div>
@@ -352,7 +369,7 @@ const App = () => {
                   <div className="px-6 py-4 border-b border-slate-800 flex items-center justify-between bg-slate-900/60">
                     <div className="flex items-center gap-2">
                       <Globe size={16} className={activeColor.text} />
-                      <h2 className="font-bold text-xs uppercase tracking-wider">Market Intel</h2>
+                      <h2 className="font-bold text-xs uppercase tracking-wider">Live Intel</h2>
                     </div>
                     {newsLoading && <RefreshCw size={12} className="animate-spin text-slate-500" />}
                   </div>
@@ -377,37 +394,27 @@ const App = () => {
 
               {/* SORT CONFIGURATION */}
               <div className="space-y-4">
-                <div className="flex items-center gap-2 text-slate-400"><ArrowUpDown size={16} /><h3 className="text-sm font-bold uppercase tracking-wider">Sorting Preferences</h3></div>
+                <div className="flex items-center gap-2 text-slate-400"><ArrowUpDown size={16} /><h3 className="text-sm font-bold uppercase tracking-wider">Default Sort</h3></div>
                 <div className="bg-slate-950/50 p-6 rounded-2xl border border-slate-800 grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-[10px] font-black uppercase text-slate-600 tracking-widest ml-1">Sort By</label>
+                    <label className="text-[10px] font-black uppercase text-slate-600 tracking-widest ml-1">Key</label>
                     <select 
                       value={sortConfig.key} 
                       onChange={(e) => setSortConfig({ ...sortConfig, key: e.target.value })}
-                      className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-500 appearance-none text-slate-200"
+                      className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-500 appearance-none text-slate-200 cursor-pointer"
                     >
-                      <option value="ticker">Ticker (A-Z)</option>
-                      <option value="currentPrice">Price</option>
-                      <option value="buyAt">Buy Trigger</option>
-                      <option value="goal">Target Price</option>
-                      <option value="rsi">RSI Value</option>
+                      <option value="ticker">Ticker (Symbol)</option>
+                      <option value="currentPrice">Current Price</option>
+                      <option value="buyAt">Breakout Price</option>
+                      <option value="goal">Target Goal</option>
+                      <option value="rsi">RSI Indicator</option>
                     </select>
                   </div>
                   <div className="space-y-2">
-                    <label className="text-[10px] font-black uppercase text-slate-600 tracking-widest ml-1">Order</label>
+                    <label className="text-[10px] font-black uppercase text-slate-600 tracking-widest ml-1">Direction</label>
                     <div className="flex bg-slate-900 p-1 rounded-xl border border-slate-800">
-                      <button 
-                        onClick={() => setSortConfig({ ...sortConfig, order: 'asc' })}
-                        className={`flex-1 py-2 rounded-lg text-xs font-bold transition-all ${sortConfig.order === 'asc' ? `${activeColor.bg} text-white shadow-lg` : 'text-slate-500 hover:text-slate-300'}`}
-                      >
-                        Ascending
-                      </button>
-                      <button 
-                        onClick={() => setSortConfig({ ...sortConfig, order: 'desc' })}
-                        className={`flex-1 py-2 rounded-lg text-xs font-bold transition-all ${sortConfig.order === 'desc' ? `${activeColor.bg} text-white shadow-lg` : 'text-slate-500 hover:text-slate-300'}`}
-                      >
-                        Descending
-                      </button>
+                      <button onClick={() => setSortConfig({ ...sortConfig, order: 'asc' })} className={`flex-1 py-2 rounded-lg text-xs font-bold transition-all ${sortConfig.order === 'asc' ? `${activeColor.bg} text-white` : 'text-slate-500 hover:text-slate-300'}`}>Asc</button>
+                      <button onClick={() => setSortConfig({ ...sortConfig, order: 'desc' })} className={`flex-1 py-2 rounded-lg text-xs font-bold transition-all ${sortConfig.order === 'desc' ? `${activeColor.bg} text-white` : 'text-slate-500 hover:text-slate-300'}`}>Desc</button>
                     </div>
                   </div>
                 </div>
@@ -422,19 +429,19 @@ const App = () => {
                         <div className="group relative">
                             <HelpCircle size={12} className="text-slate-600 cursor-help" />
                             <div className="absolute left-full ml-2 top-0 hidden group-hover:block w-48 p-2 bg-slate-800 text-[9px] text-slate-300 rounded-lg border border-slate-700 z-50">
-                                Note: Stocks only appear in the dashboard if the robot finds an active signal for them.
+                                Note: Stocks only appear in the dashboard if the robot identifies an active setup for them.
                             </div>
                         </div>
                     </h3>
                 </div>
                 <div className="bg-slate-950/50 p-6 rounded-2xl border border-slate-800 space-y-6">
                   <div className="flex gap-2">
-                    <input type="text" placeholder="Enter Ticker (e.g. NVDA)" value={newTicker} onChange={(e) => setNewTicker(e.target.value)} onKeyPress={(e) => e.key === 'Enter' && addToWatchlist()} className="flex-1 bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-500 transition-colors uppercase" />
+                    <input type="text" placeholder="Add Ticker (e.g. MSFT)" value={newTicker} onChange={(e) => setNewTicker(e.target.value)} onKeyPress={(e) => e.key === 'Enter' && addToWatchlist()} className="flex-1 bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-500 transition-colors uppercase" />
                     <button onClick={addToWatchlist} className={`${activeColor.bg} px-6 rounded-xl font-bold text-xs uppercase flex items-center gap-2 hover:opacity-90 transition-all shadow-lg`}><Plus size={16} /> Add</button>
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {watchlist.map((ticker) => (
-                      <div key={ticker} className="bg-slate-900 border border-slate-800 px-3 py-2 rounded-xl flex items-center gap-2 group">
+                      <div key={ticker} className="bg-slate-900 border border-slate-800 px-3 py-2 rounded-xl flex items-center gap-2 group animate-in zoom-in-95">
                         <span className="font-bold text-xs text-slate-200">{ticker}</span>
                         <button onClick={() => removeFromWatchlist(ticker)} className="text-slate-500 hover:text-rose-500 transition-colors"><X size={14} /></button>
                       </div>
@@ -446,11 +453,11 @@ const App = () => {
               {/* LAYOUT & EMAIL SECTION */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-4">
-                  <div className="flex items-center gap-2 text-slate-400"><LayoutDashboard size={16} /><h3 className="text-sm font-bold uppercase tracking-wider">Layout</h3></div>
+                  <div className="flex items-center gap-2 text-slate-400"><LayoutDashboard size={16} /><h3 className="text-sm font-bold uppercase tracking-wider">View Mode</h3></div>
                   <div className="bg-slate-950/50 p-6 rounded-2xl border border-slate-800 flex items-center justify-between">
                     <div className="flex items-center gap-3">
                       {showNews ? <Eye size={18} className={activeColor.text}/> : <EyeOff size={18} className="text-slate-600"/>}
-                      <span className="text-sm font-bold text-slate-200">Show Market News</span>
+                      <span className="text-sm font-bold text-slate-200">Live News</span>
                     </div>
                     <button onClick={() => setShowNews(!showNews)} className={`w-12 h-6 rounded-full transition-all relative ${showNews ? activeColor.bg : 'bg-slate-800'}`}>
                       <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${showNews ? 'left-7' : 'left-1'}`} />
@@ -485,7 +492,7 @@ const App = () => {
           </div>
         )}
 
-        <footer className="mt-12 py-8 border-t border-slate-900 text-center"><p className="text-slate-600 text-[10px] uppercase font-bold tracking-[0.3em] opacity-40 italic">SwingScan Intelligence Engine • V5.5 Build</p></footer>
+        <footer className="mt-12 py-8 border-t border-slate-900 text-center"><p className="text-slate-600 text-[10px] uppercase font-bold tracking-[0.3em] opacity-40 italic">SwingScan Intelligence Engine • V5.6 Build</p></footer>
       </div>
     </div>
   );
