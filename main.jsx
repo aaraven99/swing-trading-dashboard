@@ -31,8 +31,8 @@ import {
 } from 'lucide-react'
 
 /**
- * THE ULTIMATE DASHBOARD (V5.8)
- * - Specific Pattern Recognition: Displays Bull Flag, Pennant, Flat Base labels.
+ * THE ULTIMATE DASHBOARD (V5.9)
+ * - Robust Pattern Recognition: Case-insensitive matching for Flag, Pennant, Base, etc.
  * - Localized Sync Time: Automatically adjusts robot's UTC time to your local clock.
  * - Precision: Forces 2-decimal rounding across all trading metrics.
  * - Persistence: Watchlist, Sort, News-toggle, and Themes saved to browser memory.
@@ -92,6 +92,7 @@ const App = () => {
   const formatSyncTime = (timestamp) => {
     if (!timestamp) return 'Connecting...';
     try {
+      // Robot sends UTC: YYYY-MM-DD HH:MM:SS
       const date = new Date(timestamp.replace(' ', 'T') + 'Z'); 
       if (isNaN(date.getTime())) return timestamp;
       return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -196,20 +197,31 @@ const App = () => {
   );
 
   const PatternBadge = ({ pattern }) => {
-    const patterns = {
-      'Bull Flag': { icon: <Flag size={10} />, color: 'text-blue-400', bg: 'bg-blue-400/10' },
-      'Pennant': { icon: <Triangle size={10} />, color: 'text-amber-400', bg: 'bg-amber-400/10' },
-      'Flat Base': { icon: <Layers size={10} />, color: 'text-emerald-400', bg: 'bg-emerald-400/10' },
-      'Trend Breakout': { icon: <Zap size={10} />, color: 'text-indigo-400', bg: 'bg-indigo-400/10' }
+    // Robust mapping for visual setups
+    const badgeMap = {
+      'bull flag': { label: 'Bull Flag', icon: <Flag size={10} />, color: 'text-blue-400', bg: 'bg-blue-400/10' },
+      'pennant': { label: 'Pennant', icon: <Triangle size={10} />, color: 'text-amber-400', bg: 'bg-amber-400/10' },
+      'flat base': { label: 'Flat Base', icon: <Layers size={10} />, color: 'text-emerald-400', bg: 'bg-emerald-400/10' },
+      'trend breakout': { label: 'Trend Breakout', icon: <Zap size={10} />, color: 'text-indigo-400', bg: 'bg-indigo-400/10' },
+      'setup found': { label: 'Setup Found', icon: <Activity size={10} />, color: 'text-rose-400', bg: 'bg-rose-400/10' }
     };
     
-    const label = pattern && patterns[pattern] ? pattern : 'Trend Breakout';
-    const p = patterns[label];
+    // Clean and normalize input
+    const key = (pattern || '').toLowerCase().trim();
+    
+    // Attempt to match keywords if exact match fails
+    let match = badgeMap[key];
+    if (!match) {
+      if (key.includes('flag')) match = badgeMap['bull flag'];
+      else if (key.includes('pennant')) match = badgeMap['pennant'];
+      else if (key.includes('base')) match = badgeMap['flat base'];
+      else match = badgeMap['trend breakout'];
+    }
 
     return (
-      <div className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg ${p.bg} ${p.color} font-black text-[9px] uppercase tracking-wider shadow-sm border border-white/5`}>
-        {p.icon}
-        {label}
+      <div className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg ${match.bg} ${match.color} font-black text-[9px] uppercase tracking-wider shadow-sm border border-white/5`}>
+        {match.icon}
+        {match.label}
       </div>
     );
   };
@@ -395,7 +407,7 @@ const App = () => {
           </div>
         )}
 
-        <footer className="mt-12 py-8 border-t border-slate-900 text-center"><p className="text-slate-600 text-[10px] uppercase font-bold tracking-[0.3em] opacity-40 italic">SwingScan Intelligence Engine • V5.8 Build</p></footer>
+        <footer className="mt-12 py-8 border-t border-slate-900 text-center"><p className="text-slate-600 text-[10px] uppercase font-bold tracking-[0.3em] opacity-40 italic">SwingScan Intelligence Engine • V5.9 Build</p></footer>
       </div>
     </div>
   );
