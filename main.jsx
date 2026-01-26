@@ -28,15 +28,16 @@ import {
   Plus,
   X,
   Eye,
-  EyeOff
+  EyeOff,
+  HelpCircle
 } from 'lucide-react'
 
 /**
  * THE ULTIMATE DASHBOARD (V5.4)
- * - Restored "Pattern" column alongside Target and RSI.
+ * - Improved Watchlist Logic: Clearer feedback when watched stocks aren't "signaling".
+ * - Pattern Column Restored: Shows chart formations alongside Target & RSI.
  * - Strict 2-decimal rounding for all data.
  * - Optional News Feed (Toggle in Settings).
- * - Persistent Watchlist & Theme Engine.
  */
 const App = () => {
   // --- STATE & PERSISTENCE ---
@@ -79,7 +80,7 @@ const App = () => {
 
   // Helper for 2-decimal rounding
   const formatNum = (num) => {
-    if (num === undefined || num === null) return "0.00";
+    if (num === undefined || num === null || isNaN(num)) return "0.00";
     return parseFloat(num).toFixed(2);
   };
 
@@ -167,7 +168,7 @@ const App = () => {
 
   const PatternBadge = ({ pattern }) => {
     const patterns = {
-      'Flag': { icon: <Flag size={10} />, color: 'text-blue-400' },
+      'Bull Flag': { icon: <Flag size={10} />, color: 'text-blue-400' },
       'Pennant': { icon: <Triangle size={10} />, color: 'text-amber-400' },
       'Head & Shoulders': { icon: <Activity size={10} />, color: 'text-rose-400' },
       'Default': { icon: <Zap size={10} />, color: activeColor.text }
@@ -176,7 +177,7 @@ const App = () => {
     return (
       <div className={`flex items-center gap-1.5 ${p.color} font-bold text-[9px] uppercase tracking-wider`}>
         {p.icon}
-        {pattern || 'Consolidation'}
+        {pattern || 'Setup Found'}
       </div>
     );
   };
@@ -262,8 +263,8 @@ const App = () => {
                         <th className="px-6 py-4">Price <Tooltip info="Current live price." /></th>
                         <th className={`px-6 py-4 ${activeColor.text}`}>Buy Trigger <Tooltip info="Breakout entry price." /></th>
                         <th className="px-6 py-4 text-emerald-400">Target <Tooltip info="Expected +10% Goal." /></th>
-                        <th className="px-6 py-4">Pattern <Tooltip info="Chart formation." /></th>
-                        <th className="px-6 py-4">RSI <Tooltip info="Relative Strength Index." /></th>
+                        <th className="px-6 py-4">Pattern <Tooltip info="Identified chart formation." /></th>
+                        <th className="px-6 py-4">RSI <Tooltip info="Strength indicator." /></th>
                         <th className="px-4 py-4"></th>
                       </tr>
                     </thead>
@@ -296,9 +297,16 @@ const App = () => {
                   {!loading && filteredSignals.length === 0 && (
                     <div className="p-20 text-center flex flex-col items-center gap-3">
                       <SearchX className="text-slate-800" size={48} />
-                      <p className="text-slate-600 font-medium italic text-sm">
-                        {signalTab === 'watchlist' ? 'No robot signals found for your watched tickers.' : 'No active signals found.'}
-                      </p>
+                      <div className="max-w-xs mx-auto">
+                        <p className="text-slate-400 font-bold uppercase text-xs tracking-widest mb-1">
+                          {signalTab === 'watchlist' ? 'Watched Stocks Quiet' : 'No active signals found.'}
+                        </p>
+                        <p className="text-slate-600 text-[11px] leading-relaxed">
+                          {signalTab === 'watchlist' 
+                            ? "Your watched stocks are being tracked, but they haven't met the 'Breakout' criteria in the robot's latest scan. They'll appear here as soon as they start trending!"
+                            : "The robot is monitoring the market. New opportunities will appear here automatically."}
+                        </p>
+                      </div>
                     </div>
                   )}
                 </div>
@@ -337,7 +345,18 @@ const App = () => {
 
               {/* WATCHLIST MANAGER */}
               <div className="space-y-4">
-                <div className="flex items-center gap-2 text-slate-400"><Star size={16} /><h3 className="text-sm font-bold uppercase tracking-wider">My Watchlist</h3></div>
+                <div className="flex items-center gap-2 text-slate-400">
+                    <Star size={16} />
+                    <h3 className="text-sm font-bold uppercase tracking-wider flex items-center gap-2">
+                        My Watchlist
+                        <div className="group relative">
+                            <HelpCircle size={12} className="text-slate-600 cursor-help" />
+                            <div className="absolute left-full ml-2 top-0 hidden group-hover:block w-48 p-2 bg-slate-800 text-[9px] text-slate-300 rounded-lg border border-slate-700 z-50">
+                                Note: Stocks only appear in the dashboard if the robot finds an active signal for them.
+                            </div>
+                        </div>
+                    </h3>
+                </div>
                 <div className="bg-slate-950/50 p-6 rounded-2xl border border-slate-800 space-y-6">
                   <div className="flex gap-2">
                     <input type="text" placeholder="Enter Ticker (e.g. NVDA)" value={newTicker} onChange={(e) => setNewTicker(e.target.value)} onKeyPress={(e) => e.key === 'Enter' && addToWatchlist()} className="flex-1 bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-500 transition-colors uppercase" />
