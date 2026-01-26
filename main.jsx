@@ -27,7 +27,7 @@ import {
   EyeOff,
   HelpCircle,
   ArrowUpDown,
-  TrendingDown
+  Layers
 } from 'lucide-react'
 
 /**
@@ -98,7 +98,7 @@ const App = () => {
   useEffect(() => {
     const fetchData = async () => {
       const cacheBuster = `?t=${Date.now()}`;
-      const paths = ['/signals.json', './signals.json', './public/signals.json'];
+      const paths = ['./signals.json', '/signals.json', './public/signals.json'];
       let success = false;
       for (const path of paths) {
         try {
@@ -116,6 +116,8 @@ const App = () => {
       setLoading(false);
     };
     fetchData();
+    const interval = setInterval(fetchData, 300000);
+    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
@@ -196,7 +198,7 @@ const App = () => {
     return (
       <div className={`inline-flex items-center gap-1.5 px-2 py-1 rounded-lg ${p.bg} ${p.color} font-black text-[9px] uppercase tracking-wider`}>
         {p.icon}
-        {pattern || 'Analyzing'}
+        {pattern || 'Setup Found'}
       </div>
     );
   };
@@ -209,8 +211,8 @@ const App = () => {
         <nav className="flex items-center justify-between mb-8 bg-slate-900/40 p-2 rounded-2xl border border-slate-800/50 backdrop-blur-md shadow-xl">
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-3 px-3">
-              <div className={`${activeColor.bg} p-1.5 rounded-lg shadow-lg`}><Activity size={20} /></div>
-              <span className="font-black tracking-tighter uppercase italic text-lg">Swing<span className={activeColor.text}>Scan</span></span>
+              <div className={`${activeColor.bg} p-1.5 rounded-lg shadow-lg`}><Activity size={20} className="text-white" /></div>
+              <span className="font-black tracking-tighter uppercase italic text-lg text-white">Swing<span className={activeColor.text}>Scan</span></span>
             </div>
             <div className="flex gap-1">
               <button onClick={() => setActiveTab('dashboard')} className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all ${activeTab === 'dashboard' ? `${activeColor.lightBg} ${activeColor.text}` : 'text-slate-500 hover:text-slate-300'}`}><LayoutDashboard size={16} /> Dashboard</button>
@@ -266,7 +268,7 @@ const App = () => {
                           <td className={`px-6 py-5 font-mono font-black ${activeColor.text} text-base`}>${formatNum(signal.buyAt)}</td>
                           <td className="px-6 py-5 font-mono font-black text-emerald-400 text-base">${formatNum(signal.goal)}</td>
                           <td className="px-6 py-5"><PatternBadge pattern={signal.pattern} /></td>
-                          <td className="px-6 py-5"><span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${signal.rsi > 60 ? 'bg-amber-500/20 text-amber-500' : 'bg-slate-800 text-slate-400'}`}>{formatNum(signal.rsi)}</span></td>
+                          <td className="px-6 py-5"><span className={`px-2 py-0.5 rounded-full text-[10px] font-black ${signal.rsi > 60 ? 'bg-amber-500/10 text-amber-500' : 'bg-slate-800 text-slate-400'}`}>{formatNum(signal.rsi)}</span></td>
                           <td className="px-4 py-5"><a href={`https://finance.yahoo.com/quote/${signal.ticker}`} target="_blank" rel="noreferrer" className="text-slate-600 hover:text-white"><ExternalLink size={16} /></a></td>
                         </tr>
                       ))}
@@ -289,7 +291,7 @@ const App = () => {
               <div className="lg:col-span-4 space-y-6 animate-in slide-in-from-right duration-500">
                 <div className="bg-slate-900/40 border border-slate-800 rounded-3xl overflow-hidden flex flex-col h-[700px] shadow-2xl backdrop-blur-sm">
                   <div className="px-6 py-4 border-b border-slate-800 flex items-center justify-between bg-slate-900/60">
-                    <div className="flex items-center gap-2"><Globe size={16} className={activeColor.text} /><h2 className="font-bold text-xs uppercase tracking-wider">Live Intel</h2></div>
+                    <div className="flex items-center gap-2"><Globe size={16} className={activeColor.text} /><h2 className="font-bold text-xs uppercase tracking-wider text-white">Live Intel</h2></div>
                     {newsLoading && <RefreshCw size={12} className="animate-spin text-slate-500" />}
                   </div>
                   <div className="overflow-y-auto flex-1 custom-scrollbar">
@@ -313,14 +315,14 @@ const App = () => {
             <div className="bg-slate-900/40 border border-slate-800 rounded-3xl p-8 space-y-8 shadow-2xl">
               <div className="flex items-center gap-3 pb-6 border-b border-slate-800">
                 <div className={`${activeColor.lightBg} p-3 rounded-2xl`}><Settings className={activeColor.text} size={24} /></div>
-                <div><h2 className="text-xl font-bold tracking-tight">Preferences</h2><p className="text-xs text-slate-500 font-medium">Control watchlist, sorting, and UI styling</p></div>
+                <div><h2 className="text-xl font-bold tracking-tight text-white">Preferences</h2><p className="text-xs text-slate-500 font-medium">Control watchlist, sorting, and UI styling</p></div>
               </div>
 
               {/* SORT */}
               <div className="space-y-4">
                 <div className="flex items-center gap-2 text-slate-400"><ArrowUpDown size={16} /><h3 className="text-sm font-bold uppercase tracking-wider">Default Sort</h3></div>
                 <div className="bg-slate-950/50 p-6 rounded-2xl border border-slate-800 grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <select value={sortConfig.key} onChange={(e) => setSortConfig({ ...sortConfig, key: e.target.value })} className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-500 text-slate-200">
+                  <select value={sortConfig.key} onChange={(e) => setSortConfig({ ...sortConfig, key: e.target.value })} className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-500 text-slate-200 cursor-pointer">
                     <option value="ticker">Ticker</option>
                     <option value="currentPrice">Price</option>
                     <option value="buyAt">Breakout Price</option>
@@ -328,8 +330,8 @@ const App = () => {
                     <option value="rsi">RSI</option>
                   </select>
                   <div className="flex bg-slate-900 p-1 rounded-xl border border-slate-800">
-                    <button onClick={() => setSortConfig({ ...sortConfig, order: 'asc' })} className={`flex-1 py-2 rounded-lg text-xs font-bold transition-all ${sortConfig.order === 'asc' ? `${activeColor.bg} text-white` : 'text-slate-500 hover:text-slate-300'}`}>Asc</button>
-                    <button onClick={() => setSortConfig({ ...sortConfig, order: 'desc' })} className={`flex-1 py-2 rounded-lg text-xs font-bold transition-all ${sortConfig.order === 'desc' ? `${activeColor.bg} text-white` : 'text-slate-500 hover:text-slate-300'}`}>Desc</button>
+                    <button onClick={() => setSortConfig({ ...sortConfig, order: 'asc' })} className={`flex-1 py-2 rounded-lg text-xs font-bold transition-all ${sortConfig.order === 'asc' ? `${activeColor.bg} text-white shadow-lg` : 'text-slate-500 hover:text-slate-300'}`}>Asc</button>
+                    <button onClick={() => setSortConfig({ ...sortConfig, order: 'desc' })} className={`flex-1 py-2 rounded-lg text-xs font-bold transition-all ${sortConfig.order === 'desc' ? `${activeColor.bg} text-white shadow-lg` : 'text-slate-500 hover:text-slate-300'}`}>Desc</button>
                   </div>
                 </div>
               </div>
@@ -339,14 +341,14 @@ const App = () => {
                 <div className="flex items-center gap-2 text-slate-400"><Star size={16} /><h3 className="text-sm font-bold uppercase tracking-wider">My Watchlist</h3></div>
                 <div className="bg-slate-950/50 p-6 rounded-2xl border border-slate-800 space-y-6">
                   <div className="flex gap-2">
-                    <input type="text" placeholder="Add Ticker (e.g. MSFT)" value={newTicker} onChange={(e) => setNewTicker(e.target.value)} onKeyPress={(e) => e.key === 'Enter' && addToWatchlist()} className="flex-1 bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:border-indigo-500 uppercase" />
-                    <button onClick={addToWatchlist} className={`${activeColor.bg} px-6 rounded-xl font-bold text-xs uppercase hover:opacity-90 shadow-lg`}><Plus size={16} /> Add</button>
+                    <input type="text" placeholder="Add Ticker (e.g. MSFT)" value={newTicker} onChange={(e) => setNewTicker(e.target.value)} onKeyPress={(e) => e.key === 'Enter' && addToWatchlist()} className="flex-1 bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-500 transition-colors uppercase text-slate-200" />
+                    <button onClick={addToWatchlist} className={`${activeColor.bg} px-6 rounded-xl font-bold text-xs uppercase hover:opacity-90 shadow-lg flex items-center gap-2 text-white`}><Plus size={16} /> Add</button>
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {watchlist.map((ticker) => (
-                      <div key={ticker} className="bg-slate-900 border border-slate-800 px-3 py-2 rounded-xl flex items-center gap-2 group">
+                      <div key={ticker} className="bg-slate-900 border border-slate-800 px-3 py-2 rounded-xl flex items-center gap-2 group animate-in zoom-in-95">
                         <span className="font-bold text-xs text-slate-200">{ticker}</span>
-                        <button onClick={() => removeFromWatchlist(ticker)} className="text-slate-500 hover:text-rose-500"><X size={14} /></button>
+                        <button onClick={() => removeFromWatchlist(ticker)} className="text-slate-500 hover:text-rose-500 transition-colors"><X size={14} /></button>
                       </div>
                     ))}
                   </div>
@@ -356,7 +358,10 @@ const App = () => {
               {/* VIEW MODE */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="bg-slate-950/50 p-6 rounded-2xl border border-slate-800 flex items-center justify-between">
-                    <div className="flex items-center gap-3">{showNews ? <Eye size={18} className={activeColor.text}/> : <EyeOff size={18} className="text-slate-600"/><span className="text-sm font-bold text-slate-200">Show Market News</span>}</div>
+                    <div className="flex items-center gap-3">
+                      {showNews ? <Eye size={18} className={activeColor.text}/> : <EyeOff size={18} className="text-slate-600"/>}
+                      <span className="text-sm font-bold text-slate-200">Show Market News</span>
+                    </div>
                     <button onClick={() => setShowNews(!showNews)} className={`w-12 h-6 rounded-full transition-all relative ${showNews ? activeColor.bg : 'bg-slate-800'}`}><div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${showNews ? 'left-7' : 'left-1'}`} /></button>
                   </div>
                   <div className="bg-slate-950/50 p-6 rounded-2xl border border-slate-800 flex items-center justify-between">
