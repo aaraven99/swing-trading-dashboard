@@ -20,27 +20,39 @@ def calculate_confluence_score(df, spy_data):
     """
     score = 50 # Start with a neutral base score
     try:
+        # Ensure we are using single-column Series for calculations
+        s_close = df['Close'].squeeze()
+        s_vol = df['Volume'].squeeze()
+        m_close = spy_data['Close'].squeeze()
+
         # 1. Relative Strength vs Market (SPY)
         # Stocks outperforming the S&P 500 over the last 20 trading days
-        stock_return = df['Close'].pct_change(20).iloc[-1]
-        market_return = spy_data['Close'].pct_change(20).iloc[-1]
-        if stock_return > market_return: 
-            score += 15
+        stock_return = s_close.pct_change(20).iloc[-1]
+        market_return = m_close.pct_change(20).iloc[-1]
+        
+        if not pd.isna(stock_return) and not pd.isna(market_return):
+            if stock_return > market_return: 
+                score += 15
 
         # 2. Volume Intensity (Buying pressure)
-        avg_vol = df['Volume'].tail(20).mean()
-        curr_vol = df['Volume'].iloc[-1]
-        if curr_vol > (avg_vol * 2.5): 
-            score += 20
-        elif curr_vol > (avg_vol * 1.5): 
-            score += 10
+        avg_vol = s_vol.tail(20).mean()
+        curr_vol = s_vol.iloc[-1]
+        if not pd.isna(curr_vol) and not pd.isna(avg_vol):
+            if curr_vol > (avg_vol * 2.5): 
+                score += 20
+            elif curr_vol > (avg_vol * 1.5): 
+                score += 10
 
         # 3. RSI 'Golden Zone' (55-65 is the sweet spot for breakout momentum)
-        rsi = df['RSI_14'].iloc[-1]
-        if 55 <= rsi <= 65: 
+        # Handling the possibility of multi-index RSI columns
+        rsi_val = df.filter(like='RSI').iloc[-1]
+        if isinstance(rsi_val, pd.Series): rsi_val = rsi_val.iloc[0]
+        
+        if 55 <= rsi_val <= 65: 
             score += 15
-    except: 
-        pass
+    except Exception as e:
+        # If any calculation fails, return a safe mid-score
+        return 50
     
     # Ensure the final score stays between 1 and 100
     return int(min(max(score, 1), 100))
@@ -49,21 +61,24 @@ def identify_pattern(df):
     """
     Looks at the shape of the last 15 days of price action to find specific patterns.
     """
-    recent = df.tail(15)
-    highs = recent['High']
-    lows = recent['Low']
-    
-    # Pennant: Contracting range (Lower Highs, Higher Lows)
-    highs_down = highs.iloc[0] > highs.iloc[-1]
-    lows_up = lows.iloc[0] < lows.iloc[-1]
-    
-    # Bull Flag: Tight consolidation (less than 5% movement) after a strong move
-    range_percentage = (highs.max() - lows.min()) / lows.min()
-    
-    if highs_down and lows_up: 
-        return "Pennant"
-    if range_percentage < 0.05: 
-        return "Bull Flag"
+    try:
+        recent = df.tail(15)
+        highs = recent['High'].squeeze()
+        lows = recent['Low'].squeeze()
+        
+        # Pennant: Contracting range (Lower Highs, Higher Lows)
+        highs_down = highs.iloc[0] > highs.iloc[-1]
+        lows_up = lows.iloc[0] < lows.iloc[-1]
+        
+        # Bull Flag: Tight consolidation (less than 5% movement) after a strong move
+        range_percentage = (highs.max() - lows.min()) / lows.min()
+        
+        if highs_down and lows_up: 
+            return "Pennant"
+        if range_percentage < 0.05: 
+            return "Bull Flag"
+    except:
+        pass
     
     return "Classic Breakout"
 
@@ -84,10 +99,8 @@ def get_full_market_list():
             ndx100 = pd.read_html(f)[4]['Ticker'].tolist()
             tickers.update(ndx100)
     except:
-        # Fallback list if scraping fails
         return ['AAPL', 'MSFT', 'NVDA', 'TSLA', 'AMD', 'META', 'GOOGL', 'AMZN']
     
-    # Clean tickers for yfinance (replace dots with dashes)
     clean_tickers = [str(t).replace('.', '-') for t in tickers if str(t) != 'nan']
     return sorted(list(set(clean_tickers)))
 
@@ -95,9 +108,10 @@ def run_web_scan():
     """Main execution loop that runs the scan and saves to signals.json."""
     all_tickers = get_full_market_list()
     
-    # Get benchmark data to calculate Relative Strength
+    # Get benchmark data
     spy_hist = yf.download("SPY", period="1y", interval="1d", progress=False)
-    # Check if market is in a healthy uptrend (Price above 50-day average)
+    if isinstance(spy_hist.columns, pd.MultiIndex): spy_hist.columns = spy_hist.columns.droplevel(1)
+    
     m_healthy = spy_hist['Close'].iloc[-1] > spy_hist['Close'].rolling(50).mean().iloc[-1]
     
     signals = []
@@ -106,10 +120,9 @@ def run_web_scan():
     for ticker in all_tickers:
         try:
             data = yf.download(ticker, period="1y", interval="1d", progress=False)
-            if data.empty or len(data) < 100: 
-                continue
+            if data.empty or len(data) < 100: continue
             
-            # Clean up multi-index columns if they exist
+            # Clean up multi-index columns
             if isinstance(data.columns, pd.MultiIndex): 
                 data.columns = data.columns.droplevel(1)
 
@@ -118,12 +131,11 @@ def run_web_scan():
             data.ta.rsi(append=True)
             
             curr_price = float(data['Close'].iloc[-1])
-            rsi = data['RSI_14'].iloc[-1]
+            rsi_series = data.filter(like='RSI')
+            rsi = rsi_series.iloc[-1].iloc[0] if not rsi_series.empty else 50
             recent_high = float(data['High'].tail(20).max())
 
-            # Breakout Filter Logic
             if curr_price > data['MA50'].iloc[-1] and 45 < rsi < 70 and m_healthy:
-                # If price is within 2% of the recent 20-day high
                 if curr_price > (recent_high * 0.98):
                     signals.append({
                         "ticker": str(ticker),
@@ -134,27 +146,21 @@ def run_web_scan():
                         "goal": round(curr_price * 1.10, 2),
                         "rsi": round(float(rsi), 2)
                     })
-        except: 
-            continue
+        except: continue
 
-    # Sort all found signals by Power Score (Highest conviction first)
     signals = sorted(signals, key=lambda x: x['score'], reverse=True)
 
-    # Ensure the public folder exists for GitHub Actions
-    if not os.path.exists('public'): 
-        os.makedirs('public')
-        
+    if not os.path.exists('public'): os.makedirs('public')
     output_data = {
         "marketHealthy": bool(m_healthy),
         "signals": signals,
         "lastUpdated": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     }
     
-    # Save the data file
     with open('public/signals.json', 'w') as f:
         json.dump(output_data, f, indent=4)
         
-    print(f"✅ Scan Complete. Saved {len(signals)} setups to public/signals.json.")
+    print(f"✅ Saved {len(signals)} setups to signals.json.")
 
 if __name__ == "__main__":
     run_web_scan()
