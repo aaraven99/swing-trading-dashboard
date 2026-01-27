@@ -27,15 +27,16 @@ import {
   EyeOff,
   HelpCircle,
   ArrowUpDown,
-  Layers
+  Layers,
+  Award
 } from 'lucide-react';
 
 /**
- * THE ULTIMATE DASHBOARD (V6.0)
- * - Power Ranking Integration: Displays scores and ranks based on robot data.
- * - Adjustable Display Limit: Control how many top-tier stocks are shown.
- * - Pattern Logic: Dynamic badges for Bull Flags and Pennants.
- * - Persistence: All preferences saved locally to your browser.
+ * THE ULTIMATE DASHBOARD (V6.2)
+ * - Power Score Column: Dedicated column with numerical strength and visual indicator.
+ * - Numerical Sorting: Fixed sorting engine to prioritize high-conviction scores.
+ * - Display Limit Slider: Instantly control how many top setups are visible.
+ * - Pattern Badges: Specific labels for Bull Flags, Pennants, and Bases.
  */
 const App = () => {
   // --- STATE ---
@@ -45,37 +46,34 @@ const App = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [signalTab, setSignalTab] = useState('all');
   
-  // Settings & Preferences (Local Persistence)
-  const [theme, setTheme] = useState(() => localStorage.getItem('ss_theme') || 'indigo');
-  const [showNews, setShowNews] = useState(() => localStorage.getItem('ss_show_news') !== 'false'); 
-  const [maxStocks, setMaxStocks] = useState(() => Number(localStorage.getItem('ss_max_stocks')) || 10);
-  const [watchlist, setWatchlist] = useState(() => {
-    const saved = localStorage.getItem('ss_watchlist');
-    return saved ? JSON.parse(saved) : ['AAPL', 'TSLA', 'NVDA'];
-  });
-  const [sortConfig, setSortConfig] = useState(() => {
-    const saved = localStorage.getItem('ss_sort');
-    return saved ? JSON.parse(saved) : { key: 'score', order: 'desc' };
+  // Consolidated Preferences (Local Persistence)
+  const [prefs, setPrefs] = useState(() => {
+    const saved = localStorage.getItem('ss_prefs');
+    const defaults = {
+      theme: 'indigo',
+      showNews: true,
+      maxStocks: 10,
+      watchlist: ['AAPL', 'TSLA', 'NVDA'],
+      sortKey: 'score',
+      sortOrder: 'desc',
+      email: ""
+    };
+    return saved ? { ...defaults, ...JSON.parse(saved) } : defaults;
   });
 
   const [newTicker, setNewTicker] = useState("");
-  const [saveStatus, setSaveStatus] = useState(null);
 
-  // --- PERSISTENCE SYNC ---
+  // Sync preferences to localStorage
   useEffect(() => {
-    localStorage.setItem('ss_theme', theme);
-    localStorage.setItem('ss_show_news', showNews);
-    localStorage.setItem('ss_max_stocks', maxStocks);
-    localStorage.setItem('ss_watchlist', JSON.stringify(watchlist));
-    localStorage.setItem('ss_sort', JSON.stringify(sortConfig));
-  }, [theme, showNews, maxStocks, watchlist, sortConfig]);
+    localStorage.setItem('ss_prefs', JSON.stringify(prefs));
+  }, [prefs]);
 
   const colors = {
     indigo: { text: 'text-indigo-400', bg: 'bg-indigo-600', border: 'border-indigo-500', lightBg: 'bg-indigo-500/10', hoverBg: 'hover:bg-indigo-500/5' },
     emerald: { text: 'text-emerald-400', bg: 'bg-emerald-600', border: 'border-emerald-500', lightBg: 'bg-emerald-500/10', hoverBg: 'hover:bg-emerald-500/5' },
     rose: { text: 'text-rose-400', bg: 'bg-rose-600', border: 'border-rose-500', lightBg: 'bg-rose-500/10', hoverBg: 'hover:bg-rose-500/5' }
   };
-  const activeColor = colors[theme];
+  const activeColor = colors[prefs.theme] || colors.indigo;
 
   // --- DATA FETCHING ---
   useEffect(() => {
@@ -96,7 +94,7 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    if (!showNews) return;
+    if (!prefs.showNews) return;
     const fetchNews = async () => {
       try {
         const rssUrl = encodeURIComponent('https://finance.yahoo.com/news/rssindex');
@@ -106,9 +104,9 @@ const App = () => {
       } catch (err) {}
     };
     fetchNews();
-  }, [showNews]);
+  }, [prefs.showNews]);
 
-  // --- LOGIC: FILTER & SORT ---
+  // --- LOGIC: FILTER & ROBUST SORT ---
   const displaySignals = useMemo(() => {
     let filtered = data.signals.filter(signal => {
       const ticker = signal.ticker.toUpperCase().trim();
@@ -117,21 +115,38 @@ const App = () => {
         const proximity = (signal.buyAt - signal.currentPrice) / signal.buyAt;
         return proximity >= 0 && proximity <= 0.02;
       }
-      if (signalTab === 'watchlist') return watchlist.includes(ticker);
+      if (signalTab === 'watchlist') return prefs.watchlist.includes(ticker);
       return true;
     });
 
     return [...filtered].sort((a, b) => {
-      let valA = a[sortConfig.key];
-      let valB = b[sortConfig.key];
-      if (sortConfig.key === 'ticker') {
-        return sortConfig.order === 'asc' ? valA.localeCompare(valB) : valB.localeCompare(valA);
+      let valA = a[prefs.sortKey];
+      let valB = b[prefs.sortKey];
+
+      // Robust check for missing values
+      if (valA === undefined || valA === null) valA = 0;
+      if (valB === undefined || valB === null) valB = 0;
+
+      // Handle Alphabetical (Ticker)
+      if (prefs.sortKey === 'ticker') {
+        return prefs.sortOrder === 'asc' 
+          ? String(valA).localeCompare(String(valB)) 
+          : String(valB).localeCompare(String(valA));
       }
-      return sortConfig.order === 'asc' ? valA - valB : valB - valA;
-    }).slice(0, maxStocks);
-  }, [data.signals, signalTab, sortConfig, watchlist, maxStocks]);
+
+      // Handle Numerical (Score, Price, RSI)
+      const numA = parseFloat(valA);
+      const numB = parseFloat(valB);
+      return prefs.sortOrder === 'asc' ? numA - numB : numB - numA;
+    }).slice(0, prefs.maxStocks);
+  }, [data.signals, signalTab, prefs]);
 
   // --- HELPERS ---
+  const formatNum = (num) => {
+    if (num === undefined || num === null || isNaN(num)) return "0.00";
+    return parseFloat(num).toFixed(2);
+  };
+
   const formatSyncTime = (timestamp) => {
     if (!timestamp) return 'Synced...';
     try {
@@ -145,12 +160,18 @@ const App = () => {
       'bull flag': { label: 'Bull Flag', icon: <Flag size={10} />, color: 'text-blue-400', bg: 'bg-blue-400/10' },
       'pennant': { label: 'Pennant', icon: <Triangle size={10} />, color: 'text-amber-400', bg: 'bg-amber-400/10' },
       'flat base': { label: 'Flat Base', icon: <Layers size={10} />, color: 'text-emerald-400', bg: 'bg-emerald-400/10' },
+      'trend breakout': { label: 'Trend Breakout', icon: <Zap size={10} />, color: 'text-indigo-400', bg: 'bg-indigo-400/10' },
       'classic breakout': { label: 'Breakout', icon: <Zap size={10} />, color: 'text-indigo-400', bg: 'bg-indigo-400/10' }
     };
     const key = (pattern || '').toLowerCase().trim();
-    let match = badgeMap[key] || badgeMap['classic breakout'];
+    let match = badgeMap[key];
+    if (!match) {
+        if (key.includes('flag')) match = badgeMap['bull flag'];
+        else if (key.includes('pennant')) match = badgeMap['pennant'];
+        else match = badgeMap['trend breakout'];
+    }
     return (
-      <div className={`inline-flex items-center gap-1.5 px-2 py-1 rounded-lg ${match.bg} ${match.color} font-black text-[9px] uppercase tracking-wider border border-white/5`}>
+      <div className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg ${match.bg} ${match.color} font-black text-[9px] uppercase tracking-wider border border-white/5`}>
         {match.icon} {match.label}
       </div>
     );
@@ -178,9 +199,9 @@ const App = () => {
           </div>
           <div className="hidden md:flex flex-col items-end px-4">
              <span className={`text-[10px] font-black uppercase tracking-widest ${data.marketHealthy ? 'text-emerald-400' : 'text-rose-400'}`}>
-               Market: {data.marketHealthy ? 'Safe' : 'Caution'}
+               Market: {data.marketHealthy ? 'Healthy' : 'Caution'}
              </span>
-             <span className="text-[9px] text-slate-500 font-medium">Sync: {formatSyncTime(data.lastUpdated)}</span>
+             <span className="text-[9px] text-slate-500 font-medium">Synced: {formatSyncTime(data.lastUpdated)}</span>
           </div>
         </nav>
 
@@ -188,7 +209,7 @@ const App = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             
             {/* MAIN DATA TABLE */}
-            <div className={`${showNews ? 'lg:col-span-8' : 'lg:col-span-12'} space-y-6 transition-all duration-500`}>
+            <div className={`${prefs.showNews ? 'lg:col-span-8' : 'lg:col-span-12'} space-y-6 transition-all duration-500`}>
               <div className="bg-slate-900/40 border border-slate-800 rounded-3xl overflow-hidden shadow-2xl backdrop-blur-sm">
                 <div className="px-6 py-4 border-b border-slate-800 flex flex-col md:flex-row justify-between items-start md:items-center bg-slate-900/60 gap-4">
                   <div className="flex items-center gap-2 text-slate-300 font-bold text-xs uppercase tracking-wider">
@@ -209,11 +230,12 @@ const App = () => {
                     <thead>
                       <tr className="text-slate-500 text-[10px] font-black uppercase tracking-[0.2em] border-b border-slate-800/50">
                         <th className="px-6 py-4">Ticker</th>
-                        <th className="px-6 py-4">Score</th>
+                        <th className="px-6 py-4 flex items-center gap-1.5"><Award size={12} className={activeColor.text}/> Score</th>
                         <th className="px-6 py-4">Price</th>
                         <th className={`px-6 py-4 ${activeColor.text}`}>Buy Trigger</th>
                         <th className="px-6 py-4 text-emerald-400">Target</th>
                         <th className="px-6 py-4">Pattern</th>
+                        <th className="px-6 py-4">RSI</th>
                         <th className="px-4 py-4"></th>
                       </tr>
                     </thead>
@@ -223,21 +245,22 @@ const App = () => {
                           <td className="px-6 py-5">
                             <div className="flex flex-col">
                               <span className="font-black text-white uppercase text-lg tracking-tight group-hover:scale-105 transition-transform origin-left">{s.ticker}</span>
-                              {watchlist.includes(s.ticker) && <span className={`text-[8px] font-bold ${activeColor.text} uppercase`}>Watching</span>}
+                              {prefs.watchlist.includes(s.ticker) && <span className={`text-[8px] font-bold ${activeColor.text} uppercase`}>Watching</span>}
                             </div>
                           </td>
                           <td className="px-6 py-5">
-                            <div className="flex items-center gap-2">
-                                <div className="w-10 bg-slate-800 h-1.5 rounded-full overflow-hidden">
-                                    <div className={`${activeColor.bg} h-full`} style={{ width: `${s.score}%` }} />
+                            <div className="flex items-center gap-3">
+                                <div className="w-12 bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                                    <div className={`${activeColor.bg} h-full transition-all duration-700`} style={{ width: `${s.score}%` }} />
                                 </div>
-                                <span className="text-[10px] font-black text-slate-400">{s.score}</span>
+                                <span className="text-[11px] font-black text-slate-300">{s.score}</span>
                             </div>
                           </td>
-                          <td className="px-6 py-5 font-mono text-slate-300 text-sm font-bold">${s.currentPrice.toFixed(2)}</td>
-                          <td className={`px-6 py-5 font-mono font-black ${activeColor.text} text-base`}>${s.buyAt.toFixed(2)}</td>
-                          <td className="px-6 py-5 font-mono font-black text-emerald-400 text-base">${s.goal.toFixed(2)}</td>
+                          <td className="px-6 py-5 font-mono text-slate-300 text-sm font-bold">${formatNum(s.currentPrice)}</td>
+                          <td className={`px-6 py-5 font-mono font-black ${activeColor.text} text-base`}>${formatNum(s.buyAt)}</td>
+                          <td className="px-6 py-5 font-mono font-black text-emerald-400 text-base">${formatNum(s.goal)}</td>
                           <td className="px-6 py-5"><PatternBadge pattern={s.pattern} /></td>
+                          <td className="px-6 py-5"><span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${s.rsi > 60 ? 'bg-amber-500/20 text-amber-500' : 'bg-slate-800 text-slate-400'}`}>{formatNum(s.rsi)}</span></td>
                           <td className="px-4 py-5"><a href={`https://finance.yahoo.com/quote/${s.ticker}`} target="_blank" rel="noreferrer" className="text-slate-600 hover:text-white transition-colors"><ExternalLink size={16} /></a></td>
                         </tr>
                       ))}
@@ -247,7 +270,8 @@ const App = () => {
                   {!loading && displaySignals.length === 0 && (
                     <div className="p-20 text-center flex flex-col items-center gap-3">
                       <SearchX className="text-slate-800" size={48} />
-                      <p className="text-slate-400 font-black uppercase text-xs tracking-widest">No active signals match criteria</p>
+                      <p className="text-slate-400 font-black uppercase text-xs tracking-widest text-center">No matching signals found</p>
+                      <p className="text-slate-600 text-[11px] max-w-xs mx-auto italic text-center">Wait for next scan or update your watchlist!</p>
                     </div>
                   )}
                 </div>
@@ -255,11 +279,11 @@ const App = () => {
             </div>
 
             {/* NEWS PANEL */}
-            {showNews && (
-              <div className="lg:col-span-4 space-y-6">
+            {prefs.showNews && (
+              <div className="lg:col-span-4 space-y-6 animate-in slide-in-from-right duration-500">
                 <div className="bg-slate-900/40 border border-slate-800 rounded-3xl overflow-hidden flex flex-col h-[750px] shadow-2xl backdrop-blur-sm">
-                  <div className="px-6 py-4 border-b border-slate-800 flex items-center justify-between bg-slate-900/60 text-white font-bold text-xs uppercase tracking-wider">
-                    <div className="flex items-center gap-2"><Globe size={16} className={activeColor.text} /> Market Intel</div>
+                  <div className="px-6 py-4 border-b border-slate-800 bg-slate-900/60 text-white font-bold text-xs uppercase tracking-wider flex items-center justify-between">
+                    <div className="flex items-center gap-2"><Globe size={16} className={activeColor.text} /> Live Intel</div>
                   </div>
                   <div className="overflow-y-auto flex-1 custom-scrollbar">
                     {news.map((n, idx) => (
@@ -282,27 +306,32 @@ const App = () => {
             <div className="bg-slate-900/40 border border-slate-800 rounded-3xl p-8 space-y-8 shadow-2xl">
               <div className="flex items-center gap-3 pb-6 border-b border-slate-800">
                 <div className={`${activeColor.lightBg} p-3 rounded-2xl`}><SettingsIcon className={activeColor.text} size={24} /></div>
-                <div><h2 className="text-xl font-bold tracking-tight text-white">Dashboard Preferences</h2><p className="text-xs text-slate-500 font-medium">Customize your scanning experience</p></div>
+                <div><h2 className="text-xl font-bold tracking-tight text-white">Dashboard Settings</h2><p className="text-xs text-slate-500 font-medium">Customize your trading interface</p></div>
               </div>
 
               {/* WATCHLIST MANAGER */}
               <div className="space-y-4">
                 <div className="flex items-center gap-2 text-slate-400"><Star size={16} /><h3 className="text-sm font-bold uppercase tracking-wider">My Watchlist</h3></div>
-                <div className="bg-slate-950/50 p-6 rounded-2xl border border-slate-800 space-y-4">
+                <div className="bg-slate-950/50 p-6 rounded-2xl border border-slate-800 space-y-4 shadow-inner">
                   <div className="flex gap-2">
                     <input 
                       type="text" placeholder="Enter Ticker (e.g. MSFT)" 
                       value={newTicker} onChange={(e) => setNewTicker(e.target.value.toUpperCase())}
-                      onKeyPress={(e) => e.key === 'Enter' && (watchlist.includes(newTicker) ? null : setWatchlist([...watchlist, newTicker]))}
+                      onKeyPress={(e) => {
+                          if(e.key === 'Enter' && newTicker && !prefs.watchlist.includes(newTicker)){
+                              setPrefs({...prefs, watchlist: [...prefs.watchlist, newTicker]});
+                              setNewTicker("");
+                          }
+                      }}
                       className="flex-1 bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:border-indigo-500 outline-none text-white uppercase" 
                     />
-                    <button onClick={() => { if(newTicker && !watchlist.includes(newTicker)) setWatchlist([...watchlist, newTicker]); setNewTicker(""); }} className={`${activeColor.bg} px-6 rounded-xl font-bold text-xs uppercase text-white hover:opacity-90 transition-all shadow-lg`}><Plus size={16} /></button>
+                    <button onClick={() => { if(newTicker && !prefs.watchlist.includes(newTicker)) setPrefs({...prefs, watchlist: [...prefs.watchlist, newTicker]}); setNewTicker(""); }} className={`${activeColor.bg} px-6 rounded-xl font-bold text-xs uppercase text-white hover:opacity-90 transition-all shadow-lg`}><Plus size={16} /></button>
                   </div>
                   <div className="flex flex-wrap gap-2">
-                    {watchlist.map((t) => (
+                    {prefs.watchlist.map((t) => (
                       <div key={t} className="bg-slate-900 border border-slate-800 px-3 py-2 rounded-xl flex items-center gap-2">
                         <span className="font-bold text-xs text-white">{t}</span>
-                        <button onClick={() => setWatchlist(watchlist.filter(w => w !== t))} className="text-slate-500 hover:text-rose-500 transition-colors"><X size={14} /></button>
+                        <button onClick={() => setPrefs({...prefs, watchlist: prefs.watchlist.filter(w => w !== t)})} className="text-slate-500 hover:text-rose-500 transition-colors"><X size={14} /></button>
                       </div>
                     ))}
                   </div>
@@ -316,47 +345,55 @@ const App = () => {
                   <div className="bg-slate-950/50 p-6 rounded-2xl border border-slate-800 flex flex-col gap-4 shadow-inner">
                     <div className="flex justify-between font-black text-xs uppercase tracking-widest">
                         <span>Max Stocks</span>
-                        <span className={activeColor.text}>{maxStocks}</span>
+                        <span className={activeColor.text}>{prefs.maxStocks}</span>
                     </div>
-                    <input type="range" min="1" max="50" step="1" value={maxStocks} onChange={(e) => setMaxStocks(Number(e.target.value))} className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-indigo-500" />
-                    <p className="text-[9px] text-slate-500 italic">Showing the Top {maxStocks} setups ranked by Power Score.</p>
+                    <input type="range" min="1" max="50" step="1" value={prefs.maxStocks} onChange={(e) => setPrefs({...prefs, maxStocks: Number(e.target.value)})} className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-indigo-500" />
+                    <p className="text-[9px] text-slate-500 italic text-center font-medium">Show only the top {prefs.maxStocks} ranked opportunities.</p>
                   </div>
                 </div>
                 <div className="space-y-4">
                   <div className="flex items-center gap-2 text-slate-400"><Eye size={16} /><h3 className="text-sm font-bold uppercase tracking-wider">News Toggle</h3></div>
-                  <button onClick={() => setShowNews(!showNews)} className="w-full bg-slate-950/50 p-6 rounded-2xl border border-slate-800 flex items-center justify-between hover:bg-slate-900/50 transition-colors shadow-inner">
-                    <span className="text-sm font-bold">{showNews ? 'Feed Active' : 'Feed Hidden'}</span>
-                    <div className={`w-10 h-5 rounded-full relative transition-all ${showNews ? activeColor.bg : 'bg-slate-700'}`}>
-                        <div className={`absolute top-1 w-3 h-3 bg-white rounded-full transition-all ${showNews ? 'left-6' : 'left-1'}`} />
+                  <button onClick={() => setPrefs({...prefs, showNews: !prefs.showNews})} className="w-full bg-slate-950/50 p-6 rounded-2xl border border-slate-800 flex items-center justify-between hover:bg-slate-900/50 transition-colors shadow-inner h-full p-6">
+                    <span className="text-sm font-bold">{prefs.showNews ? 'Feed Visible' : 'Feed Hidden'}</span>
+                    <div className={`w-10 h-5 rounded-full relative transition-all ${prefs.showNews ? activeColor.bg : 'bg-slate-700'}`}>
+                        <div className={`absolute top-1 w-3 h-3 bg-white rounded-full transition-all ${prefs.showNews ? 'left-6' : 'left-1'}`} />
                     </div>
                   </button>
                 </div>
               </div>
 
-              {/* SORT & THEME */}
+              {/* SORT CONFIG */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-4">
                     <div className="flex items-center gap-2 text-slate-400"><ArrowUpDown size={16} /><h3 className="text-sm font-bold uppercase tracking-wider">Default Sort</h3></div>
-                    <select 
-                      value={sortConfig.key} 
-                      onChange={(e) => setSortConfig({ ...sortConfig, key: e.target.value })}
-                      className="w-full bg-slate-950 border border-slate-800 rounded-2xl p-4 text-sm outline-none text-white cursor-pointer"
-                    >
-                        <option value="score">Power Score (Best First)</option>
-                        <option value="ticker">Ticker (A-Z)</option>
-                        <option value="currentPrice">Price</option>
-                        <option value="buyAt">Breakout Trigger</option>
-                    </select>
+                    <div className="bg-slate-950/50 p-6 rounded-2xl border border-slate-800 space-y-4 shadow-inner">
+                        <select 
+                        value={prefs.sortKey} 
+                        onChange={(e) => setPrefs({...prefs, sortKey: e.target.value})}
+                        className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:border-indigo-500 outline-none text-white cursor-pointer appearance-none"
+                        >
+                            <option value="score">Power Score (Best First)</option>
+                            <option value="ticker">Ticker (A-Z)</option>
+                            <option value="currentPrice">Price (Low to High)</option>
+                            <option value="buyAt">Breakout Trigger</option>
+                            <option value="rsi">RSI Strength</option>
+                        </select>
+                        <div className="flex bg-slate-900 p-1 rounded-xl border border-slate-800">
+                            <button onClick={() => setPrefs({...prefs, sortOrder: 'asc'})} className={`flex-1 py-1.5 rounded-lg text-xs font-bold transition-all ${prefs.sortOrder === 'asc' ? `${activeColor.bg} text-white` : 'text-slate-500 hover:text-slate-300'}`}>Asc</button>
+                            <button onClick={() => setPrefs({...prefs, sortOrder: 'desc'})} className={`flex-1 py-1.5 rounded-lg text-xs font-bold transition-all ${prefs.sortOrder === 'desc' ? `${activeColor.bg} text-white` : 'text-slate-500 hover:text-slate-300'}`}>Desc</button>
+                        </div>
+                    </div>
                 </div>
                 <div className="space-y-4">
-                    <div className="flex items-center gap-2 text-slate-400"><Palette size={16} /><h3 className="text-sm font-bold uppercase tracking-wider">Theme</h3></div>
-                    <div className="grid grid-cols-3 gap-2">
+                    <div className="flex items-center gap-2 text-slate-400"><Palette size={16} /><h3 className="text-sm font-bold uppercase tracking-wider">UI Theme</h3></div>
+                    <div className="grid grid-cols-3 gap-3 h-full">
                         {['indigo', 'emerald', 'rose'].map((t) => (
                             <button 
-                              key={t} onClick={() => setTheme(t)} 
-                              className={`p-3 rounded-xl border transition-all ${theme === t ? `border-${t}-500 bg-${t}-500/10` : 'border-slate-800 bg-slate-950'}`}
+                              key={t} onClick={() => setPrefs({...prefs, theme: t})} 
+                              className={`p-4 rounded-2xl border transition-all flex flex-col items-center justify-center gap-2 ${prefs.theme === t ? `border-${t}-500 bg-${t}-500/10` : 'border-slate-800 bg-slate-950'}`}
                             >
-                                <div className={`w-full h-2 rounded-full ${t === 'indigo' ? 'bg-indigo-600' : t === 'emerald' ? 'bg-emerald-600' : 'bg-rose-600'}`} />
+                                <div className={`w-6 h-6 rounded-full shadow-inner ${t === 'indigo' ? 'bg-indigo-600' : t === 'emerald' ? 'bg-emerald-600' : 'bg-rose-600'}`} />
+                                <span className={`text-[10px] font-black uppercase ${prefs.theme === t ? colors[t].text : 'text-slate-600'}`}>{t}</span>
                             </button>
                         ))}
                     </div>
@@ -367,14 +404,14 @@ const App = () => {
         )}
 
         <footer className="mt-12 py-8 border-t border-slate-900 text-center">
-            <p className="text-slate-600 text-[10px] uppercase font-bold tracking-[0.3em] opacity-40 italic">SwingScan Intelligence • V6.0 Build</p>
+            <p className="text-slate-600 text-[10px] uppercase font-bold tracking-[0.3em] opacity-40 italic">SwingScan Intelligence • V6.2 Build</p>
         </footer>
       </div>
     </div>
   );
 };
 
-// AUTO-MOUNTING LOGIC
+// MOUNTING
 const rootElem = document.getElementById('root');
 if (rootElem) {
   ReactDOM.createRoot(rootElem).render(<App />);
