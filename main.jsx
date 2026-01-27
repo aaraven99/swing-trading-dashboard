@@ -20,18 +20,20 @@ import {
   Palette,
   Eye,
   CheckCircle2,
-  AlertCircle
+  AlertCircle,
+  ListFilter
 } from 'lucide-react';
 
 /**
  * App.jsx: V9.1 Ultra Dashboard.
- * Restoration of all features + Rescan functionality.
+ * Restoration of all features + Rescan functionality + Tabbed List View.
  */
 const App = () => {
   const [data, setData] = useState({ marketHealthy: true, signals: [], lastUpdated: "Never" });
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [activeTab, setActiveTab] = useState('dashboard');
+  const [listFilter, setListFilter] = useState('top'); // 'top' or 'watchlist'
   
   // Preferences with ALL features restored
   const [prefs, setPrefs] = useState(() => {
@@ -89,17 +91,26 @@ const App = () => {
   }, []);
 
   const displaySignals = useMemo(() => {
-    return [...data.signals].sort((a, b) => {
+    let baseData = [...data.signals];
+
+    // Apply Tab Filtering
+    if (listFilter === 'watchlist') {
+      baseData = baseData.filter(s => prefs.watchlist.includes(s.ticker.toUpperCase()));
+    }
+
+    // Apply Sorting
+    const sorted = baseData.sort((a, b) => {
       let valA = a[prefs.sortKey] || 0;
       let valB = b[prefs.sortKey] || 0;
       return prefs.sortOrder === 'asc' ? valA - valB : valB - valA;
-    }).slice(0, prefs.maxStocks);
-  }, [data.signals, prefs]);
+    });
+
+    // Apply Slicing (Only for "Top" tab, watchlist shows all matches)
+    return listFilter === 'top' ? sorted.slice(0, prefs.maxStocks) : sorted;
+  }, [data.signals, prefs, listFilter]);
 
   const handleRescan = () => {
     fetchData();
-    // Logic: In a GitHub Actions environment, we can't directly trigger Python from JS
-    // without a proxy, so we'll show a message and refresh the UI data.
     console.log("Rescan triggered. Refreshing local data...");
   };
 
@@ -154,13 +165,29 @@ const App = () => {
             {/* MAIN CONTENT */}
             <div className="xl:col-span-3 space-y-8">
               <div className="bg-slate-900/40 border border-slate-800 rounded-3xl overflow-hidden shadow-2xl backdrop-blur-sm">
-                <div className="px-6 py-5 border-b border-slate-800 flex justify-between items-center bg-slate-900/60">
+                <div className="px-6 py-5 border-b border-slate-800 flex flex-col sm:flex-row justify-between items-center bg-slate-900/60 gap-4">
                   <div className="flex items-center gap-3">
                     <TrendingUp size={20} className={activeTheme.text} />
                     <div>
-                      <h3 className="font-bold text-white uppercase tracking-wide text-sm">Top Ranked Setups</h3>
+                      <h3 className="font-bold text-white uppercase tracking-wide text-sm">Signal Explorer</h3>
                       <p className="text-[10px] text-slate-500 font-medium">Calibrated for $500 Account • V9.1 Logic</p>
                     </div>
+                  </div>
+
+                  {/* LIST TABS */}
+                  <div className="flex bg-slate-950/60 p-1 rounded-xl border border-slate-800/50">
+                    <button 
+                      onClick={() => setListFilter('top')}
+                      className={`px-4 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all flex items-center gap-2 ${listFilter === 'top' ? `${activeTheme.bg} text-white` : 'text-slate-500 hover:text-slate-300'}`}
+                    >
+                      <Zap size={12} /> Top Picks
+                    </button>
+                    <button 
+                      onClick={() => setListFilter('watchlist')}
+                      className={`px-4 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all flex items-center gap-2 ${listFilter === 'watchlist' ? `${activeTheme.bg} text-white` : 'text-slate-500 hover:text-slate-300'}`}
+                    >
+                      <Star size={12} /> Watchlist
+                    </button>
                   </div>
                 </div>
                 
@@ -230,8 +257,14 @@ const App = () => {
                     <div className="p-24 text-center flex flex-col items-center gap-4 opacity-40">
                       <SearchX size={64} className="text-slate-700" />
                       <div className="space-y-1">
-                        <p className="font-black uppercase text-sm tracking-[0.2em]">No Matches Found</p>
-                        <p className="text-xs">Adjust your settings or check back later.</p>
+                        <p className="font-black uppercase text-sm tracking-[0.2em]">
+                          {listFilter === 'watchlist' ? 'Watchlist Tickers Not Found' : 'No Matches Found'}
+                        </p>
+                        <p className="text-xs max-w-xs mx-auto">
+                          {listFilter === 'watchlist' 
+                            ? "None of your watchlist items currently pass the trend-following filters for a valid signal." 
+                            : "Adjust your settings or check back later."}
+                        </p>
                       </div>
                     </div>
                   )}
