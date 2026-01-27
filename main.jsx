@@ -33,11 +33,11 @@ import {
 } from 'lucide-react';
 
 /**
- * THE ULTIMATE DASHBOARD (V6.5)
- * - Physical Power Score: Large, bold numerical displays with "Traffic Light" colors.
- * - Dynamic Rank Highlights: 90+ (Gold), 70+ (Green), 50+ (Theme).
- * - Fixed A-Z Sorting: Numerical sorting explicitly handles Power Scores.
- * - Pattern Logic: Keyword-matching for Bull Flags, Pennants, and Bases.
+ * THE ULTIMATE DASHBOARD (V6.6)
+ * - Physical Number Rendering: Shows bold, large numbers (1-100) for Power Scores.
+ * - Score Rank: Dynamic color system (Gold > Green > Theme).
+ * - Numerical Sorting: Fixed engine to prioritize high scores.
+ * - Display Limit Slider: Choose how many setups to show in Settings.
  */
 const App = () => {
   // --- STATE ---
@@ -123,8 +123,8 @@ const App = () => {
       let valA = a[prefs.sortKey];
       let valB = b[prefs.sortKey];
 
-      if (valA === undefined || valA === null) valA = 0;
-      if (valB === undefined || valB === null) valB = 0;
+      if (valA === undefined || valA === null || isNaN(valA)) valA = 0;
+      if (valB === undefined || valB === null || isNaN(valB)) valB = 0;
 
       if (prefs.sortKey === 'ticker') {
         return prefs.sortOrder === 'asc' 
@@ -158,7 +158,7 @@ const App = () => {
       'pennant': { label: 'Pennant', icon: <Triangle size={10} />, color: 'text-amber-400', bg: 'bg-amber-400/10' },
       'flat base': { label: 'Flat Base', icon: <Layers size={10} />, color: 'text-emerald-400', bg: 'bg-emerald-400/10' },
       'trend breakout': { label: 'Trend Breakout', icon: <Zap size={10} />, color: 'text-indigo-400', bg: 'bg-indigo-400/10' },
-      'classic breakout': { label: 'Classic Breakout', icon: <Zap size={10} />, color: 'text-indigo-400', bg: 'bg-indigo-400/10' }
+      'classic breakout': { label: 'Breakout', icon: <Zap size={10} />, color: 'text-indigo-400', bg: 'bg-indigo-400/10' }
     };
     const key = (pattern || '').toLowerCase().trim();
     let match = badgeMap[key];
@@ -212,7 +212,7 @@ const App = () => {
                 <div className="px-6 py-4 border-b border-slate-800 flex flex-col md:flex-row justify-between items-start md:items-center bg-slate-900/60 gap-4">
                   <div className="flex items-center gap-2 text-slate-300 font-bold text-xs uppercase tracking-wider">
                     <TrendingUp size={16} className={activeColor.text} /> 
-                    Top Opportunities
+                    Top Ranked Setups
                   </div>
                   <div className="flex bg-slate-950/50 p-1 rounded-xl border border-slate-800/50">
                     {['all', 'near', 'watchlist'].map(tab => (
@@ -239,10 +239,10 @@ const App = () => {
                     </thead>
                     <tbody className="divide-y divide-slate-800/30">
                       {displaySignals.map((s) => {
-                        // Traffic Light Scoring System
-                        const isElite = s.score >= 90;
-                        const isStrong = s.score >= 70;
-                        const isSolid = s.score >= 50;
+                        const score = s.score || 0;
+                        const isElite = score >= 90;
+                        const isStrong = score >= 70;
+                        const isSolid = score >= 50;
                         
                         const scoreColor = isElite 
                           ? 'text-amber-400 bg-amber-400/10 border-amber-400/30 shadow-[0_0_12px_rgba(251,191,36,0.2)]' 
@@ -257,7 +257,7 @@ const App = () => {
                             <td className="px-6 py-5">
                               <div className="flex flex-col items-center justify-center">
                                   <div className={`w-12 h-12 rounded-xl border flex items-center justify-center font-black text-lg shadow-inner transition-all ${scoreColor}`}>
-                                      {Math.round(s.score)}
+                                      {Math.round(score)}
                                   </div>
                               </div>
                             </td>
@@ -372,7 +372,7 @@ const App = () => {
                 </div>
                 <div className="space-y-4">
                   <div className="flex items-center gap-2 text-slate-400"><Eye size={16} /><h3 className="text-sm font-bold uppercase tracking-wider">Interface</h3></div>
-                  <button onClick={() => setPrefs({...prefs, showNews: !prefs.showNews})} className="w-full bg-slate-950/50 p-6 rounded-2xl border border-slate-800 flex items-center justify-between hover:bg-slate-900/50 transition-colors shadow-inner h-full">
+                  <button onClick={() => setPrefs({...prefs, showNews: !prefs.showNews})} className="w-full bg-slate-950/50 p-6 rounded-2xl border border-slate-800 flex items-center justify-between hover:bg-slate-900/50 transition-colors shadow-inner h-full p-6">
                     <span className="text-sm font-bold text-slate-200">{prefs.showNews ? 'Hide News Feed' : 'Show News Feed'}</span>
                     <div className={`w-10 h-5 rounded-full relative transition-all ${prefs.showNews ? activeColor.bg : 'bg-slate-700'}`}>
                         <div className={`absolute top-1 w-3 h-3 bg-white rounded-full transition-all ${prefs.showNews ? 'left-6' : 'left-1'}`} />
@@ -422,7 +422,7 @@ const App = () => {
         )}
 
         <footer className="mt-12 py-8 border-t border-slate-900 text-center">
-            <p className="text-slate-600 text-[10px] uppercase font-bold tracking-[0.3em] opacity-40 italic">SwingScan Intelligence • V6.5 Build</p>
+            <p className="text-slate-600 text-[10px] uppercase font-bold tracking-[0.3em] opacity-40 italic">SwingScan Intelligence • V6.6 Build</p>
         </footer>
       </div>
     </div>
