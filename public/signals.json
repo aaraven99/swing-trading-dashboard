@@ -2,105 +2,95 @@
     "marketHealthy": true,
     "signals": [
         {
-            "ticker": "AES",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 14.88,
-            "buyAt": 15.02,
-            "goal": 15.78,
-            "stopLoss": 14.2,
-            "rsi": 59.22
-        },
-        {
-            "ticker": "CAH",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 213.94,
-            "buyAt": 215.48,
-            "goal": 222.07,
-            "stopLoss": 207.85,
-            "rsi": 63.66
-        },
-        {
             "ticker": "CME",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 283.13,
+            "currentPrice": 284.77,
             "buyAt": 285.93,
-            "goal": 293.23,
-            "stopLoss": 275.55,
-            "rsi": 61.56
+            "goal": 294.88,
+            "stopLoss": 277.19,
+            "rsi": 63.91
+        },
+        {
+            "ticker": "DVN",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 39.25,
+            "buyAt": 39.57,
+            "goal": 41.75,
+            "stopLoss": 37.38,
+            "rsi": 63.33
         },
         {
             "ticker": "EIX",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 62.1,
+            "currentPrice": 62.16,
             "buyAt": 62.62,
-            "goal": 64.7,
-            "stopLoss": 60.16,
-            "rsi": 61.38
+            "goal": 64.75,
+            "stopLoss": 60.21,
+            "rsi": 61.6
         },
         {
             "ticker": "FER",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 69.08,
-            "buyAt": 69.29,
-            "goal": 71.48,
-            "stopLoss": 67.28,
-            "rsi": 63.24
+            "currentPrice": 69.21,
+            "buyAt": 69.39,
+            "goal": 71.62,
+            "stopLoss": 67.4,
+            "rsi": 63.75
         },
         {
             "ticker": "GD",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 366.08,
+            "currentPrice": 366.02,
             "buyAt": 369.7,
-            "goal": 380.05,
-            "stopLoss": 355.6,
-            "rsi": 62.01
-        },
-        {
-            "ticker": "USB",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 56.19,
-            "buyAt": 56.7,
-            "goal": 58.18,
-            "stopLoss": 54.69,
-            "rsi": 64.28
+            "goal": 379.99,
+            "stopLoss": 355.54,
+            "rsi": 61.96
         },
         {
             "ticker": "AEE",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 104.0,
+            "currentPrice": 103.81,
             "buyAt": 104.79,
-            "goal": 107.08,
-            "stopLoss": 101.69,
-            "rsi": 61.7
+            "goal": 106.89,
+            "stopLoss": 101.5,
+            "rsi": 60.99
         },
         {
             "ticker": "DAY",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 69.42,
+            "currentPrice": 69.4,
             "buyAt": 69.65,
-            "goal": 69.76,
-            "stopLoss": 69.16,
-            "rsi": 58.89
+            "goal": 69.74,
+            "stopLoss": 69.14,
+            "rsi": 58.06
         },
         {
             "ticker": "ETR",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 96.32,
+            "currentPrice": 96.11,
             "buyAt": 96.87,
-            "goal": 99.72,
-            "stopLoss": 93.77,
-            "rsi": 58.52
+            "goal": 99.5,
+            "stopLoss": 93.56,
+            "rsi": 57.88
+        },
+        {
+            "ticker": "HOLX",
+            "score": 80,
+            "pattern": "Conservative VCP",
+            "currentPrice": 75.19,
+            "buyAt": 75.36,
+            "goal": 75.7,
+            "stopLoss": 74.82,
+            "rsi": 63.25
         }
     ],
-    "lastUpdated": "2026-01-27 17:25:36"
+    "lastUpdated": "2026-01-27 18:30:59"
 }
