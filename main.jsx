@@ -27,7 +27,7 @@ import {
 /**
  * App.jsx: V9.1 Ultra Dashboard.
  * Restoration of all features + Rescan functionality + Tabbed List View.
- * Sidebar cleaned up: Watchlist now exclusively in tabs.
+ * Responsive Full-Screen Layout: Dashboard expands when News Feed is off.
  */
 const App = () => {
   const [data, setData] = useState({ marketHealthy: true, signals: [], lastUpdated: "Never" });
@@ -162,9 +162,9 @@ const App = () => {
         </nav>
 
         {activeTab === 'dashboard' ? (
-          <div className="grid grid-cols-1 xl:grid-cols-4 gap-8">
+          <div className={`grid grid-cols-1 ${prefs.showNews ? 'xl:grid-cols-4' : 'xl:grid-cols-1'} gap-8`}>
             {/* MAIN CONTENT */}
-            <div className="xl:col-span-3 space-y-8">
+            <div className={`${prefs.showNews ? 'xl:col-span-3' : 'xl:col-span-1'} space-y-8`}>
               <div className="bg-slate-900/40 border border-slate-800 rounded-3xl overflow-hidden shadow-2xl backdrop-blur-sm">
                 <div className="px-6 py-5 border-b border-slate-800 flex flex-col sm:flex-row justify-between items-center bg-slate-900/60 gap-4">
                   <div className="flex items-center gap-3">
@@ -274,8 +274,8 @@ const App = () => {
             </div>
 
             {/* SIDEBAR NEWS FEED ONLY */}
-            <div className="space-y-8">
-              {prefs.showNews && (
+            {prefs.showNews && (
+              <div className="space-y-8">
                 <div className="bg-slate-900/40 border border-slate-800 rounded-3xl p-6 space-y-6 shadow-xl backdrop-blur-sm">
                   <div className="flex items-center justify-between">
                     <h3 className="font-bold text-slate-300 uppercase tracking-wide text-xs flex items-center gap-2">
@@ -307,8 +307,8 @@ const App = () => {
                     </div>
                   </div>
                 </div>
-              )}
-            </div>
+              </div>
+            )}
           </div>
         ) : (
           /* SETTINGS PANEL */
