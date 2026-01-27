@@ -27,6 +27,7 @@ import {
 /**
  * App.jsx: V9.1 Ultra Dashboard.
  * Restoration of all features + Rescan functionality + Tabbed List View.
+ * Sidebar cleaned up: Watchlist now exclusively in tabs.
  */
 const App = () => {
   const [data, setData] = useState({ marketHealthy: true, signals: [], lastUpdated: "Never" });
@@ -272,7 +273,7 @@ const App = () => {
               </div>
             </div>
 
-            {/* SIDEBAR NEWS & WATCHLIST */}
+            {/* SIDEBAR NEWS FEED ONLY */}
             <div className="space-y-8">
               {prefs.showNews && (
                 <div className="bg-slate-900/40 border border-slate-800 rounded-3xl p-6 space-y-6 shadow-xl backdrop-blur-sm">
@@ -307,28 +308,10 @@ const App = () => {
                   </div>
                 </div>
               )}
-
-              <div className="bg-slate-900/40 border border-slate-800 rounded-3xl p-6 space-y-6 shadow-xl">
-                <h3 className="font-bold text-slate-300 uppercase tracking-wide text-xs flex items-center gap-2">
-                  <Star size={16} className="text-amber-400" />
-                  Quick Watchlist
-                </h3>
-                <div className="grid grid-cols-2 gap-2">
-                  {prefs.watchlist.map(ticker => (
-                    <div key={ticker} className="bg-slate-950/50 border border-slate-800 rounded-xl p-3 flex flex-col gap-1 items-center justify-center group relative overflow-hidden">
-                      <div className="absolute top-0 right-0 p-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <ExternalLink size={10} className="text-slate-600" />
-                      </div>
-                      <span className="font-black text-white text-sm">{ticker}</span>
-                      <span className="text-[8px] text-slate-500 font-bold uppercase">Tracking</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
             </div>
           </div>
         ) : (
-          /* SETTINGS PANEL (RESTORATION) */
+          /* SETTINGS PANEL */
           <div className="max-w-4xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-6 duration-500">
             <div className="bg-slate-900/40 border border-slate-800 rounded-3xl p-8 space-y-10 shadow-2xl backdrop-blur-md">
               <div className="flex items-center gap-4 pb-8 border-b border-slate-800">
