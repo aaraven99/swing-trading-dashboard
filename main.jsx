@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import ReactDOM from 'react-dom/client'
+import React, { useState, useEffect, useMemo } from 'react';
+import ReactDOM from 'react-dom/client';
 import { 
   Activity, 
   TrendingUp, 
@@ -9,7 +9,7 @@ import {
   ExternalLink,
   SearchX,
   Info,
-  Settings,
+  Settings as SettingsIcon,
   Newspaper,
   LayoutDashboard,
   Mail,
@@ -28,52 +28,47 @@ import {
   HelpCircle,
   ArrowUpDown,
   Layers
-} from 'lucide-react'
+} from 'lucide-react';
 
 /**
- * THE ULTIMATE DASHBOARD (V5.9)
- * - Robust Pattern Recognition: Case-insensitive matching for Flag, Pennant, Base, etc.
- * - Localized Sync Time: Automatically adjusts robot's UTC time to your local clock.
- * - Precision: Forces 2-decimal rounding across all trading metrics.
- * - Persistence: Watchlist, Sort, News-toggle, and Themes saved to browser memory.
+ * THE ULTIMATE DASHBOARD (V6.0)
+ * - Power Ranking Integration: Displays scores and ranks based on robot data.
+ * - Adjustable Display Limit: Control how many top-tier stocks are shown.
+ * - Pattern Logic: Dynamic badges for Bull Flags and Pennants.
+ * - Persistence: All preferences saved locally to your browser.
  */
 const App = () => {
-  // --- STATE & PERSISTENCE ---
+  // --- STATE ---
   const [data, setData] = useState({ marketHealthy: true, signals: [], lastUpdated: "" });
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [newsLoading, setNewsLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('dashboard');
-  const [signalTab, setSignalTab] = useState('all'); 
-  const [errorStatus, setErrorStatus] = useState(null);
+  const [signalTab, setSignalTab] = useState('all');
   
-  // Load settings from Browser Memory (localStorage)
-  const [email, setEmail] = useState(() => localStorage.getItem('ss_email') || "");
-  const [notificationsEnabled, setNotificationsEnabled] = useState(() => localStorage.getItem('ss_notifs') === 'true');
+  // Settings & Preferences (Local Persistence)
   const [theme, setTheme] = useState(() => localStorage.getItem('ss_theme') || 'indigo');
   const [showNews, setShowNews] = useState(() => localStorage.getItem('ss_show_news') !== 'false'); 
+  const [maxStocks, setMaxStocks] = useState(() => Number(localStorage.getItem('ss_max_stocks')) || 10);
   const [watchlist, setWatchlist] = useState(() => {
     const saved = localStorage.getItem('ss_watchlist');
     return saved ? JSON.parse(saved) : ['AAPL', 'TSLA', 'NVDA'];
   });
-  
   const [sortConfig, setSortConfig] = useState(() => {
     const saved = localStorage.getItem('ss_sort');
-    return saved ? JSON.parse(saved) : { key: 'ticker', order: 'asc' };
+    return saved ? JSON.parse(saved) : { key: 'score', order: 'desc' };
   });
-  
+
   const [newTicker, setNewTicker] = useState("");
   const [saveStatus, setSaveStatus] = useState(null);
 
-  // Sync settings with localStorage
+  // --- PERSISTENCE SYNC ---
   useEffect(() => {
-    localStorage.setItem('ss_email', email);
-    localStorage.setItem('ss_notifs', notificationsEnabled);
     localStorage.setItem('ss_theme', theme);
     localStorage.setItem('ss_show_news', showNews);
+    localStorage.setItem('ss_max_stocks', maxStocks);
     localStorage.setItem('ss_watchlist', JSON.stringify(watchlist));
     localStorage.setItem('ss_sort', JSON.stringify(sortConfig));
-  }, [email, notificationsEnabled, theme, showNews, watchlist, sortConfig]);
+  }, [theme, showNews, maxStocks, watchlist, sortConfig]);
 
   const colors = {
     indigo: { text: 'text-indigo-400', bg: 'bg-indigo-600', border: 'border-indigo-500', lightBg: 'bg-indigo-500/10', hoverBg: 'hover:bg-indigo-500/5' },
@@ -82,72 +77,39 @@ const App = () => {
   };
   const activeColor = colors[theme];
 
-  // Helper for 2-decimal rounding
-  const formatNum = (num) => {
-    if (num === undefined || num === null || isNaN(num)) return "0.00";
-    return parseFloat(num).toFixed(2);
-  };
-
-  // Helper to convert UTC timestamp from robot to Local Time
-  const formatSyncTime = (timestamp) => {
-    if (!timestamp) return 'Connecting...';
-    try {
-      // Robot sends UTC: YYYY-MM-DD HH:MM:SS
-      const date = new Date(timestamp.replace(' ', 'T') + 'Z'); 
-      if (isNaN(date.getTime())) return timestamp;
-      return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    } catch (e) { return timestamp; }
-  };
-
   // --- DATA FETCHING ---
   useEffect(() => {
     const fetchData = async () => {
-      const cacheBuster = `?t=${Date.now()}`;
-      const paths = ['./signals.json', '/signals.json', './public/signals.json'];
-      let success = false;
-      for (const path of paths) {
-        try {
-          const response = await fetch(path + cacheBuster);
-          if (response.ok) {
-            const result = await response.json();
-            setData(result);
-            setErrorStatus(null);
-            success = true;
-            break; 
-          }
-        } catch (e) { continue; }
-      }
-      if (!success) setErrorStatus("NO_DATA_FOUND");
+      try {
+        const cacheBuster = `?t=${Date.now()}`;
+        const response = await fetch(`./signals.json${cacheBuster}`);
+        if (response.ok) {
+          const result = await response.json();
+          setData(result);
+        }
+      } catch (e) { console.error("Error loading signals:", e); }
       setLoading(false);
     };
     fetchData();
-    const interval = setInterval(fetchData, 300000); 
+    const interval = setInterval(fetchData, 300000);
     return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
     if (!showNews) return;
     const fetchNews = async () => {
-      setNewsLoading(true);
       try {
         const rssUrl = encodeURIComponent('https://finance.yahoo.com/news/rssindex');
         const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${rssUrl}`);
         const result = await response.json();
-        if (result.status === 'ok') {
-          setNews(result.items.map(item => ({
-            title: item.title,
-            time: new Date(item.pubDate).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-            source: item.author || "Finance",
-            link: item.link
-          })));
-        }
-      } catch (err) { } finally { setNewsLoading(false); }
+        if (result.status === 'ok') setNews(result.items);
+      } catch (err) {}
     };
     fetchNews();
   }, [showNews]);
 
-  // --- FILTER & SORT LOGIC ---
-  const getFilteredAndSortedSignals = () => {
+  // --- LOGIC: FILTER & SORT ---
+  const displaySignals = useMemo(() => {
     let filtered = data.signals.filter(signal => {
       const ticker = signal.ticker.toUpperCase().trim();
       if (signalTab === 'all') return true;
@@ -155,9 +117,7 @@ const App = () => {
         const proximity = (signal.buyAt - signal.currentPrice) / signal.buyAt;
         return proximity >= 0 && proximity <= 0.02;
       }
-      if (signalTab === 'watchlist') {
-        return watchlist.map(t => t.toUpperCase().trim()).includes(ticker);
-      }
+      if (signalTab === 'watchlist') return watchlist.includes(ticker);
       return true;
     });
 
@@ -167,61 +127,31 @@ const App = () => {
       if (sortConfig.key === 'ticker') {
         return sortConfig.order === 'asc' ? valA.localeCompare(valB) : valB.localeCompare(valA);
       }
-      valA = parseFloat(valA) || 0;
-      valB = parseFloat(valB) || 0;
       return sortConfig.order === 'asc' ? valA - valB : valB - valA;
-    });
+    }).slice(0, maxStocks);
+  }, [data.signals, signalTab, sortConfig, watchlist, maxStocks]);
+
+  // --- HELPERS ---
+  const formatSyncTime = (timestamp) => {
+    if (!timestamp) return 'Synced...';
+    try {
+      const date = new Date(timestamp.replace(' ', 'T') + 'Z'); 
+      return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    } catch (e) { return timestamp; }
   };
-
-  const displaySignals = getFilteredAndSortedSignals();
-
-  const addToWatchlist = () => {
-    const cleanTicker = newTicker.trim().toUpperCase();
-    if (cleanTicker && !watchlist.includes(cleanTicker)) {
-      setWatchlist([...watchlist, cleanTicker]);
-      setNewTicker("");
-    }
-  };
-
-  const removeFromWatchlist = (ticker) => setWatchlist(watchlist.filter(t => t !== ticker));
-
-  // --- UI COMPONENTS ---
-  const Tooltip = ({ info }) => (
-    <div className="group relative inline-block ml-1.5 align-middle">
-      <Info size={14} className={`text-slate-500 hover:${activeColor.text} cursor-help transition-colors`} />
-      <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 hidden group-hover:block w-56 p-3 bg-slate-800 text-slate-200 text-[11px] font-medium leading-relaxed rounded-xl shadow-2xl border border-slate-700 z-50 animate-in fade-in zoom-in-95 duration-200">
-        <p className="normal-case tracking-normal font-sans">{info}</p>
-        <div className="absolute bottom-full left-1/2 -translate-x-1/2 border-8 border-transparent border-b-slate-800"></div>
-      </div>
-    </div>
-  );
 
   const PatternBadge = ({ pattern }) => {
-    // Robust mapping for visual setups
     const badgeMap = {
       'bull flag': { label: 'Bull Flag', icon: <Flag size={10} />, color: 'text-blue-400', bg: 'bg-blue-400/10' },
       'pennant': { label: 'Pennant', icon: <Triangle size={10} />, color: 'text-amber-400', bg: 'bg-amber-400/10' },
       'flat base': { label: 'Flat Base', icon: <Layers size={10} />, color: 'text-emerald-400', bg: 'bg-emerald-400/10' },
-      'trend breakout': { label: 'Trend Breakout', icon: <Zap size={10} />, color: 'text-indigo-400', bg: 'bg-indigo-400/10' },
-      'setup found': { label: 'Setup Found', icon: <Activity size={10} />, color: 'text-rose-400', bg: 'bg-rose-400/10' }
+      'classic breakout': { label: 'Breakout', icon: <Zap size={10} />, color: 'text-indigo-400', bg: 'bg-indigo-400/10' }
     };
-    
-    // Clean and normalize input
     const key = (pattern || '').toLowerCase().trim();
-    
-    // Attempt to match keywords if exact match fails
-    let match = badgeMap[key];
-    if (!match) {
-      if (key.includes('flag')) match = badgeMap['bull flag'];
-      else if (key.includes('pennant')) match = badgeMap['pennant'];
-      else if (key.includes('base')) match = badgeMap['flat base'];
-      else match = badgeMap['trend breakout'];
-    }
-
+    let match = badgeMap[key] || badgeMap['classic breakout'];
     return (
-      <div className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg ${match.bg} ${match.color} font-black text-[9px] uppercase tracking-wider shadow-sm border border-white/5`}>
-        {match.icon}
-        {match.label}
+      <div className={`inline-flex items-center gap-1.5 px-2 py-1 rounded-lg ${match.bg} ${match.color} font-black text-[9px] uppercase tracking-wider border border-white/5`}>
+        {match.icon} {match.label}
       </div>
     );
   };
@@ -230,7 +160,7 @@ const App = () => {
     <div className={`min-h-screen bg-slate-950 text-slate-100 font-sans selection:${activeColor.lightBg}`}>
       <div className="max-w-[1600px] mx-auto px-4 py-6">
         
-        {/* NAV BAR */}
+        {/* TOP NAVIGATION */}
         <nav className="flex items-center justify-between mb-8 bg-slate-900/40 p-2 rounded-2xl border border-slate-800/50 backdrop-blur-md shadow-xl">
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-3 px-3">
@@ -238,25 +168,33 @@ const App = () => {
               <span className="font-black tracking-tighter uppercase italic text-lg text-white">Swing<span className={activeColor.text}>Scan</span></span>
             </div>
             <div className="flex gap-1">
-              <button onClick={() => setActiveTab('dashboard')} className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all ${activeTab === 'dashboard' ? `${activeColor.lightBg} ${activeColor.text}` : 'text-slate-500 hover:text-slate-300'}`}><LayoutDashboard size={16} /> Dashboard</button>
-              <button onClick={() => setActiveTab('settings')} className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all ${activeTab === 'settings' ? `${activeColor.lightBg} ${activeColor.text}` : 'text-slate-500 hover:text-slate-300'}`}><Settings size={16} /> Settings</button>
+              <button onClick={() => setActiveTab('dashboard')} className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all ${activeTab === 'dashboard' ? `${activeColor.lightBg} ${activeColor.text}` : 'text-slate-500 hover:text-slate-300'}`}>
+                <LayoutDashboard size={16} /> Dashboard
+              </button>
+              <button onClick={() => setActiveTab('settings')} className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all ${activeTab === 'settings' ? `${activeColor.lightBg} ${activeColor.text}` : 'text-slate-500 hover:text-slate-300'}`}>
+                <SettingsIcon size={16} /> Settings
+              </button>
             </div>
           </div>
           <div className="hidden md:flex flex-col items-end px-4">
-             <span className={`text-[10px] font-black uppercase tracking-widest ${data.marketHealthy ? 'text-emerald-400' : 'text-rose-400'}`}>Market: {data.marketHealthy ? 'Safe' : 'Caution'}</span>
-             <span className="text-[9px] text-slate-500 font-medium tracking-tight">Sync: {formatSyncTime(data.lastUpdated)}</span>
+             <span className={`text-[10px] font-black uppercase tracking-widest ${data.marketHealthy ? 'text-emerald-400' : 'text-rose-400'}`}>
+               Market: {data.marketHealthy ? 'Safe' : 'Caution'}
+             </span>
+             <span className="text-[9px] text-slate-500 font-medium">Sync: {formatSyncTime(data.lastUpdated)}</span>
           </div>
         </nav>
 
         {activeTab === 'dashboard' ? (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             
-            {/* LEFT: MAIN SIGNALS TABLE */}
+            {/* MAIN DATA TABLE */}
             <div className={`${showNews ? 'lg:col-span-8' : 'lg:col-span-12'} space-y-6 transition-all duration-500`}>
               <div className="bg-slate-900/40 border border-slate-800 rounded-3xl overflow-hidden shadow-2xl backdrop-blur-sm">
-                
                 <div className="px-6 py-4 border-b border-slate-800 flex flex-col md:flex-row justify-between items-start md:items-center bg-slate-900/60 gap-4">
-                  <div className="flex items-center gap-2 text-slate-300 font-bold text-xs uppercase tracking-wider"><TrendingUp size={16} className={activeColor.text} /> Breakout Analysis</div>
+                  <div className="flex items-center gap-2 text-slate-300 font-bold text-xs uppercase tracking-wider">
+                    <TrendingUp size={16} className={activeColor.text} /> 
+                    Power Ranked Signals
+                  </div>
                   <div className="flex bg-slate-950/50 p-1 rounded-xl border border-slate-800/50">
                     {['all', 'near', 'watchlist'].map(tab => (
                       <button key={tab} onClick={() => setSignalTab(tab)} className={`px-4 py-1.5 rounded-lg text-[10px] font-black uppercase transition-all ${signalTab === tab ? `${activeColor.bg} text-white shadow-lg` : 'text-slate-500 hover:text-slate-300'}`}>
@@ -271,29 +209,36 @@ const App = () => {
                     <thead>
                       <tr className="text-slate-500 text-[10px] font-black uppercase tracking-[0.2em] border-b border-slate-800/50">
                         <th className="px-6 py-4">Ticker</th>
+                        <th className="px-6 py-4">Score</th>
                         <th className="px-6 py-4">Price</th>
                         <th className={`px-6 py-4 ${activeColor.text}`}>Buy Trigger</th>
                         <th className="px-6 py-4 text-emerald-400">Target</th>
                         <th className="px-6 py-4">Pattern</th>
-                        <th className="px-6 py-4">RSI</th>
                         <th className="px-4 py-4"></th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-800/30">
-                      {displaySignals.map((signal) => (
-                        <tr key={signal.ticker} className={`${activeColor.hoverBg} transition-all group`}>
+                      {displaySignals.map((s) => (
+                        <tr key={s.ticker} className={`${activeColor.hoverBg} transition-all group`}>
                           <td className="px-6 py-5">
                             <div className="flex flex-col">
-                              <span className="font-black text-white uppercase text-lg tracking-tight group-hover:scale-105 transition-transform origin-left">{signal.ticker}</span>
-                              {watchlist.map(w => w.toUpperCase()).includes(signal.ticker.toUpperCase()) && <span className={`text-[8px] font-bold ${activeColor.text} uppercase tracking-widest`}>Watching</span>}
+                              <span className="font-black text-white uppercase text-lg tracking-tight group-hover:scale-105 transition-transform origin-left">{s.ticker}</span>
+                              {watchlist.includes(s.ticker) && <span className={`text-[8px] font-bold ${activeColor.text} uppercase`}>Watching</span>}
                             </div>
                           </td>
-                          <td className="px-6 py-5 font-mono text-slate-300 text-sm font-bold">${formatNum(signal.currentPrice)}</td>
-                          <td className={`px-6 py-5 font-mono font-black ${activeColor.text} text-base`}>${formatNum(signal.buyAt)}</td>
-                          <td className="px-6 py-5 font-mono font-black text-emerald-400 text-base">${formatNum(signal.goal)}</td>
-                          <td className="px-6 py-5"><PatternBadge pattern={signal.pattern} /></td>
-                          <td className="px-6 py-5"><span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${signal.rsi > 60 ? 'bg-amber-500/20 text-amber-500' : 'bg-slate-800 text-slate-400'}`}>{formatNum(signal.rsi)}</span></td>
-                          <td className="px-4 py-5"><a href={`https://finance.yahoo.com/quote/${signal.ticker}`} target="_blank" rel="noreferrer" className="text-slate-600 hover:text-white transition-colors"><ExternalLink size={16} /></a></td>
+                          <td className="px-6 py-5">
+                            <div className="flex items-center gap-2">
+                                <div className="w-10 bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                                    <div className={`${activeColor.bg} h-full`} style={{ width: `${s.score}%` }} />
+                                </div>
+                                <span className="text-[10px] font-black text-slate-400">{s.score}</span>
+                            </div>
+                          </td>
+                          <td className="px-6 py-5 font-mono text-slate-300 text-sm font-bold">${s.currentPrice.toFixed(2)}</td>
+                          <td className={`px-6 py-5 font-mono font-black ${activeColor.text} text-base`}>${s.buyAt.toFixed(2)}</td>
+                          <td className="px-6 py-5 font-mono font-black text-emerald-400 text-base">${s.goal.toFixed(2)}</td>
+                          <td className="px-6 py-5"><PatternBadge pattern={s.pattern} /></td>
+                          <td className="px-4 py-5"><a href={`https://finance.yahoo.com/quote/${s.ticker}`} target="_blank" rel="noreferrer" className="text-slate-600 hover:text-white transition-colors"><ExternalLink size={16} /></a></td>
                         </tr>
                       ))}
                     </tbody>
@@ -302,30 +247,28 @@ const App = () => {
                   {!loading && displaySignals.length === 0 && (
                     <div className="p-20 text-center flex flex-col items-center gap-3">
                       <SearchX className="text-slate-800" size={48} />
-                      <p className="text-slate-400 font-black uppercase text-xs tracking-widest text-center">No matching signals found</p>
-                      <p className="text-slate-600 text-[11px] max-w-xs mx-auto text-center leading-relaxed italic">Wait for the robot's next scan or try adding more tickers to your watchlist!</p>
+                      <p className="text-slate-400 font-black uppercase text-xs tracking-widest">No active signals match criteria</p>
                     </div>
                   )}
                 </div>
               </div>
             </div>
 
-            {/* RIGHT: OPTIONAL NEWS FEED */}
+            {/* NEWS PANEL */}
             {showNews && (
-              <div className="lg:col-span-4 space-y-6 animate-in slide-in-from-right duration-500">
-                <div className="bg-slate-900/40 border border-slate-800 rounded-3xl overflow-hidden flex flex-col h-[700px] shadow-2xl backdrop-blur-sm">
-                  <div className="px-6 py-4 border-b border-slate-800 flex items-center justify-between bg-slate-900/60">
-                    <div className="flex items-center gap-2"><Globe size={16} className={activeColor.text} /><h2 className="font-bold text-xs uppercase tracking-wider text-white">Live Intel</h2></div>
-                    {newsLoading && <RefreshCw size={12} className="animate-spin text-slate-500" />}
+              <div className="lg:col-span-4 space-y-6">
+                <div className="bg-slate-900/40 border border-slate-800 rounded-3xl overflow-hidden flex flex-col h-[750px] shadow-2xl backdrop-blur-sm">
+                  <div className="px-6 py-4 border-b border-slate-800 flex items-center justify-between bg-slate-900/60 text-white font-bold text-xs uppercase tracking-wider">
+                    <div className="flex items-center gap-2"><Globe size={16} className={activeColor.text} /> Market Intel</div>
                   </div>
                   <div className="overflow-y-auto flex-1 custom-scrollbar">
-                    {news.map((item, idx) => (
-                      <a key={idx} href={item.link} target="_blank" rel="noreferrer" className="block p-4 border-b border-slate-800/50 hover:bg-slate-800/40 transition-all group">
-                        <div className="flex justify-between items-start mb-1">
-                          <span className={`text-[10px] font-bold ${activeColor.text} uppercase tracking-widest`}>{item.source}</span>
-                          <span className="text-[10px] text-slate-500">{item.time}</span>
+                    {news.map((n, idx) => (
+                      <a key={idx} href={n.link} target="_blank" rel="noreferrer" className="block p-4 border-b border-slate-800/50 hover:bg-slate-800/40 transition-all group">
+                        <div className="flex justify-between items-start mb-1 text-[10px]">
+                          <span className={`${activeColor.text} font-bold uppercase`}>{n.author || "Finance"}</span>
+                          <span className="text-slate-500">{new Date(n.pubDate).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}</span>
                         </div>
-                        <p className="text-xs font-semibold text-slate-200 group-hover:text-white leading-snug">{item.title}</p>
+                        <p className="text-xs font-semibold text-slate-200 group-hover:text-white leading-snug">{n.title}</p>
                       </a>
                     ))}
                   </div>
@@ -334,85 +277,107 @@ const App = () => {
             )}
           </div>
         ) : (
-          /* SETTINGS PANEL */
-          <div className="max-w-3xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-300 space-y-6">
+          /* SETTINGS VIEW */
+          <div className="max-w-3xl mx-auto space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-300">
             <div className="bg-slate-900/40 border border-slate-800 rounded-3xl p-8 space-y-8 shadow-2xl">
               <div className="flex items-center gap-3 pb-6 border-b border-slate-800">
-                <div className={`${activeColor.lightBg} p-3 rounded-2xl`}><Settings className={activeColor.text} size={24} /></div>
-                <div><h2 className="text-xl font-bold tracking-tight text-white">Preferences</h2><p className="text-xs text-slate-500 font-medium">Control watchlist, sorting, and UI styling</p></div>
-              </div>
-
-              {/* SORT CONFIG */}
-              <div className="space-y-4">
-                <div className="flex items-center gap-2 text-slate-400"><ArrowUpDown size={16} /><h3 className="text-sm font-bold uppercase tracking-wider">Default Sort</h3></div>
-                <div className="bg-slate-950/50 p-6 rounded-2xl border border-slate-800 grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <select value={sortConfig.key} onChange={(e) => setSortConfig({ ...sortConfig, key: e.target.value })} className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-500 text-slate-200 cursor-pointer">
-                    <option value="ticker">Ticker</option>
-                    <option value="currentPrice">Price</option>
-                    <option value="buyAt">Breakout Price</option>
-                    <option value="goal">Target</option>
-                    <option value="rsi">RSI</option>
-                  </select>
-                  <div className="flex bg-slate-900 p-1 rounded-xl border border-slate-800">
-                    <button onClick={() => setSortConfig({ ...sortConfig, order: 'asc' })} className={`flex-1 py-2 rounded-lg text-xs font-bold transition-all ${sortConfig.order === 'asc' ? `${activeColor.bg} text-white shadow-lg` : 'text-slate-500 hover:text-slate-300'}`}>Asc</button>
-                    <button onClick={() => setSortConfig({ ...sortConfig, order: 'desc' })} className={`flex-1 py-2 rounded-lg text-xs font-bold transition-all ${sortConfig.order === 'desc' ? `${activeColor.bg} text-white shadow-lg` : 'text-slate-500 hover:text-slate-300'}`}>Desc</button>
-                  </div>
-                </div>
+                <div className={`${activeColor.lightBg} p-3 rounded-2xl`}><SettingsIcon className={activeColor.text} size={24} /></div>
+                <div><h2 className="text-xl font-bold tracking-tight text-white">Dashboard Preferences</h2><p className="text-xs text-slate-500 font-medium">Customize your scanning experience</p></div>
               </div>
 
               {/* WATCHLIST MANAGER */}
               <div className="space-y-4">
                 <div className="flex items-center gap-2 text-slate-400"><Star size={16} /><h3 className="text-sm font-bold uppercase tracking-wider">My Watchlist</h3></div>
-                <div className="bg-slate-950/50 p-6 rounded-2xl border border-slate-800 space-y-6">
+                <div className="bg-slate-950/50 p-6 rounded-2xl border border-slate-800 space-y-4">
                   <div className="flex gap-2">
-                    <input type="text" placeholder="Add Ticker (e.g. MSFT)" value={newTicker} onChange={(e) => setNewTicker(e.target.value)} onKeyPress={(e) => e.key === 'Enter' && addToWatchlist()} className="flex-1 bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:border-indigo-500 uppercase text-slate-200" />
-                    <button onClick={addToWatchlist} className={`${activeColor.bg} px-6 rounded-xl font-bold text-xs uppercase hover:opacity-90 shadow-lg flex items-center gap-2 text-white`}><Plus size={16} /> Add</button>
+                    <input 
+                      type="text" placeholder="Enter Ticker (e.g. MSFT)" 
+                      value={newTicker} onChange={(e) => setNewTicker(e.target.value.toUpperCase())}
+                      onKeyPress={(e) => e.key === 'Enter' && (watchlist.includes(newTicker) ? null : setWatchlist([...watchlist, newTicker]))}
+                      className="flex-1 bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:border-indigo-500 outline-none text-white uppercase" 
+                    />
+                    <button onClick={() => { if(newTicker && !watchlist.includes(newTicker)) setWatchlist([...watchlist, newTicker]); setNewTicker(""); }} className={`${activeColor.bg} px-6 rounded-xl font-bold text-xs uppercase text-white hover:opacity-90 transition-all shadow-lg`}><Plus size={16} /></button>
                   </div>
                   <div className="flex flex-wrap gap-2">
-                    {watchlist.map((ticker) => (
-                      <div key={ticker} className="bg-slate-900 border border-slate-800 px-3 py-2 rounded-xl flex items-center gap-2 group animate-in zoom-in-95">
-                        <span className="font-bold text-xs text-slate-200">{ticker}</span>
-                        <button onClick={() => removeFromWatchlist(ticker)} className="text-slate-500 hover:text-rose-500 transition-colors"><X size={14} /></button>
+                    {watchlist.map((t) => (
+                      <div key={t} className="bg-slate-900 border border-slate-800 px-3 py-2 rounded-xl flex items-center gap-2">
+                        <span className="font-bold text-xs text-white">{t}</span>
+                        <button onClick={() => setWatchlist(watchlist.filter(w => w !== t))} className="text-slate-500 hover:text-rose-500 transition-colors"><X size={14} /></button>
                       </div>
                     ))}
                   </div>
                 </div>
               </div>
 
-              {/* VIEW MODE & ALERTS */}
+              {/* DISPLAY LIMITS & NEWS */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="bg-slate-950/50 p-6 rounded-2xl border border-slate-800 flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      {showNews ? <Eye size={18} className={activeColor.text}/> : <EyeOff size={18} className="text-slate-600"/>}
-                      <span className="text-sm font-bold text-slate-200">Show Market News</span>
+                <div className="space-y-4">
+                  <div className="flex items-center gap-2 text-slate-400"><Layers size={16} /><h3 className="text-sm font-bold uppercase tracking-wider">Display Limit</h3></div>
+                  <div className="bg-slate-950/50 p-6 rounded-2xl border border-slate-800 flex flex-col gap-4 shadow-inner">
+                    <div className="flex justify-between font-black text-xs uppercase tracking-widest">
+                        <span>Max Stocks</span>
+                        <span className={activeColor.text}>{maxStocks}</span>
                     </div>
-                    <button onClick={() => setShowNews(!showNews)} className={`w-12 h-6 rounded-full transition-all relative ${showNews ? activeColor.bg : 'bg-slate-800'}`}><div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${showNews ? 'left-7' : 'left-1'}`} /></button>
+                    <input type="range" min="1" max="50" step="1" value={maxStocks} onChange={(e) => setMaxStocks(Number(e.target.value))} className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-indigo-500" />
+                    <p className="text-[9px] text-slate-500 italic">Showing the Top {maxStocks} setups ranked by Power Score.</p>
                   </div>
-                  <div className="bg-slate-950/50 p-6 rounded-2xl border border-slate-800 flex items-center justify-between">
-                    <span className="text-sm font-bold text-slate-200">Email Alerts</span>
-                    <button onClick={() => setNotificationsEnabled(!notificationsEnabled)} className={`w-12 h-6 rounded-full transition-all relative ${notificationsEnabled ? activeColor.bg : 'bg-slate-800'}`}><div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${notificationsEnabled ? 'left-7' : 'left-1'}`} /></button>
-                  </div>
+                </div>
+                <div className="space-y-4">
+                  <div className="flex items-center gap-2 text-slate-400"><Eye size={16} /><h3 className="text-sm font-bold uppercase tracking-wider">News Toggle</h3></div>
+                  <button onClick={() => setShowNews(!showNews)} className="w-full bg-slate-950/50 p-6 rounded-2xl border border-slate-800 flex items-center justify-between hover:bg-slate-900/50 transition-colors shadow-inner">
+                    <span className="text-sm font-bold">{showNews ? 'Feed Active' : 'Feed Hidden'}</span>
+                    <div className={`w-10 h-5 rounded-full relative transition-all ${showNews ? activeColor.bg : 'bg-slate-700'}`}>
+                        <div className={`absolute top-1 w-3 h-3 bg-white rounded-full transition-all ${showNews ? 'left-6' : 'left-1'}`} />
+                    </div>
+                  </button>
+                </div>
               </div>
 
-              {/* THEMES */}
-              <div className="grid grid-cols-3 gap-4">
-                  {['indigo', 'emerald', 'rose'].map((t) => (
-                    <button key={t} onClick={() => setTheme(t)} className={`p-5 rounded-2xl border transition-all flex flex-col items-center gap-3 ${theme === t ? `border-${t}-500 bg-${t}-500/10` : 'border-slate-800 bg-slate-900/30 hover:border-slate-700'}`} style={{ borderColor: theme === t ? (t === 'indigo' ? '#6366f1' : t === 'emerald' ? '#10b981' : '#f43f5e') : '', backgroundColor: theme === t ? (t === 'indigo' ? 'rgba(99,102,241,0.1)' : t === 'emerald' ? 'rgba(16,185,129,0.1)' : 'rgba(244,63,94,0.1)') : '' }}>
-                      <div className={`w-8 h-8 rounded-full shadow-inner ${t === 'indigo' ? 'bg-indigo-600' : t === 'emerald' ? 'bg-emerald-600' : 'bg-rose-600'}`} />
-                      <span className={`text-[10px] font-bold uppercase tracking-widest ${theme === t ? colors[t].text : 'text-slate-500'}`}>{t}</span>
-                    </button>
-                  ))}
+              {/* SORT & THEME */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-4">
+                    <div className="flex items-center gap-2 text-slate-400"><ArrowUpDown size={16} /><h3 className="text-sm font-bold uppercase tracking-wider">Default Sort</h3></div>
+                    <select 
+                      value={sortConfig.key} 
+                      onChange={(e) => setSortConfig({ ...sortConfig, key: e.target.value })}
+                      className="w-full bg-slate-950 border border-slate-800 rounded-2xl p-4 text-sm outline-none text-white cursor-pointer"
+                    >
+                        <option value="score">Power Score (Best First)</option>
+                        <option value="ticker">Ticker (A-Z)</option>
+                        <option value="currentPrice">Price</option>
+                        <option value="buyAt">Breakout Trigger</option>
+                    </select>
+                </div>
+                <div className="space-y-4">
+                    <div className="flex items-center gap-2 text-slate-400"><Palette size={16} /><h3 className="text-sm font-bold uppercase tracking-wider">Theme</h3></div>
+                    <div className="grid grid-cols-3 gap-2">
+                        {['indigo', 'emerald', 'rose'].map((t) => (
+                            <button 
+                              key={t} onClick={() => setTheme(t)} 
+                              className={`p-3 rounded-xl border transition-all ${theme === t ? `border-${t}-500 bg-${t}-500/10` : 'border-slate-800 bg-slate-950'}`}
+                            >
+                                <div className={`w-full h-2 rounded-full ${t === 'indigo' ? 'bg-indigo-600' : t === 'emerald' ? 'bg-emerald-600' : 'bg-rose-600'}`} />
+                            </button>
+                        ))}
+                    </div>
+                </div>
               </div>
             </div>
           </div>
         )}
 
-        <footer className="mt-12 py-8 border-t border-slate-900 text-center"><p className="text-slate-600 text-[10px] uppercase font-bold tracking-[0.3em] opacity-40 italic">SwingScan Intelligence Engine • V5.9 Build</p></footer>
+        <footer className="mt-12 py-8 border-t border-slate-900 text-center">
+            <p className="text-slate-600 text-[10px] uppercase font-bold tracking-[0.3em] opacity-40 italic">SwingScan Intelligence • V6.0 Build</p>
+        </footer>
       </div>
     </div>
   );
 };
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App />);
+// AUTO-MOUNTING LOGIC
+const rootElem = document.getElementById('root');
+if (rootElem) {
+  ReactDOM.createRoot(rootElem).render(<App />);
+}
+
 export default App;
