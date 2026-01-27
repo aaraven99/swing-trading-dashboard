@@ -28,15 +28,16 @@ import {
   HelpCircle,
   ArrowUpDown,
   Layers,
-  Award
+  Award,
+  TrendingDown
 } from 'lucide-react';
 
 /**
- * THE ULTIMATE DASHBOARD (V6.3)
- * - Enhanced Power Score: Shows clear 1-100 numerical badges for high-conviction trades.
- * - Robust Numerical Sorting: Fixed ranking engine for Power Scores.
- * - Display Limit Slider: Control the number of setups shown (1-50).
- * - Pattern Recognition: Visual badges for flags, pennants, and breakouts.
+ * THE ULTIMATE DASHBOARD (V6.5)
+ * - Physical Power Score: Large, bold numerical displays with "Traffic Light" colors.
+ * - Dynamic Rank Highlights: 90+ (Gold), 70+ (Green), 50+ (Theme).
+ * - Fixed A-Z Sorting: Numerical sorting explicitly handles Power Scores.
+ * - Pattern Logic: Keyword-matching for Bull Flags, Pennants, and Bases.
  */
 const App = () => {
   // --- STATE ---
@@ -46,7 +47,7 @@ const App = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [signalTab, setSignalTab] = useState('all');
   
-  // Consolidated Preferences (Local Persistence)
+  // Preferences (Local Persistence)
   const [prefs, setPrefs] = useState(() => {
     const saved = localStorage.getItem('ss_prefs');
     const defaults = {
@@ -63,7 +64,6 @@ const App = () => {
 
   const [newTicker, setNewTicker] = useState("");
 
-  // Sync preferences to localStorage
   useEffect(() => {
     localStorage.setItem('ss_prefs', JSON.stringify(prefs));
   }, [prefs]);
@@ -85,7 +85,7 @@ const App = () => {
           const result = await response.json();
           setData(result);
         }
-      } catch (e) { console.error("Error loading signals:", e); }
+      } catch (e) { console.error("Data fetch error:", e); }
       setLoading(false);
     };
     fetchData();
@@ -106,7 +106,7 @@ const App = () => {
     fetchNews();
   }, [prefs.showNews]);
 
-  // --- LOGIC: FILTER & ROBUST SORT ---
+  // --- LOGIC: FILTER & SORT ---
   const displaySignals = useMemo(() => {
     let filtered = data.signals.filter(signal => {
       const ticker = signal.ticker.toUpperCase().trim();
@@ -158,13 +158,14 @@ const App = () => {
       'pennant': { label: 'Pennant', icon: <Triangle size={10} />, color: 'text-amber-400', bg: 'bg-amber-400/10' },
       'flat base': { label: 'Flat Base', icon: <Layers size={10} />, color: 'text-emerald-400', bg: 'bg-emerald-400/10' },
       'trend breakout': { label: 'Trend Breakout', icon: <Zap size={10} />, color: 'text-indigo-400', bg: 'bg-indigo-400/10' },
-      'classic breakout': { label: 'Breakout', icon: <Zap size={10} />, color: 'text-indigo-400', bg: 'bg-indigo-400/10' }
+      'classic breakout': { label: 'Classic Breakout', icon: <Zap size={10} />, color: 'text-indigo-400', bg: 'bg-indigo-400/10' }
     };
     const key = (pattern || '').toLowerCase().trim();
     let match = badgeMap[key];
     if (!match) {
         if (key.includes('flag')) match = badgeMap['bull flag'];
         else if (key.includes('pennant')) match = badgeMap['pennant'];
+        else if (key.includes('base')) match = badgeMap['flat base'];
         else match = badgeMap['trend breakout'];
     }
     return (
@@ -211,7 +212,7 @@ const App = () => {
                 <div className="px-6 py-4 border-b border-slate-800 flex flex-col md:flex-row justify-between items-start md:items-center bg-slate-900/60 gap-4">
                   <div className="flex items-center gap-2 text-slate-300 font-bold text-xs uppercase tracking-wider">
                     <TrendingUp size={16} className={activeColor.text} /> 
-                    Top Ranked Setups
+                    Top Opportunities
                   </div>
                   <div className="flex bg-slate-950/50 p-1 rounded-xl border border-slate-800/50">
                     {['all', 'near', 'watchlist'].map(tab => (
@@ -226,7 +227,7 @@ const App = () => {
                   <table className="w-full text-left">
                     <thead>
                       <tr className="text-slate-500 text-[10px] font-black uppercase tracking-[0.2em] border-b border-slate-800/50">
-                        <th className="px-6 py-4 text-center">Power Rank</th>
+                        <th className="px-6 py-4 text-center">Score</th>
                         <th className="px-6 py-4">Ticker</th>
                         <th className="px-6 py-4">Price</th>
                         <th className={`px-6 py-4 ${activeColor.text}`}>Buy Trigger</th>
@@ -237,40 +238,52 @@ const App = () => {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-800/30">
-                      {displaySignals.map((s) => (
-                        <tr key={s.ticker} className={`${activeColor.hoverBg} transition-all group`}>
-                          <td className="px-6 py-5">
-                            <div className="flex flex-col items-center gap-1.5">
-                                <div className={`px-2 py-1 rounded-md ${s.score > 80 ? 'bg-amber-500/20 text-amber-500 border-amber-500/30' : 'bg-slate-800 text-slate-200 border-white/5'} border font-black text-xs min-w-[32px] text-center shadow-inner`}>
-                                    {s.score}
-                                </div>
-                                <div className="w-8 bg-slate-800 h-1 rounded-full overflow-hidden">
-                                    <div className={`${activeColor.bg} h-full`} style={{ width: `${s.score}%` }} />
-                                </div>
-                            </div>
-                          </td>
-                          <td className="px-6 py-5">
-                            <div className="flex flex-col">
-                              <span className="font-black text-white uppercase text-lg tracking-tight group-hover:scale-105 transition-transform origin-left">{s.ticker}</span>
-                              {prefs.watchlist.includes(s.ticker) && <span className={`text-[8px] font-bold ${activeColor.text} uppercase tracking-widest`}>Watched</span>}
-                            </div>
-                          </td>
-                          <td className="px-6 py-5 font-mono text-slate-300 text-sm font-bold">${formatNum(s.currentPrice)}</td>
-                          <td className={`px-6 py-5 font-mono font-black ${activeColor.text} text-base`}>${formatNum(s.buyAt)}</td>
-                          <td className="px-6 py-5 font-mono font-black text-emerald-400 text-base">${formatNum(s.goal)}</td>
-                          <td className="px-6 py-5"><PatternBadge pattern={s.pattern} /></td>
-                          <td className="px-6 py-5">
-                            <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${s.rsi > 60 ? 'bg-amber-500/20 text-amber-500' : 'bg-slate-800 text-slate-400'}`}>
-                                {formatNum(s.rsi)}
-                            </span>
-                          </td>
-                          <td className="px-4 py-5">
-                            <a href={`https://finance.yahoo.com/quote/${s.ticker}`} target="_blank" rel="noreferrer" className="text-slate-600 hover:text-white transition-colors">
-                                <ExternalLink size={16} />
-                            </a>
-                          </td>
-                        </tr>
-                      ))}
+                      {displaySignals.map((s) => {
+                        // Traffic Light Scoring System
+                        const isElite = s.score >= 90;
+                        const isStrong = s.score >= 70;
+                        const isSolid = s.score >= 50;
+                        
+                        const scoreColor = isElite 
+                          ? 'text-amber-400 bg-amber-400/10 border-amber-400/30 shadow-[0_0_12px_rgba(251,191,36,0.2)]' 
+                          : isStrong
+                            ? 'text-emerald-400 bg-emerald-400/10 border-emerald-400/30'
+                            : isSolid
+                              ? `${activeColor.text} ${activeColor.lightBg} ${activeColor.border}/30`
+                              : 'text-slate-400 bg-slate-800 border-white/5';
+
+                        return (
+                          <tr key={s.ticker} className={`${activeColor.hoverBg} transition-all group`}>
+                            <td className="px-6 py-5">
+                              <div className="flex flex-col items-center justify-center">
+                                  <div className={`w-12 h-12 rounded-xl border flex items-center justify-center font-black text-lg shadow-inner transition-all ${scoreColor}`}>
+                                      {Math.round(s.score)}
+                                  </div>
+                              </div>
+                            </td>
+                            <td className="px-6 py-5">
+                              <div className="flex flex-col">
+                                <span className="font-black text-white uppercase text-lg tracking-tight group-hover:scale-105 transition-transform origin-left">{s.ticker}</span>
+                                {prefs.watchlist.includes(s.ticker) && <span className={`text-[8px] font-bold ${activeColor.text} uppercase tracking-widest`}>Watched</span>}
+                              </div>
+                            </td>
+                            <td className="px-6 py-5 font-mono text-slate-300 text-sm font-bold">${formatNum(s.currentPrice)}</td>
+                            <td className={`px-6 py-5 font-mono font-black ${activeColor.text} text-base`}>${formatNum(s.buyAt)}</td>
+                            <td className="px-6 py-5 font-mono font-black text-emerald-400 text-base">${formatNum(s.goal)}</td>
+                            <td className="px-6 py-5"><PatternBadge pattern={s.pattern} /></td>
+                            <td className="px-6 py-5">
+                              <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${s.rsi > 60 ? 'bg-amber-500/20 text-amber-500' : 'bg-slate-800 text-slate-400'}`}>
+                                  {formatNum(s.rsi)}
+                              </span>
+                            </td>
+                            <td className="px-4 py-5">
+                              <a href={`https://finance.yahoo.com/quote/${s.ticker}`} target="_blank" rel="noreferrer" className="text-slate-600 hover:text-white transition-colors">
+                                  <ExternalLink size={16} />
+                              </a>
+                            </td>
+                          </tr>
+                        );
+                      })}
                     </tbody>
                   </table>
                   {loading && <div className="p-20 text-center"><RefreshCw className={`animate-spin mx-auto ${activeColor.text}`} /></div>}
@@ -278,7 +291,6 @@ const App = () => {
                     <div className="p-20 text-center flex flex-col items-center gap-3">
                       <SearchX className="text-slate-800" size={48} />
                       <p className="text-slate-400 font-black uppercase text-xs tracking-widest text-center">No matching signals found</p>
-                      <p className="text-slate-600 text-[11px] max-w-xs mx-auto italic text-center">Wait for next scan or update your watchlist!</p>
                     </div>
                   )}
                 </div>
@@ -313,7 +325,7 @@ const App = () => {
             <div className="bg-slate-900/40 border border-slate-800 rounded-3xl p-8 space-y-8 shadow-2xl">
               <div className="flex items-center gap-3 pb-6 border-b border-slate-800">
                 <div className={`${activeColor.lightBg} p-3 rounded-2xl`}><SettingsIcon className={activeColor.text} size={24} /></div>
-                <div><h2 className="text-xl font-bold tracking-tight text-white">Dashboard Settings</h2><p className="text-xs text-slate-500 font-medium">Customize your trading interface</p></div>
+                <div><h2 className="text-xl font-bold tracking-tight text-white">Dashboard Preferences</h2><p className="text-xs text-slate-500 font-medium">Configure your trading tools</p></div>
               </div>
 
               {/* WATCHLIST MANAGER */}
@@ -322,7 +334,7 @@ const App = () => {
                 <div className="bg-slate-950/50 p-6 rounded-2xl border border-slate-800 space-y-4 shadow-inner">
                   <div className="flex gap-2">
                     <input 
-                      type="text" placeholder="Enter Ticker (e.g. MSFT)" 
+                      type="text" placeholder="Add Ticker..." 
                       value={newTicker} onChange={(e) => setNewTicker(e.target.value.toUpperCase())}
                       onKeyPress={(e) => {
                           if(e.key === 'Enter' && newTicker && !prefs.watchlist.includes(newTicker)){
@@ -349,19 +361,19 @@ const App = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-4">
                   <div className="flex items-center gap-2 text-slate-400"><Layers size={16} /><h3 className="text-sm font-bold uppercase tracking-wider">Display Limit</h3></div>
-                  <div className="bg-slate-950/50 p-6 rounded-2xl border border-slate-800 flex flex-col gap-4 shadow-inner">
+                  <div className="bg-slate-950/50 p-6 rounded-2xl border border-slate-800 flex flex-col gap-4 shadow-inner p-6">
                     <div className="flex justify-between font-black text-xs uppercase tracking-widest">
                         <span>Max Stocks</span>
                         <span className={activeColor.text}>{prefs.maxStocks}</span>
                     </div>
                     <input type="range" min="1" max="50" step="1" value={prefs.maxStocks} onChange={(e) => setPrefs({...prefs, maxStocks: Number(e.target.value)})} className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-indigo-500" />
-                    <p className="text-[9px] text-slate-500 italic text-center font-medium">Ranking the top {prefs.maxStocks} setups by Power Score.</p>
+                    <p className="text-[9px] text-slate-500 italic text-center font-medium">Rank Top {prefs.maxStocks} Opportunities.</p>
                   </div>
                 </div>
                 <div className="space-y-4">
-                  <div className="flex items-center gap-2 text-slate-400"><Eye size={16} /><h3 className="text-sm font-bold uppercase tracking-wider">News Toggle</h3></div>
-                  <button onClick={() => setPrefs({...prefs, showNews: !prefs.showNews})} className="w-full bg-slate-950/50 p-6 rounded-2xl border border-slate-800 flex items-center justify-between hover:bg-slate-900/50 transition-colors shadow-inner h-full p-6">
-                    <span className="text-sm font-bold">{prefs.showNews ? 'Feed Visible' : 'Feed Hidden'}</span>
+                  <div className="flex items-center gap-2 text-slate-400"><Eye size={16} /><h3 className="text-sm font-bold uppercase tracking-wider">Interface</h3></div>
+                  <button onClick={() => setPrefs({...prefs, showNews: !prefs.showNews})} className="w-full bg-slate-950/50 p-6 rounded-2xl border border-slate-800 flex items-center justify-between hover:bg-slate-900/50 transition-colors shadow-inner h-full">
+                    <span className="text-sm font-bold text-slate-200">{prefs.showNews ? 'Hide News Feed' : 'Show News Feed'}</span>
                     <div className={`w-10 h-5 rounded-full relative transition-all ${prefs.showNews ? activeColor.bg : 'bg-slate-700'}`}>
                         <div className={`absolute top-1 w-3 h-3 bg-white rounded-full transition-all ${prefs.showNews ? 'left-6' : 'left-1'}`} />
                     </div>
@@ -372,18 +384,17 @@ const App = () => {
               {/* SORT CONFIG */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-4">
-                    <div className="flex items-center gap-2 text-slate-400"><ArrowUpDown size={16} /><h3 className="text-sm font-bold uppercase tracking-wider">Default Sort</h3></div>
+                    <div className="flex items-center gap-2 text-slate-400"><ArrowUpDown size={16} /><h3 className="text-sm font-bold uppercase tracking-wider">Default Rank</h3></div>
                     <div className="bg-slate-950/50 p-6 rounded-2xl border border-slate-800 space-y-4 shadow-inner">
                         <select 
                         value={prefs.sortKey} 
                         onChange={(e) => setPrefs({...prefs, sortKey: e.target.value})}
                         className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:border-indigo-500 outline-none text-white cursor-pointer appearance-none"
                         >
-                            <option value="score">Power Score (Best First)</option>
-                            <option value="ticker">Ticker (A-Z)</option>
-                            <option value="currentPrice">Price (Low to High)</option>
+                            <option value="score">Power Score (1-100)</option>
+                            <option value="ticker">Ticker (Alphabetical)</option>
+                            <option value="currentPrice">Price (Lowest First)</option>
                             <option value="buyAt">Breakout Trigger</option>
-                            <option value="rsi">RSI Strength</option>
                         </select>
                         <div className="flex bg-slate-900 p-1 rounded-xl border border-slate-800">
                             <button onClick={() => setPrefs({...prefs, sortOrder: 'asc'})} className={`flex-1 py-1.5 rounded-lg text-xs font-bold transition-all ${prefs.sortOrder === 'asc' ? `${activeColor.bg} text-white` : 'text-slate-500 hover:text-slate-300'}`}>Asc</button>
@@ -392,7 +403,7 @@ const App = () => {
                     </div>
                 </div>
                 <div className="space-y-4">
-                    <div className="flex items-center gap-2 text-slate-400"><Palette size={16} /><h3 className="text-sm font-bold uppercase tracking-wider">UI Theme</h3></div>
+                    <div className="flex items-center gap-2 text-slate-400"><Palette size={16} /><h3 className="text-sm font-bold uppercase tracking-wider">Style</h3></div>
                     <div className="grid grid-cols-3 gap-3 h-full">
                         {['indigo', 'emerald', 'rose'].map((t) => (
                             <button 
@@ -411,7 +422,7 @@ const App = () => {
         )}
 
         <footer className="mt-12 py-8 border-t border-slate-900 text-center">
-            <p className="text-slate-600 text-[10px] uppercase font-bold tracking-[0.3em] opacity-40 italic">SwingScan Intelligence • V6.3 Build</p>
+            <p className="text-slate-600 text-[10px] uppercase font-bold tracking-[0.3em] opacity-40 italic">SwingScan Intelligence • V6.5 Build</p>
         </footer>
       </div>
     </div>
