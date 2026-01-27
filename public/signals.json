@@ -2,49 +2,974 @@
     "marketHealthy": true,
     "signals": [
         {
+            "ticker": "DHR",
+            "score": 100,
+            "pattern": "Classic Breakout",
+            "currentPrice": 236.71,
+            "buyAt": 242.8,
+            "goal": 265.12,
+            "stopLoss": 222.51,
+            "rsi": 54.35
+        },
+        {
+            "ticker": "PKG",
+            "score": 100,
+            "pattern": "Classic Breakout",
+            "currentPrice": 221.83,
+            "buyAt": 227.61,
+            "goal": 248.45,
+            "stopLoss": 208.52,
+            "rsi": 61.18
+        },
+        {
+            "ticker": "UPS",
+            "score": 100,
+            "pattern": "Classic Breakout",
+            "currentPrice": 106.97,
+            "buyAt": 110.04,
+            "goal": 119.81,
+            "stopLoss": 100.55,
+            "rsi": 59.4
+        },
+        {
+            "ticker": "AES",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 14.62,
+            "buyAt": 15.02,
+            "goal": 16.37,
+            "stopLoss": 13.74,
+            "rsi": 56.14
+        },
+        {
+            "ticker": "AKAM",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 98.66,
+            "buyAt": 99.19,
+            "goal": 110.5,
+            "stopLoss": 92.74,
+            "rsi": 65.49
+        },
+        {
+            "ticker": "AME",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 219.8,
+            "buyAt": 224.37,
+            "goal": 246.18,
+            "stopLoss": 206.61,
+            "rsi": 66.43
+        },
+        {
+            "ticker": "AMGN",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 349.69,
+            "buyAt": 350.43,
+            "goal": 391.65,
+            "stopLoss": 328.71,
+            "rsi": 66.07
+        },
+        {
+            "ticker": "ANET",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 143.72,
+            "buyAt": 146.4,
+            "goal": 160.97,
+            "stopLoss": 135.1,
+            "rsi": 63.62
+        },
+        {
+            "ticker": "APH",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 155.56,
+            "buyAt": 157.54,
+            "goal": 174.23,
+            "stopLoss": 146.23,
+            "rsi": 66.28
+        },
+        {
+            "ticker": "AVY",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 188.31,
+            "buyAt": 190.37,
+            "goal": 210.91,
+            "stopLoss": 177.01,
+            "rsi": 60.2
+        },
+        {
+            "ticker": "BDX",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 203.42,
+            "buyAt": 209.27,
+            "goal": 227.83,
+            "stopLoss": 191.21,
+            "rsi": 54.36
+        },
+        {
+            "ticker": "BEN",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 25.55,
+            "buyAt": 26.25,
+            "goal": 28.62,
+            "stopLoss": 24.02,
+            "rsi": 59.4
+        },
+        {
+            "ticker": "CAH",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 210.93,
+            "buyAt": 215.48,
+            "goal": 236.24,
+            "stopLoss": 198.27,
+            "rsi": 59.28
+        },
+        {
+            "ticker": "CBRE",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 170.31,
+            "buyAt": 173.05,
+            "goal": 190.75,
+            "stopLoss": 160.09,
+            "rsi": 59.8
+        },
+        {
+            "ticker": "CME",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 284.05,
+            "buyAt": 285.93,
+            "goal": 318.14,
+            "stopLoss": 267.01,
+            "rsi": 63.17
+        },
+        {
+            "ticker": "CMI",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 569.96,
+            "buyAt": 587.55,
+            "goal": 638.36,
+            "stopLoss": 535.76,
+            "rsi": 62.95
+        },
+        {
+            "ticker": "CRL",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 222.35,
+            "buyAt": 228.88,
+            "goal": 249.03,
+            "stopLoss": 209.01,
+            "rsi": 63.17
+        },
+        {
+            "ticker": "CSX",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 37.47,
+            "buyAt": 37.67,
+            "goal": 41.97,
+            "stopLoss": 35.22,
+            "rsi": 61.95
+        },
+        {
+            "ticker": "CVNA",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 473.71,
+            "buyAt": 486.89,
+            "goal": 530.56,
+            "stopLoss": 445.29,
+            "rsi": 61.1
+        },
+        {
+            "ticker": "CVS",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 83.87,
+            "buyAt": 84.0,
+            "goal": 93.93,
+            "stopLoss": 78.84,
+            "rsi": 65.71
+        },
+        {
+            "ticker": "DAY",
+            "score": 95,
+            "pattern": "Bull Flag",
+            "currentPrice": 69.4,
+            "buyAt": 69.65,
+            "goal": 77.73,
+            "stopLoss": 65.24,
+            "rsi": 58.06
+        },
+        {
+            "ticker": "DD",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 44.2,
+            "buyAt": 44.96,
+            "goal": 49.5,
+            "stopLoss": 41.55,
+            "rsi": 64.86
+        },
+        {
+            "ticker": "DG",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 150.33,
+            "buyAt": 154.75,
+            "goal": 168.37,
+            "stopLoss": 141.31,
+            "rsi": 66.56
+        },
+        {
+            "ticker": "DOV",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 207.7,
+            "buyAt": 210.75,
+            "goal": 232.62,
+            "stopLoss": 195.24,
+            "rsi": 61.46
+        },
+        {
+            "ticker": "DVN",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 38.63,
+            "buyAt": 39.38,
+            "goal": 43.27,
+            "stopLoss": 36.31,
+            "rsi": 60.7
+        },
+        {
+            "ticker": "EIX",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 61.64,
+            "buyAt": 62.62,
+            "goal": 69.04,
+            "stopLoss": 57.94,
+            "rsi": 59.44
+        },
+        {
+            "ticker": "ELV",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 376.93,
+            "buyAt": 383.0,
+            "goal": 422.16,
+            "stopLoss": 354.31,
+            "rsi": 62.37
+        },
+        {
+            "ticker": "EME",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 706.87,
+            "buyAt": 724.74,
+            "goal": 791.69,
+            "stopLoss": 664.46,
+            "rsi": 64.7
+        },
+        {
+            "ticker": "EMR",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 149.13,
+            "buyAt": 151.74,
+            "goal": 167.03,
+            "stopLoss": 140.18,
+            "rsi": 62.33
+        },
+        {
+            "ticker": "EPAM",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 220.44,
+            "buyAt": 222.53,
+            "goal": 246.89,
+            "stopLoss": 207.21,
+            "rsi": 60.06
+        },
+        {
+            "ticker": "EVRG",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 76.59,
+            "buyAt": 77.14,
+            "goal": 85.78,
+            "stopLoss": 71.99,
+            "rsi": 62.77
+        },
+        {
+            "ticker": "FANG",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 153.52,
+            "buyAt": 156.85,
+            "goal": 171.94,
+            "stopLoss": 144.31,
+            "rsi": 55.23
+        },
+        {
+            "ticker": "FE",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 46.77,
+            "buyAt": 47.61,
+            "goal": 52.38,
+            "stopLoss": 43.96,
+            "rsi": 61.6
+        },
+        {
+            "ticker": "FER",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 67.95,
+            "buyAt": 68.54,
+            "goal": 76.1,
+            "stopLoss": 63.87,
+            "rsi": 58.14
+        },
+        {
+            "ticker": "FRT",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 101.57,
+            "buyAt": 103.86,
+            "goal": 113.76,
+            "stopLoss": 95.48,
+            "rsi": 53.89
+        },
+        {
+            "ticker": "GD",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 363.54,
+            "buyAt": 369.7,
+            "goal": 407.16,
+            "stopLoss": 341.73,
+            "rsi": 60.01
+        },
+        {
+            "ticker": "GLW",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 94.95,
+            "buyAt": 95.65,
+            "goal": 106.34,
+            "stopLoss": 89.25,
+            "rsi": 62.8
+        },
+        {
+            "ticker": "GOOG",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 333.59,
+            "buyAt": 341.2,
+            "goal": 373.62,
+            "stopLoss": 313.57,
+            "rsi": 61.9
+        },
+        {
+            "ticker": "GOOGL",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 333.26,
+            "buyAt": 340.49,
+            "goal": 373.25,
+            "stopLoss": 313.26,
+            "rsi": 62.2
+        },
+        {
+            "ticker": "HAS",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 89.41,
+            "buyAt": 89.47,
+            "goal": 100.14,
+            "stopLoss": 84.05,
+            "rsi": 65.59
+        },
+        {
+            "ticker": "HLT",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 297.12,
+            "buyAt": 306.28,
+            "goal": 332.77,
+            "stopLoss": 279.29,
+            "rsi": 55.58
+        },
+        {
+            "ticker": "HOLX",
+            "score": 95,
+            "pattern": "Bull Flag",
+            "currentPrice": 75.19,
+            "buyAt": 75.31,
+            "goal": 84.21,
+            "stopLoss": 70.68,
+            "rsi": 63.1
+        },
+        {
+            "ticker": "HST",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 18.73,
+            "buyAt": 19.3,
+            "goal": 20.98,
+            "stopLoss": 17.61,
+            "rsi": 59.43
+        },
+        {
+            "ticker": "HUBB",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 486.82,
+            "buyAt": 497.95,
+            "goal": 545.24,
+            "stopLoss": 457.61,
+            "rsi": 61.56
+        },
+        {
+            "ticker": "IEX",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 195.24,
+            "buyAt": 200.32,
+            "goal": 218.67,
+            "stopLoss": 183.53,
+            "rsi": 66.11
+        },
+        {
+            "ticker": "ITW",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 259.15,
+            "buyAt": 264.27,
+            "goal": 290.25,
+            "stopLoss": 243.6,
+            "rsi": 56.78
+        },
+        {
+            "ticker": "KEYS",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 214.36,
+            "buyAt": 220.12,
+            "goal": 240.08,
+            "stopLoss": 201.5,
+            "rsi": 59.8
+        },
+        {
+            "ticker": "KO",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 72.56,
+            "buyAt": 73.3,
+            "goal": 81.27,
+            "stopLoss": 68.21,
+            "rsi": 63.04
+        },
+        {
+            "ticker": "LH",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 267.38,
+            "buyAt": 275.37,
+            "goal": 299.47,
+            "stopLoss": 251.34,
+            "rsi": 58.54
+        },
+        {
+            "ticker": "MDT",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 100.67,
+            "buyAt": 102.1,
+            "goal": 112.75,
+            "stopLoss": 94.63,
+            "rsi": 57.41
+        },
+        {
+            "ticker": "MLM",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 651.8,
+            "buyAt": 668.83,
+            "goal": 730.02,
+            "stopLoss": 612.69,
+            "rsi": 54.7
+        },
+        {
+            "ticker": "MSCI",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 594.16,
+            "buyAt": 605.62,
+            "goal": 665.46,
+            "stopLoss": 558.51,
+            "rsi": 59.33
+        },
+        {
+            "ticker": "NI",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 43.91,
+            "buyAt": 44.12,
+            "goal": 49.18,
+            "stopLoss": 41.28,
+            "rsi": 63.42
+        },
+        {
+            "ticker": "NOC",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 660.97,
+            "buyAt": 677.3,
+            "goal": 740.29,
+            "stopLoss": 621.31,
+            "rsi": 65.89
+        },
+        {
+            "ticker": "O",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 60.4,
+            "buyAt": 61.95,
+            "goal": 67.65,
+            "stopLoss": 56.78,
+            "rsi": 61.74
+        },
+        {
+            "ticker": "OMC",
+            "score": 95,
+            "pattern": "Pennant",
+            "currentPrice": 80.36,
+            "buyAt": 81.95,
+            "goal": 90.0,
+            "stopLoss": 75.54,
+            "rsi": 56.22
+        },
+        {
+            "ticker": "PCAR",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 122.11,
+            "buyAt": 124.53,
+            "goal": 136.76,
+            "stopLoss": 114.78,
+            "rsi": 66.21
+        },
+        {
+            "ticker": "PEP",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 145.87,
+            "buyAt": 148.01,
+            "goal": 163.37,
+            "stopLoss": 137.12,
+            "rsi": 54.0
+        },
+        {
+            "ticker": "PFE",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 25.88,
+            "buyAt": 25.92,
+            "goal": 28.99,
+            "stopLoss": 24.33,
+            "rsi": 64.08
+        },
+        {
+            "ticker": "PFG",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 93.0,
+            "buyAt": 93.09,
+            "goal": 104.16,
+            "stopLoss": 87.42,
+            "rsi": 61.57
+        },
+        {
+            "ticker": "PH",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 933.05,
+            "buyAt": 954.3,
+            "goal": 1045.02,
+            "stopLoss": 877.07,
+            "rsi": 59.44
+        },
+        {
+            "ticker": "PNR",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 108.02,
+            "buyAt": 108.82,
+            "goal": 120.98,
+            "stopLoss": 101.54,
+            "rsi": 58.85
+        },
+        {
+            "ticker": "PNW",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 92.94,
+            "buyAt": 94.01,
+            "goal": 104.09,
+            "stopLoss": 87.36,
+            "rsi": 62.15
+        },
+        {
+            "ticker": "PPL",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 36.5,
+            "buyAt": 37.21,
+            "goal": 40.88,
+            "stopLoss": 34.31,
+            "rsi": 60.89
+        },
+        {
+            "ticker": "PWR",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 470.77,
+            "buyAt": 483.29,
+            "goal": 527.26,
+            "stopLoss": 442.52,
+            "rsi": 62.09
+        },
+        {
+            "ticker": "RJF",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 169.69,
+            "buyAt": 174.7,
+            "goal": 190.05,
+            "stopLoss": 159.51,
+            "rsi": 54.99
+        },
+        {
+            "ticker": "ROK",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 420.4,
+            "buyAt": 429.58,
+            "goal": 470.85,
+            "stopLoss": 395.18,
+            "rsi": 58.41
+        },
+        {
+            "ticker": "SCHW",
+            "score": 95,
+            "pattern": "Pennant",
+            "currentPrice": 102.94,
+            "buyAt": 105.81,
+            "goal": 115.29,
+            "stopLoss": 96.76,
+            "rsi": 56.91
+        },
+        {
+            "ticker": "SNA",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 370.13,
+            "buyAt": 375.17,
+            "goal": 414.55,
+            "stopLoss": 347.92,
+            "rsi": 65.54
+        },
+        {
+            "ticker": "TDG",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 1435.96,
+            "buyAt": 1463.03,
+            "goal": 1608.28,
+            "stopLoss": 1349.8,
+            "rsi": 66.52
+        },
+        {
+            "ticker": "TMO",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 626.62,
+            "buyAt": 643.99,
+            "goal": 701.81,
+            "stopLoss": 589.02,
+            "rsi": 60.77
+        },
+        {
+            "ticker": "TRGP",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 192.52,
+            "buyAt": 195.16,
+            "goal": 215.62,
+            "stopLoss": 180.97,
+            "rsi": 66.61
+        },
+        {
+            "ticker": "TXT",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 94.64,
+            "buyAt": 96.98,
+            "goal": 106.0,
+            "stopLoss": 88.96,
+            "rsi": 62.31
+        },
+        {
+            "ticker": "UNH",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 351.64,
+            "buyAt": 357.87,
+            "goal": 393.84,
+            "stopLoss": 330.54,
+            "rsi": 59.44
+        },
+        {
+            "ticker": "USB",
+            "score": 95,
+            "pattern": "Pennant",
+            "currentPrice": 55.83,
+            "buyAt": 56.7,
+            "goal": 62.53,
+            "stopLoss": 52.48,
+            "rsi": 62.49
+        },
+        {
+            "ticker": "VRTX",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 476.84,
+            "buyAt": 487.52,
+            "goal": 534.06,
+            "stopLoss": 448.23,
+            "rsi": 62.34
+        },
+        {
+            "ticker": "VTRS",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 13.17,
+            "buyAt": 13.49,
+            "goal": 14.75,
+            "stopLoss": 12.38,
+            "rsi": 66.24
+        },
+        {
+            "ticker": "WAB",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 231.7,
+            "buyAt": 236.0,
+            "goal": 259.5,
+            "stopLoss": 217.8,
+            "rsi": 64.39
+        },
+        {
+            "ticker": "WMB",
+            "score": 95,
+            "pattern": "Classic Breakout",
+            "currentPrice": 64.29,
+            "buyAt": 65.81,
+            "goal": 72.0,
+            "stopLoss": 60.43,
+            "rsi": 65.99
+        },
+        {
             "ticker": "OTIS",
             "score": 90,
             "pattern": "Bull Flag",
             "currentPrice": 90.58,
             "buyAt": 91.65,
-            "goal": 99.64,
+            "goal": 101.45,
+            "stopLoss": 85.15,
             "rsi": 56.98
         },
         {
             "ticker": "AEE",
-            "score": 80,
+            "score": 85,
             "pattern": "Classic Breakout",
             "currentPrice": 103.25,
             "buyAt": 104.79,
-            "goal": 113.58,
+            "goal": 115.64,
+            "stopLoss": 97.05,
             "rsi": 58.74
         },
         {
+            "ticker": "AEP",
+            "score": 85,
+            "pattern": "Classic Breakout",
+            "currentPrice": 118.02,
+            "buyAt": 120.45,
+            "goal": 132.18,
+            "stopLoss": 110.94,
+            "rsi": 53.84
+        },
+        {
             "ticker": "ALLE",
-            "score": 80,
+            "score": 85,
             "pattern": "Classic Breakout",
             "currentPrice": 166.94,
             "buyAt": 168.8,
-            "goal": 183.63,
+            "goal": 186.97,
+            "stopLoss": 156.92,
             "rsi": 60.43
         },
         {
-            "ticker": "ANET",
-            "score": 80,
+            "ticker": "CMS",
+            "score": 85,
             "pattern": "Classic Breakout",
-            "currentPrice": 143.72,
-            "buyAt": 146.4,
-            "goal": 158.09,
-            "rsi": 63.62
+            "currentPrice": 71.53,
+            "buyAt": 72.12,
+            "goal": 80.11,
+            "stopLoss": 67.24,
+            "rsi": 55.2
         },
         {
-            "ticker": "AVY",
+            "ticker": "CNP",
+            "score": 85,
+            "pattern": "Classic Breakout",
+            "currentPrice": 39.42,
+            "buyAt": 40.0,
+            "goal": 44.15,
+            "stopLoss": 37.05,
+            "rsi": 58.09
+        },
+        {
+            "ticker": "COR",
+            "score": 85,
+            "pattern": "Classic Breakout",
+            "currentPrice": 355.51,
+            "buyAt": 358.95,
+            "goal": 398.17,
+            "stopLoss": 334.18,
+            "rsi": 61.91
+        },
+        {
+            "ticker": "D",
+            "score": 85,
+            "pattern": "Classic Breakout",
+            "currentPrice": 60.24,
+            "buyAt": 61.81,
+            "goal": 67.47,
+            "stopLoss": 56.63,
+            "rsi": 54.87
+        },
+        {
+            "ticker": "EQT",
+            "score": 85,
+            "pattern": "Classic Breakout",
+            "currentPrice": 56.41,
+            "buyAt": 56.9,
+            "goal": 63.18,
+            "stopLoss": 53.03,
+            "rsi": 60.65
+        },
+        {
+            "ticker": "ES",
+            "score": 85,
+            "pattern": "Classic Breakout",
+            "currentPrice": 70.33,
+            "buyAt": 71.6,
+            "goal": 78.77,
+            "stopLoss": 66.11,
+            "rsi": 58.26
+        },
+        {
+            "ticker": "ETR",
+            "score": 85,
+            "pattern": "Classic Breakout",
+            "currentPrice": 94.97,
+            "buyAt": 96.87,
+            "goal": 106.37,
+            "stopLoss": 89.27,
+            "rsi": 54.15
+        },
+        {
+            "ticker": "EXC",
+            "score": 85,
+            "pattern": "Classic Breakout",
+            "currentPrice": 44.55,
+            "buyAt": 45.23,
+            "goal": 49.9,
+            "stopLoss": 41.88,
+            "rsi": 54.42
+        },
+        {
+            "ticker": "EXE",
+            "score": 85,
+            "pattern": "Classic Breakout",
+            "currentPrice": 112.36,
+            "buyAt": 114.23,
+            "goal": 125.84,
+            "stopLoss": 105.62,
+            "rsi": 59.56
+        },
+        {
+            "ticker": "LNT",
+            "score": 85,
+            "pattern": "Classic Breakout",
+            "currentPrice": 67.01,
+            "buyAt": 67.8,
+            "goal": 75.05,
+            "stopLoss": 62.99,
+            "rsi": 57.52
+        },
+        {
+            "ticker": "STE",
+            "score": 85,
+            "pattern": "Classic Breakout",
+            "currentPrice": 263.13,
+            "buyAt": 269.44,
+            "goal": 294.71,
+            "stopLoss": 247.34,
+            "rsi": 55.22
+        },
+        {
+            "ticker": "WEC",
+            "score": 85,
+            "pattern": "Classic Breakout",
+            "currentPrice": 109.7,
+            "buyAt": 110.66,
+            "goal": 122.86,
+            "stopLoss": 103.12,
+            "rsi": 65.22
+        },
+        {
+            "ticker": "XYL",
+            "score": 85,
+            "pattern": "Classic Breakout",
+            "currentPrice": 143.35,
+            "buyAt": 146.55,
+            "goal": 160.55,
+            "stopLoss": 134.75,
+            "rsi": 55.52
+        },
+        {
+            "ticker": "AMCR",
             "score": 80,
             "pattern": "Classic Breakout",
-            "currentPrice": 188.31,
-            "buyAt": 190.37,
-            "goal": 207.14,
-            "rsi": 60.2
+            "currentPrice": 44.53,
+            "buyAt": 45.49,
+            "goal": 49.87,
+            "stopLoss": 41.86,
+            "rsi": 61.57
         },
         {
             "ticker": "CAG",
@@ -52,7 +977,8 @@
             "pattern": "Classic Breakout",
             "currentPrice": 18.09,
             "buyAt": 18.12,
-            "goal": 19.9,
+            "goal": 20.26,
+            "stopLoss": 17.0,
             "rsi": 62.51
         },
         {
@@ -61,53 +987,59 @@
             "pattern": "Classic Breakout",
             "currentPrice": 57.37,
             "buyAt": 58.43,
-            "goal": 63.11,
+            "goal": 64.25,
+            "stopLoss": 53.93,
             "rsi": 63.55
         },
         {
-            "ticker": "CBRE",
+            "ticker": "CHRW",
             "score": 80,
             "pattern": "Classic Breakout",
-            "currentPrice": 170.31,
-            "buyAt": 173.05,
-            "goal": 187.34,
-            "rsi": 59.8
+            "currentPrice": 178.11,
+            "buyAt": 180.21,
+            "goal": 199.48,
+            "stopLoss": 167.42,
+            "rsi": 69.66
         },
         {
-            "ticker": "CME",
+            "ticker": "CI",
             "score": 80,
             "pattern": "Classic Breakout",
-            "currentPrice": 284.05,
-            "buyAt": 285.93,
-            "goal": 312.45,
-            "rsi": 63.17
+            "currentPrice": 280.41,
+            "buyAt": 289.03,
+            "goal": 314.06,
+            "stopLoss": 263.59,
+            "rsi": 55.11
         },
         {
-            "ticker": "CMS",
+            "ticker": "CL",
             "score": 80,
             "pattern": "Classic Breakout",
-            "currentPrice": 71.53,
-            "buyAt": 72.12,
-            "goal": 78.68,
-            "rsi": 55.2
+            "currentPrice": 85.2,
+            "buyAt": 86.89,
+            "goal": 95.42,
+            "stopLoss": 80.09,
+            "rsi": 66.35
         },
         {
-            "ticker": "CNP",
+            "ticker": "CMCSA",
             "score": 80,
             "pattern": "Classic Breakout",
-            "currentPrice": 39.42,
-            "buyAt": 40.0,
-            "goal": 43.36,
-            "rsi": 58.09
+            "currentPrice": 29.43,
+            "buyAt": 29.5,
+            "goal": 32.96,
+            "stopLoss": 27.66,
+            "rsi": 66.7
         },
         {
-            "ticker": "COR",
+            "ticker": "CNC",
             "score": 80,
             "pattern": "Classic Breakout",
-            "currentPrice": 355.51,
-            "buyAt": 358.95,
-            "goal": 391.06,
-            "rsi": 61.91
+            "currentPrice": 46.28,
+            "buyAt": 47.68,
+            "goal": 51.83,
+            "stopLoss": 43.5,
+            "rsi": 65.51
         },
         {
             "ticker": "CPRT",
@@ -115,17 +1047,19 @@
             "pattern": "Classic Breakout",
             "currentPrice": 41.54,
             "buyAt": 41.79,
-            "goal": 45.69,
+            "goal": 46.52,
+            "stopLoss": 39.05,
             "rsi": 64.58
         },
         {
-            "ticker": "CSX",
+            "ticker": "CSCO",
             "score": 80,
             "pattern": "Classic Breakout",
-            "currentPrice": 37.47,
-            "buyAt": 37.67,
-            "goal": 41.22,
-            "rsi": 61.95
+            "currentPrice": 77.01,
+            "buyAt": 77.88,
+            "goal": 86.25,
+            "stopLoss": 72.39,
+            "rsi": 58.16
         },
         {
             "ticker": "CTAS",
@@ -133,179 +1067,99 @@
             "pattern": "Classic Breakout",
             "currentPrice": 193.89,
             "buyAt": 197.47,
-            "goal": 213.28,
+            "goal": 217.16,
+            "stopLoss": 182.26,
             "rsi": 57.4
         },
         {
-            "ticker": "DAY",
+            "ticker": "CTSH",
+            "score": 80,
+            "pattern": "Classic Breakout",
+            "currentPrice": 85.61,
+            "buyAt": 87.03,
+            "goal": 95.88,
+            "stopLoss": 80.47,
+            "rsi": 57.66
+        },
+        {
+            "ticker": "CVX",
+            "score": 80,
+            "pattern": "Classic Breakout",
+            "currentPrice": 167.5,
+            "buyAt": 169.37,
+            "goal": 187.6,
+            "stopLoss": 157.45,
+            "rsi": 68.15
+        },
+        {
+            "ticker": "DOC",
+            "score": 80,
+            "pattern": "Classic Breakout",
+            "currentPrice": 17.76,
+            "buyAt": 18.19,
+            "goal": 19.89,
+            "stopLoss": 16.69,
+            "rsi": 63.19
+        },
+        {
+            "ticker": "EA",
             "score": 80,
             "pattern": "Bull Flag",
-            "currentPrice": 69.4,
-            "buyAt": 69.65,
-            "goal": 76.34,
-            "rsi": 58.06
+            "currentPrice": 204.4,
+            "buyAt": 204.89,
+            "goal": 228.93,
+            "stopLoss": 192.14,
+            "rsi": 58.01
         },
         {
-            "ticker": "DD",
+            "ticker": "ECL",
             "score": 80,
             "pattern": "Classic Breakout",
-            "currentPrice": 44.2,
-            "buyAt": 44.96,
-            "goal": 48.62,
-            "rsi": 64.86
+            "currentPrice": 283.67,
+            "buyAt": 284.78,
+            "goal": 317.71,
+            "stopLoss": 266.65,
+            "rsi": 69.68
         },
         {
-            "ticker": "DOV",
+            "ticker": "ED",
             "score": 80,
             "pattern": "Classic Breakout",
-            "currentPrice": 207.7,
-            "buyAt": 210.75,
-            "goal": 228.47,
-            "rsi": 61.46
+            "currentPrice": 104.59,
+            "buyAt": 105.62,
+            "goal": 117.14,
+            "stopLoss": 98.31,
+            "rsi": 65.44
         },
         {
-            "ticker": "DTE",
+            "ticker": "FAST",
             "score": 80,
             "pattern": "Classic Breakout",
-            "currentPrice": 135.53,
-            "buyAt": 137.64,
-            "goal": 149.08,
-            "rsi": 61.3
+            "currentPrice": 43.73,
+            "buyAt": 44.95,
+            "goal": 48.98,
+            "stopLoss": 41.11,
+            "rsi": 58.27
         },
         {
-            "ticker": "DVN",
+            "ticker": "GPC",
             "score": 80,
             "pattern": "Classic Breakout",
-            "currentPrice": 38.63,
-            "buyAt": 39.38,
-            "goal": 42.49,
-            "rsi": 60.7
+            "currentPrice": 139.18,
+            "buyAt": 140.1,
+            "goal": 155.88,
+            "stopLoss": 130.83,
+            "rsi": 67.44
         },
         {
-            "ticker": "EIX",
+            "ticker": "GWW",
             "score": 80,
             "pattern": "Classic Breakout",
-            "currentPrice": 61.64,
-            "buyAt": 62.62,
-            "goal": 67.8,
-            "rsi": 59.44
-        },
-        {
-            "ticker": "ELV",
-            "score": 80,
-            "pattern": "Classic Breakout",
-            "currentPrice": 376.93,
-            "buyAt": 383.0,
-            "goal": 414.62,
-            "rsi": 62.37
-        },
-        {
-            "ticker": "EMR",
-            "score": 80,
-            "pattern": "Classic Breakout",
-            "currentPrice": 149.13,
-            "buyAt": 151.74,
-            "goal": 164.04,
-            "rsi": 62.33
-        },
-        {
-            "ticker": "EPAM",
-            "score": 80,
-            "pattern": "Classic Breakout",
-            "currentPrice": 220.44,
-            "buyAt": 222.53,
-            "goal": 242.48,
-            "rsi": 60.06
-        },
-        {
-            "ticker": "EQIX",
-            "score": 80,
-            "pattern": "Classic Breakout",
-            "currentPrice": 806.35,
-            "buyAt": 813.45,
-            "goal": 886.98,
-            "rsi": 61.19
-        },
-        {
-            "ticker": "EQT",
-            "score": 80,
-            "pattern": "Classic Breakout",
-            "currentPrice": 56.41,
-            "buyAt": 56.9,
-            "goal": 62.05,
-            "rsi": 60.65
-        },
-        {
-            "ticker": "ES",
-            "score": 80,
-            "pattern": "Classic Breakout",
-            "currentPrice": 70.33,
-            "buyAt": 71.6,
-            "goal": 77.36,
-            "rsi": 58.26
-        },
-        {
-            "ticker": "EVRG",
-            "score": 80,
-            "pattern": "Classic Breakout",
-            "currentPrice": 76.59,
-            "buyAt": 77.14,
-            "goal": 84.25,
-            "rsi": 62.77
-        },
-        {
-            "ticker": "EXE",
-            "score": 80,
-            "pattern": "Classic Breakout",
-            "currentPrice": 112.36,
-            "buyAt": 114.23,
-            "goal": 123.6,
-            "rsi": 59.56
-        },
-        {
-            "ticker": "FE",
-            "score": 80,
-            "pattern": "Classic Breakout",
-            "currentPrice": 46.77,
-            "buyAt": 47.61,
-            "goal": 51.45,
-            "rsi": 61.6
-        },
-        {
-            "ticker": "FER",
-            "score": 80,
-            "pattern": "Classic Breakout",
-            "currentPrice": 67.95,
-            "buyAt": 68.54,
-            "goal": 74.74,
-            "rsi": 58.14
-        },
-        {
-            "ticker": "GD",
-            "score": 80,
-            "pattern": "Classic Breakout",
-            "currentPrice": 363.54,
-            "buyAt": 369.7,
-            "goal": 399.89,
-            "rsi": 60.01
-        },
-        {
-            "ticker": "GLW",
-            "score": 80,
-            "pattern": "Classic Breakout",
-            "currentPrice": 94.95,
-            "buyAt": 95.65,
-            "goal": 104.44,
-            "rsi": 62.8
-        },
-        {
-            "ticker": "HOLX",
-            "score": 80,
-            "pattern": "Bull Flag",
-            "currentPrice": 75.19,
-            "buyAt": 75.31,
-            "goal": 82.71,
-            "rsi": 63.1
+            "currentPrice": 1049.97,
+            "buyAt": 1074.3,
+            "goal": 1175.97,
+            "stopLoss": 986.97,
+            "rsi": 56.07
         },
         {
             "ticker": "HRL",
@@ -313,7 +1167,8 @@
             "pattern": "Classic Breakout",
             "currentPrice": 24.85,
             "buyAt": 25.29,
-            "goal": 27.34,
+            "goal": 27.83,
+            "stopLoss": 23.36,
             "rsi": 63.83
         },
         {
@@ -322,17 +1177,9 @@
             "pattern": "Classic Breakout",
             "currentPrice": 43.0,
             "buyAt": 43.84,
-            "goal": 47.3,
+            "goal": 48.16,
+            "stopLoss": 40.42,
             "rsi": 58.41
-        },
-        {
-            "ticker": "ITW",
-            "score": 80,
-            "pattern": "Classic Breakout",
-            "currentPrice": 259.15,
-            "buyAt": 264.27,
-            "goal": 285.06,
-            "rsi": 56.78
         },
         {
             "ticker": "KIM",
@@ -340,17 +1187,29 @@
             "pattern": "Classic Breakout",
             "currentPrice": 20.85,
             "buyAt": 21.15,
-            "goal": 22.94,
+            "goal": 23.35,
+            "stopLoss": 19.6,
             "rsi": 57.18
         },
         {
-            "ticker": "KO",
+            "ticker": "KLAC",
             "score": 80,
             "pattern": "Classic Breakout",
-            "currentPrice": 72.56,
-            "buyAt": 73.3,
-            "goal": 79.82,
-            "rsi": 63.04
+            "currentPrice": 1543.03,
+            "buyAt": 1581.34,
+            "goal": 1728.19,
+            "stopLoss": 1450.45,
+            "rsi": 67.2
+        },
+        {
+            "ticker": "KMI",
+            "score": 80,
+            "pattern": "Classic Breakout",
+            "currentPrice": 29.34,
+            "buyAt": 30.18,
+            "goal": 32.86,
+            "stopLoss": 27.58,
+            "rsi": 68.38
         },
         {
             "ticker": "KVUE",
@@ -358,17 +1217,19 @@
             "pattern": "Classic Breakout",
             "currentPrice": 17.64,
             "buyAt": 17.89,
-            "goal": 19.4,
+            "goal": 19.76,
+            "stopLoss": 16.58,
             "rsi": 60.51
         },
         {
-            "ticker": "LNT",
+            "ticker": "LOW",
             "score": 80,
             "pattern": "Classic Breakout",
-            "currentPrice": 67.01,
-            "buyAt": 67.8,
-            "goal": 73.71,
-            "rsi": 57.52
+            "currentPrice": 277.91,
+            "buyAt": 281.36,
+            "goal": 311.26,
+            "stopLoss": 261.24,
+            "rsi": 69.87
         },
         {
             "ticker": "LYV",
@@ -376,17 +1237,19 @@
             "pattern": "Classic Breakout",
             "currentPrice": 147.8,
             "buyAt": 149.91,
-            "goal": 162.58,
+            "goal": 165.54,
+            "stopLoss": 138.93,
             "rsi": 57.68
         },
         {
-            "ticker": "MDT",
+            "ticker": "MCD",
             "score": 80,
             "pattern": "Classic Breakout",
-            "currentPrice": 100.67,
-            "buyAt": 102.1,
-            "goal": 110.74,
-            "rsi": 57.41
+            "currentPrice": 312.95,
+            "buyAt": 314.36,
+            "goal": 350.5,
+            "stopLoss": 294.17,
+            "rsi": 57.85
         },
         {
             "ticker": "MELI",
@@ -394,7 +1257,8 @@
             "pattern": "Classic Breakout",
             "currentPrice": 2212.62,
             "buyAt": 2241.99,
-            "goal": 2433.88,
+            "goal": 2478.13,
+            "stopLoss": 2079.86,
             "rsi": 62.11
         },
         {
@@ -403,17 +1267,39 @@
             "pattern": "Classic Breakout",
             "currentPrice": 672.36,
             "buyAt": 675.28,
-            "goal": 739.6,
+            "goal": 753.04,
+            "stopLoss": 632.02,
             "rsi": 60.41
         },
         {
-            "ticker": "MSCI",
+            "ticker": "MNST",
             "score": 80,
             "pattern": "Classic Breakout",
-            "currentPrice": 594.16,
-            "buyAt": 605.62,
-            "goal": 653.58,
-            "rsi": 59.33
+            "currentPrice": 81.16,
+            "buyAt": 83.24,
+            "goal": 90.9,
+            "stopLoss": 76.29,
+            "rsi": 67.49
+        },
+        {
+            "ticker": "MOS",
+            "score": 80,
+            "pattern": "Classic Breakout",
+            "currentPrice": 28.33,
+            "buyAt": 29.13,
+            "goal": 31.73,
+            "stopLoss": 26.63,
+            "rsi": 64.76
+        },
+        {
+            "ticker": "MPWR",
+            "score": 80,
+            "pattern": "Classic Breakout",
+            "currentPrice": 1068.14,
+            "buyAt": 1098.93,
+            "goal": 1196.32,
+            "stopLoss": 1004.05,
+            "rsi": 68.71
         },
         {
             "ticker": "MSI",
@@ -421,17 +1307,29 @@
             "pattern": "Classic Breakout",
             "currentPrice": 401.07,
             "buyAt": 407.24,
-            "goal": 441.18,
+            "goal": 449.2,
+            "stopLoss": 377.01,
             "rsi": 64.92
         },
         {
-            "ticker": "NI",
+            "ticker": "NDAQ",
             "score": 80,
             "pattern": "Classic Breakout",
-            "currentPrice": 43.91,
-            "buyAt": 44.12,
-            "goal": 48.3,
-            "rsi": 63.42
+            "currentPrice": 98.89,
+            "buyAt": 101.79,
+            "goal": 110.76,
+            "stopLoss": 92.96,
+            "rsi": 55.56
+        },
+        {
+            "ticker": "NEE",
+            "score": 80,
+            "pattern": "Classic Breakout",
+            "currentPrice": 85.47,
+            "buyAt": 86.28,
+            "goal": 95.73,
+            "stopLoss": 80.34,
+            "rsi": 68.11
         },
         {
             "ticker": "NWS",
@@ -439,7 +1337,8 @@
             "pattern": "Classic Breakout",
             "currentPrice": 31.01,
             "buyAt": 31.21,
-            "goal": 34.11,
+            "goal": 34.73,
+            "stopLoss": 29.15,
             "rsi": 64.84
         },
         {
@@ -448,35 +1347,19 @@
             "pattern": "Bull Flag",
             "currentPrice": 26.9,
             "buyAt": 26.97,
-            "goal": 29.59,
+            "goal": 30.13,
+            "stopLoss": 25.29,
             "rsi": 60.15
         },
         {
-            "ticker": "OMC",
-            "score": 80,
-            "pattern": "Pennant",
-            "currentPrice": 80.36,
-            "buyAt": 81.95,
-            "goal": 88.4,
-            "rsi": 56.22
-        },
-        {
-            "ticker": "PFE",
+            "ticker": "OXY",
             "score": 80,
             "pattern": "Classic Breakout",
-            "currentPrice": 25.88,
-            "buyAt": 25.92,
-            "goal": 28.47,
-            "rsi": 64.08
-        },
-        {
-            "ticker": "PFG",
-            "score": 80,
-            "pattern": "Classic Breakout",
-            "currentPrice": 93.0,
-            "buyAt": 93.09,
-            "goal": 102.3,
-            "rsi": 61.57
+            "currentPrice": 43.92,
+            "buyAt": 45.11,
+            "goal": 49.19,
+            "stopLoss": 41.28,
+            "rsi": 58.69
         },
         {
             "ticker": "PG",
@@ -484,35 +1367,19 @@
             "pattern": "Classic Breakout",
             "currentPrice": 149.49,
             "buyAt": 151.65,
-            "goal": 164.44,
+            "goal": 167.43,
+            "stopLoss": 140.52,
             "rsi": 63.75
         },
         {
-            "ticker": "PNR",
+            "ticker": "POOL",
             "score": 80,
             "pattern": "Classic Breakout",
-            "currentPrice": 108.02,
-            "buyAt": 108.82,
-            "goal": 118.82,
-            "rsi": 58.85
-        },
-        {
-            "ticker": "PNW",
-            "score": 80,
-            "pattern": "Classic Breakout",
-            "currentPrice": 92.94,
-            "buyAt": 94.01,
-            "goal": 102.23,
-            "rsi": 62.15
-        },
-        {
-            "ticker": "PPL",
-            "score": 80,
-            "pattern": "Classic Breakout",
-            "currentPrice": 36.5,
-            "buyAt": 37.21,
-            "goal": 40.15,
-            "rsi": 60.89
+            "currentPrice": 266.1,
+            "buyAt": 269.96,
+            "goal": 298.03,
+            "stopLoss": 250.13,
+            "rsi": 66.5
         },
         {
             "ticker": "REG",
@@ -520,35 +1387,99 @@
             "pattern": "Classic Breakout",
             "currentPrice": 71.28,
             "buyAt": 72.13,
-            "goal": 78.41,
+            "goal": 79.83,
+            "stopLoss": 67.0,
             "rsi": 60.39
         },
         {
-            "ticker": "SJM",
+            "ticker": "ROL",
             "score": 80,
             "pattern": "Classic Breakout",
-            "currentPrice": 103.7,
-            "buyAt": 105.35,
-            "goal": 114.07,
-            "rsi": 58.6
+            "currentPrice": 63.26,
+            "buyAt": 63.64,
+            "goal": 70.85,
+            "stopLoss": 59.46,
+            "rsi": 68.23
         },
         {
-            "ticker": "UNH",
+            "ticker": "RSG",
             "score": 80,
             "pattern": "Classic Breakout",
-            "currentPrice": 351.64,
-            "buyAt": 357.87,
-            "goal": 386.8,
-            "rsi": 59.44
+            "currentPrice": 219.08,
+            "buyAt": 220.0,
+            "goal": 245.37,
+            "stopLoss": 205.94,
+            "rsi": 66.14
         },
         {
-            "ticker": "USB",
+            "ticker": "SBUX",
+            "score": 80,
+            "pattern": "Classic Breakout",
+            "currentPrice": 96.33,
+            "buyAt": 97.97,
+            "goal": 107.89,
+            "stopLoss": 90.55,
+            "rsi": 67.88
+        },
+        {
+            "ticker": "SPG",
+            "score": 80,
+            "pattern": "Bull Flag",
+            "currentPrice": 185.33,
+            "buyAt": 188.91,
+            "goal": 207.57,
+            "stopLoss": 174.21,
+            "rsi": 53.28
+        },
+        {
+            "ticker": "STZ",
+            "score": 80,
+            "pattern": "Classic Breakout",
+            "currentPrice": 161.55,
+            "buyAt": 164.49,
+            "goal": 180.94,
+            "stopLoss": 151.86,
+            "rsi": 66.73
+        },
+        {
+            "ticker": "SW",
+            "score": 80,
+            "pattern": "Classic Breakout",
+            "currentPrice": 43.38,
+            "buyAt": 44.61,
+            "goal": 48.59,
+            "stopLoss": 40.78,
+            "rsi": 63.44
+        },
+        {
+            "ticker": "TFC",
             "score": 80,
             "pattern": "Pennant",
-            "currentPrice": 55.83,
-            "buyAt": 56.7,
-            "goal": 61.41,
-            "rsi": 62.49
+            "currentPrice": 50.19,
+            "buyAt": 51.52,
+            "goal": 56.21,
+            "stopLoss": 47.18,
+            "rsi": 54.42
+        },
+        {
+            "ticker": "TXN",
+            "score": 80,
+            "pattern": "Classic Breakout",
+            "currentPrice": 196.59,
+            "buyAt": 199.43,
+            "goal": 220.18,
+            "stopLoss": 184.79,
+            "rsi": 65.12
+        },
+        {
+            "ticker": "UDR",
+            "score": 80,
+            "pattern": "Classic Breakout",
+            "currentPrice": 37.0,
+            "buyAt": 38.1,
+            "goal": 41.44,
+            "stopLoss": 34.78,
+            "rsi": 54.77
         },
         {
             "ticker": "VRSN",
@@ -556,17 +1487,9 @@
             "pattern": "Classic Breakout",
             "currentPrice": 251.54,
             "buyAt": 255.64,
-            "goal": 276.69,
+            "goal": 281.72,
+            "stopLoss": 236.45,
             "rsi": 57.41
-        },
-        {
-            "ticker": "WAB",
-            "score": 80,
-            "pattern": "Classic Breakout",
-            "currentPrice": 231.7,
-            "buyAt": 236.0,
-            "goal": 254.87,
-            "rsi": 64.39
         },
         {
             "ticker": "CTVA",
@@ -574,44 +1497,119 @@
             "pattern": "Classic Breakout",
             "currentPrice": 72.63,
             "buyAt": 72.65,
-            "goal": 79.89,
+            "goal": 81.35,
+            "stopLoss": 68.27,
             "rsi": 69.01
         },
         {
-            "ticker": "SO",
-            "score": 75,
+            "ticker": "AMT",
+            "score": 70,
             "pattern": "Classic Breakout",
-            "currentPrice": 88.16,
-            "buyAt": 89.55,
-            "goal": 96.98,
-            "rsi": 52.64
+            "currentPrice": 179.46,
+            "buyAt": 184.17,
+            "goal": 201.0,
+            "stopLoss": 168.69,
+            "rsi": 55.41
         },
         {
-            "ticker": "AKAM",
-            "score": 65,
+            "ticker": "CDNS",
+            "score": 70,
             "pattern": "Classic Breakout",
-            "currentPrice": 98.66,
-            "buyAt": 99.19,
-            "goal": 108.53,
-            "rsi": 65.49
+            "currentPrice": 322.02,
+            "buyAt": 328.64,
+            "goal": 360.66,
+            "stopLoss": 302.7,
+            "rsi": 53.18
         },
         {
-            "ticker": "AMGN",
-            "score": 65,
+            "ticker": "DLR",
+            "score": 70,
             "pattern": "Classic Breakout",
-            "currentPrice": 349.69,
-            "buyAt": 350.43,
-            "goal": 384.66,
-            "rsi": 66.07
+            "currentPrice": 161.57,
+            "buyAt": 165.21,
+            "goal": 180.96,
+            "stopLoss": 151.88,
+            "rsi": 57.65
         },
         {
-            "ticker": "APH",
-            "score": 65,
+            "ticker": "DTE",
+            "score": 70,
             "pattern": "Classic Breakout",
-            "currentPrice": 155.56,
-            "buyAt": 157.54,
-            "goal": 171.12,
-            "rsi": 66.28
+            "currentPrice": 135.53,
+            "buyAt": 137.64,
+            "goal": 151.79,
+            "stopLoss": 127.4,
+            "rsi": 61.3
+        },
+        {
+            "ticker": "DUK",
+            "score": 70,
+            "pattern": "Bull Flag",
+            "currentPrice": 118.78,
+            "buyAt": 120.84,
+            "goal": 133.03,
+            "stopLoss": 111.65,
+            "rsi": 53.6
+        },
+        {
+            "ticker": "EQIX",
+            "score": 70,
+            "pattern": "Classic Breakout",
+            "currentPrice": 806.35,
+            "buyAt": 813.45,
+            "goal": 903.11,
+            "stopLoss": 757.97,
+            "rsi": 61.19
+        },
+        {
+            "ticker": "FTNT",
+            "score": 70,
+            "pattern": "Classic Breakout",
+            "currentPrice": 83.07,
+            "buyAt": 85.06,
+            "goal": 93.04,
+            "stopLoss": 78.09,
+            "rsi": 62.51
+        },
+        {
+            "ticker": "IRM",
+            "score": 70,
+            "pattern": "Classic Breakout",
+            "currentPrice": 93.84,
+            "buyAt": 96.5,
+            "goal": 105.1,
+            "stopLoss": 88.21,
+            "rsi": 65.15
+        },
+        {
+            "ticker": "KR",
+            "score": 70,
+            "pattern": "Classic Breakout",
+            "currentPrice": 63.69,
+            "buyAt": 65.18,
+            "goal": 71.33,
+            "stopLoss": 59.87,
+            "rsi": 54.64
+        },
+        {
+            "ticker": "SJM",
+            "score": 70,
+            "pattern": "Classic Breakout",
+            "currentPrice": 103.7,
+            "buyAt": 105.35,
+            "goal": 116.14,
+            "stopLoss": 97.48,
+            "rsi": 58.6
+        },
+        {
+            "ticker": "VICI",
+            "score": 70,
+            "pattern": "Classic Breakout",
+            "currentPrice": 28.51,
+            "buyAt": 29.0,
+            "goal": 31.93,
+            "stopLoss": 26.8,
+            "rsi": 54.15
         },
         {
             "ticker": "CF",
@@ -619,143 +1617,39 @@
             "pattern": "Classic Breakout",
             "currentPrice": 91.65,
             "buyAt": 93.21,
-            "goal": 100.82,
+            "goal": 102.65,
+            "stopLoss": 86.15,
             "rsi": 68.58
         },
         {
-            "ticker": "CHRW",
+            "ticker": "CHD",
             "score": 65,
             "pattern": "Classic Breakout",
-            "currentPrice": 178.11,
-            "buyAt": 180.21,
-            "goal": 195.92,
-            "rsi": 69.66
+            "currentPrice": 91.93,
+            "buyAt": 94.18,
+            "goal": 102.96,
+            "stopLoss": 86.41,
+            "rsi": 67.03
         },
         {
-            "ticker": "CL",
+            "ticker": "EQR",
             "score": 65,
             "pattern": "Classic Breakout",
-            "currentPrice": 85.2,
-            "buyAt": 86.89,
-            "goal": 93.72,
-            "rsi": 66.35
+            "currentPrice": 62.12,
+            "buyAt": 63.49,
+            "goal": 69.57,
+            "stopLoss": 58.39,
+            "rsi": 54.94
         },
         {
-            "ticker": "CMCSA",
+            "ticker": "FTV",
             "score": 65,
             "pattern": "Classic Breakout",
-            "currentPrice": 29.43,
-            "buyAt": 29.5,
-            "goal": 32.37,
-            "rsi": 66.7
-        },
-        {
-            "ticker": "CSCO",
-            "score": 65,
-            "pattern": "Classic Breakout",
-            "currentPrice": 77.01,
-            "buyAt": 77.88,
-            "goal": 84.71,
-            "rsi": 58.16
-        },
-        {
-            "ticker": "CTSH",
-            "score": 65,
-            "pattern": "Classic Breakout",
-            "currentPrice": 85.61,
-            "buyAt": 87.03,
-            "goal": 94.17,
-            "rsi": 57.66
-        },
-        {
-            "ticker": "CVS",
-            "score": 65,
-            "pattern": "Classic Breakout",
-            "currentPrice": 83.87,
-            "buyAt": 84.0,
-            "goal": 92.26,
-            "rsi": 65.71
-        },
-        {
-            "ticker": "CVX",
-            "score": 65,
-            "pattern": "Classic Breakout",
-            "currentPrice": 167.5,
-            "buyAt": 169.37,
-            "goal": 184.25,
-            "rsi": 68.15
-        },
-        {
-            "ticker": "DUK",
-            "score": 65,
-            "pattern": "Bull Flag",
-            "currentPrice": 118.78,
-            "buyAt": 120.84,
-            "goal": 130.66,
-            "rsi": 53.6
-        },
-        {
-            "ticker": "EA",
-            "score": 65,
-            "pattern": "Bull Flag",
-            "currentPrice": 204.4,
-            "buyAt": 204.89,
-            "goal": 224.84,
-            "rsi": 58.01
-        },
-        {
-            "ticker": "ECL",
-            "score": 65,
-            "pattern": "Classic Breakout",
-            "currentPrice": 283.67,
-            "buyAt": 284.78,
-            "goal": 312.04,
-            "rsi": 69.68
-        },
-        {
-            "ticker": "ED",
-            "score": 65,
-            "pattern": "Classic Breakout",
-            "currentPrice": 104.59,
-            "buyAt": 105.62,
-            "goal": 115.05,
-            "rsi": 65.44
-        },
-        {
-            "ticker": "ETR",
-            "score": 65,
-            "pattern": "Classic Breakout",
-            "currentPrice": 94.97,
-            "buyAt": 96.87,
-            "goal": 104.47,
-            "rsi": 54.15
-        },
-        {
-            "ticker": "EXC",
-            "score": 65,
-            "pattern": "Classic Breakout",
-            "currentPrice": 44.55,
-            "buyAt": 45.23,
-            "goal": 49.0,
-            "rsi": 54.42
-        },
-        {
-            "ticker": "GPC",
-            "score": 65,
-            "pattern": "Classic Breakout",
-            "currentPrice": 139.18,
-            "buyAt": 140.1,
-            "goal": 153.1,
-            "rsi": 67.44
-        },
-        {
-            "ticker": "HAS",
-            "score": 65,
-            "pattern": "Classic Breakout",
-            "currentPrice": 89.41,
-            "buyAt": 89.47,
-            "goal": 98.35,
-            "rsi": 65.59
+            "currentPrice": 54.75,
+            "buyAt": 56.19,
+            "goal": 61.32,
+            "stopLoss": 51.46,
+            "rsi": 50.76
         },
         {
             "ticker": "HD",
@@ -763,7 +1657,8 @@
             "pattern": "Classic Breakout",
             "currentPrice": 386.53,
             "buyAt": 390.6,
-            "goal": 425.18,
+            "goal": 432.91,
+            "stopLoss": 363.34,
             "rsi": 67.65
         },
         {
@@ -772,26 +1667,9 @@
             "pattern": "Classic Breakout",
             "currentPrice": 175.1,
             "buyAt": 175.38,
-            "goal": 192.61,
+            "goal": 196.11,
+            "stopLoss": 164.59,
             "rsi": 67.84
-        },
-        {
-            "ticker": "LOW",
-            "score": 65,
-            "pattern": "Classic Breakout",
-            "currentPrice": 277.91,
-            "buyAt": 281.36,
-            "goal": 305.7,
-            "rsi": 69.87
-        },
-        {
-            "ticker": "MCD",
-            "score": 65,
-            "pattern": "Classic Breakout",
-            "currentPrice": 312.95,
-            "buyAt": 314.36,
-            "goal": 344.25,
-            "rsi": 57.85
         },
         {
             "ticker": "MDLZ",
@@ -799,44 +1677,9 @@
             "pattern": "Classic Breakout",
             "currentPrice": 58.53,
             "buyAt": 58.91,
-            "goal": 64.38,
+            "goal": 65.55,
+            "stopLoss": 55.02,
             "rsi": 67.82
-        },
-        {
-            "ticker": "NEE",
-            "score": 65,
-            "pattern": "Classic Breakout",
-            "currentPrice": 85.47,
-            "buyAt": 86.28,
-            "goal": 94.02,
-            "rsi": 68.11
-        },
-        {
-            "ticker": "PCAR",
-            "score": 65,
-            "pattern": "Classic Breakout",
-            "currentPrice": 122.11,
-            "buyAt": 124.53,
-            "goal": 134.32,
-            "rsi": 66.21
-        },
-        {
-            "ticker": "PEP",
-            "score": 65,
-            "pattern": "Classic Breakout",
-            "currentPrice": 145.87,
-            "buyAt": 148.01,
-            "goal": 160.46,
-            "rsi": 54.0
-        },
-        {
-            "ticker": "POOL",
-            "score": 65,
-            "pattern": "Classic Breakout",
-            "currentPrice": 266.1,
-            "buyAt": 269.96,
-            "goal": 292.71,
-            "rsi": 66.5
         },
         {
             "ticker": "PPG",
@@ -844,135 +1687,80 @@
             "pattern": "Classic Breakout",
             "currentPrice": 112.65,
             "buyAt": 114.52,
-            "goal": 123.92,
+            "goal": 126.17,
+            "stopLoss": 105.89,
             "rsi": 68.67
         },
         {
-            "ticker": "ROL",
+            "ticker": "SO",
             "score": 65,
             "pattern": "Classic Breakout",
-            "currentPrice": 63.26,
-            "buyAt": 63.64,
-            "goal": 69.59,
-            "rsi": 68.23
-        },
-        {
-            "ticker": "RSG",
-            "score": 65,
-            "pattern": "Classic Breakout",
-            "currentPrice": 219.08,
-            "buyAt": 220.0,
-            "goal": 240.99,
-            "rsi": 66.14
-        },
-        {
-            "ticker": "SBUX",
-            "score": 65,
-            "pattern": "Classic Breakout",
-            "currentPrice": 96.33,
-            "buyAt": 97.97,
-            "goal": 105.96,
-            "rsi": 67.88
-        },
-        {
-            "ticker": "SNA",
-            "score": 65,
-            "pattern": "Classic Breakout",
-            "currentPrice": 370.13,
-            "buyAt": 375.17,
-            "goal": 407.14,
-            "rsi": 65.54
-        },
-        {
-            "ticker": "STZ",
-            "score": 65,
-            "pattern": "Classic Breakout",
-            "currentPrice": 161.55,
-            "buyAt": 164.49,
-            "goal": 177.71,
-            "rsi": 66.73
-        },
-        {
-            "ticker": "TDG",
-            "score": 65,
-            "pattern": "Classic Breakout",
-            "currentPrice": 1435.96,
-            "buyAt": 1463.03,
-            "goal": 1579.56,
-            "rsi": 66.52
-        },
-        {
-            "ticker": "TRGP",
-            "score": 65,
-            "pattern": "Classic Breakout",
-            "currentPrice": 192.52,
-            "buyAt": 195.16,
-            "goal": 211.77,
-            "rsi": 66.61
-        },
-        {
-            "ticker": "TSCO",
-            "score": 65,
-            "pattern": "Classic Breakout",
-            "currentPrice": 55.56,
-            "buyAt": 56.28,
-            "goal": 61.12,
-            "rsi": 67.84
-        },
-        {
-            "ticker": "TXN",
-            "score": 65,
-            "pattern": "Classic Breakout",
-            "currentPrice": 196.59,
-            "buyAt": 199.43,
-            "goal": 216.25,
-            "rsi": 65.12
-        },
-        {
-            "ticker": "VICI",
-            "score": 65,
-            "pattern": "Classic Breakout",
-            "currentPrice": 28.51,
-            "buyAt": 29.0,
-            "goal": 31.36,
-            "rsi": 54.15
-        },
-        {
-            "ticker": "WEC",
-            "score": 65,
-            "pattern": "Classic Breakout",
-            "currentPrice": 109.7,
-            "buyAt": 110.66,
-            "goal": 120.67,
-            "rsi": 65.22
-        },
-        {
-            "ticker": "SPG",
-            "score": 50,
-            "pattern": "Bull Flag",
-            "currentPrice": 185.33,
-            "buyAt": 188.91,
-            "goal": 203.86,
-            "rsi": 53.28
+            "currentPrice": 88.16,
+            "buyAt": 89.55,
+            "goal": 98.74,
+            "stopLoss": 82.87,
+            "rsi": 52.64
         },
         {
             "ticker": "UNP",
-            "score": 50,
+            "score": 65,
             "pattern": "Classic Breakout",
             "currentPrice": 230.89,
             "buyAt": 235.25,
-            "goal": 253.98,
+            "goal": 258.6,
+            "stopLoss": 217.04,
             "rsi": 51.13
         },
         {
             "ticker": "VLTO",
-            "score": 50,
+            "score": 65,
             "pattern": "Classic Breakout",
             "currentPrice": 101.89,
             "buyAt": 103.42,
-            "goal": 112.08,
+            "goal": 114.12,
+            "stopLoss": 95.78,
             "rsi": 53.18
+        },
+        {
+            "ticker": "TSCO",
+            "score": 55,
+            "pattern": "Classic Breakout",
+            "currentPrice": 55.56,
+            "buyAt": 56.28,
+            "goal": 62.23,
+            "stopLoss": 52.23,
+            "rsi": 67.84
+        },
+        {
+            "ticker": "AWK",
+            "score": 50,
+            "pattern": "Classic Breakout",
+            "currentPrice": 130.74,
+            "buyAt": 133.73,
+            "goal": 146.43,
+            "stopLoss": 122.9,
+            "rsi": 49.66
+        },
+        {
+            "ticker": "MAA",
+            "score": 50,
+            "pattern": "Classic Breakout",
+            "currentPrice": 134.96,
+            "buyAt": 138.65,
+            "goal": 151.16,
+            "stopLoss": 126.86,
+            "rsi": 50.78
+        },
+        {
+            "ticker": "MRSH",
+            "score": 50,
+            "pattern": "Pennant",
+            "currentPrice": 183.66,
+            "buyAt": 188.5,
+            "goal": 205.7,
+            "stopLoss": 172.64,
+            "rsi": 49.89
         }
     ],
-    "lastUpdated": "2026-01-27 05:00:13"
+    "lastUpdated": "2026-01-27 05:24:08"
 }
