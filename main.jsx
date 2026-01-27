@@ -32,11 +32,11 @@ import {
 } from 'lucide-react';
 
 /**
- * THE ULTIMATE DASHBOARD (V6.2)
- * - Power Score Column: Dedicated column with numerical strength and visual indicator.
- * - Numerical Sorting: Fixed sorting engine to prioritize high-conviction scores.
- * - Display Limit Slider: Instantly control how many top setups are visible.
- * - Pattern Badges: Specific labels for Bull Flags, Pennants, and Bases.
+ * THE ULTIMATE DASHBOARD (V6.3)
+ * - Enhanced Power Score: Shows clear 1-100 numerical badges for high-conviction trades.
+ * - Robust Numerical Sorting: Fixed ranking engine for Power Scores.
+ * - Display Limit Slider: Control the number of setups shown (1-50).
+ * - Pattern Recognition: Visual badges for flags, pennants, and breakouts.
  */
 const App = () => {
   // --- STATE ---
@@ -123,18 +123,15 @@ const App = () => {
       let valA = a[prefs.sortKey];
       let valB = b[prefs.sortKey];
 
-      // Robust check for missing values
       if (valA === undefined || valA === null) valA = 0;
       if (valB === undefined || valB === null) valB = 0;
 
-      // Handle Alphabetical (Ticker)
       if (prefs.sortKey === 'ticker') {
         return prefs.sortOrder === 'asc' 
           ? String(valA).localeCompare(String(valB)) 
           : String(valB).localeCompare(String(valA));
       }
 
-      // Handle Numerical (Score, Price, RSI)
       const numA = parseFloat(valA);
       const numB = parseFloat(valB);
       return prefs.sortOrder === 'asc' ? numA - numB : numB - numA;
@@ -214,7 +211,7 @@ const App = () => {
                 <div className="px-6 py-4 border-b border-slate-800 flex flex-col md:flex-row justify-between items-start md:items-center bg-slate-900/60 gap-4">
                   <div className="flex items-center gap-2 text-slate-300 font-bold text-xs uppercase tracking-wider">
                     <TrendingUp size={16} className={activeColor.text} /> 
-                    Power Ranked Signals
+                    Top Ranked Setups
                   </div>
                   <div className="flex bg-slate-950/50 p-1 rounded-xl border border-slate-800/50">
                     {['all', 'near', 'watchlist'].map(tab => (
@@ -229,8 +226,8 @@ const App = () => {
                   <table className="w-full text-left">
                     <thead>
                       <tr className="text-slate-500 text-[10px] font-black uppercase tracking-[0.2em] border-b border-slate-800/50">
+                        <th className="px-6 py-4 text-center">Power Rank</th>
                         <th className="px-6 py-4">Ticker</th>
-                        <th className="px-6 py-4 flex items-center gap-1.5"><Award size={12} className={activeColor.text}/> Score</th>
                         <th className="px-6 py-4">Price</th>
                         <th className={`px-6 py-4 ${activeColor.text}`}>Buy Trigger</th>
                         <th className="px-6 py-4 text-emerald-400">Target</th>
@@ -243,25 +240,35 @@ const App = () => {
                       {displaySignals.map((s) => (
                         <tr key={s.ticker} className={`${activeColor.hoverBg} transition-all group`}>
                           <td className="px-6 py-5">
-                            <div className="flex flex-col">
-                              <span className="font-black text-white uppercase text-lg tracking-tight group-hover:scale-105 transition-transform origin-left">{s.ticker}</span>
-                              {prefs.watchlist.includes(s.ticker) && <span className={`text-[8px] font-bold ${activeColor.text} uppercase`}>Watching</span>}
+                            <div className="flex flex-col items-center gap-1.5">
+                                <div className={`px-2 py-1 rounded-md ${s.score > 80 ? 'bg-amber-500/20 text-amber-500 border-amber-500/30' : 'bg-slate-800 text-slate-200 border-white/5'} border font-black text-xs min-w-[32px] text-center shadow-inner`}>
+                                    {s.score}
+                                </div>
+                                <div className="w-8 bg-slate-800 h-1 rounded-full overflow-hidden">
+                                    <div className={`${activeColor.bg} h-full`} style={{ width: `${s.score}%` }} />
+                                </div>
                             </div>
                           </td>
                           <td className="px-6 py-5">
-                            <div className="flex items-center gap-3">
-                                <div className="w-12 bg-slate-800 h-1.5 rounded-full overflow-hidden">
-                                    <div className={`${activeColor.bg} h-full transition-all duration-700`} style={{ width: `${s.score}%` }} />
-                                </div>
-                                <span className="text-[11px] font-black text-slate-300">{s.score}</span>
+                            <div className="flex flex-col">
+                              <span className="font-black text-white uppercase text-lg tracking-tight group-hover:scale-105 transition-transform origin-left">{s.ticker}</span>
+                              {prefs.watchlist.includes(s.ticker) && <span className={`text-[8px] font-bold ${activeColor.text} uppercase tracking-widest`}>Watched</span>}
                             </div>
                           </td>
                           <td className="px-6 py-5 font-mono text-slate-300 text-sm font-bold">${formatNum(s.currentPrice)}</td>
                           <td className={`px-6 py-5 font-mono font-black ${activeColor.text} text-base`}>${formatNum(s.buyAt)}</td>
                           <td className="px-6 py-5 font-mono font-black text-emerald-400 text-base">${formatNum(s.goal)}</td>
                           <td className="px-6 py-5"><PatternBadge pattern={s.pattern} /></td>
-                          <td className="px-6 py-5"><span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${s.rsi > 60 ? 'bg-amber-500/20 text-amber-500' : 'bg-slate-800 text-slate-400'}`}>{formatNum(s.rsi)}</span></td>
-                          <td className="px-4 py-5"><a href={`https://finance.yahoo.com/quote/${s.ticker}`} target="_blank" rel="noreferrer" className="text-slate-600 hover:text-white transition-colors"><ExternalLink size={16} /></a></td>
+                          <td className="px-6 py-5">
+                            <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${s.rsi > 60 ? 'bg-amber-500/20 text-amber-500' : 'bg-slate-800 text-slate-400'}`}>
+                                {formatNum(s.rsi)}
+                            </span>
+                          </td>
+                          <td className="px-4 py-5">
+                            <a href={`https://finance.yahoo.com/quote/${s.ticker}`} target="_blank" rel="noreferrer" className="text-slate-600 hover:text-white transition-colors">
+                                <ExternalLink size={16} />
+                            </a>
+                          </td>
                         </tr>
                       ))}
                     </tbody>
@@ -348,7 +355,7 @@ const App = () => {
                         <span className={activeColor.text}>{prefs.maxStocks}</span>
                     </div>
                     <input type="range" min="1" max="50" step="1" value={prefs.maxStocks} onChange={(e) => setPrefs({...prefs, maxStocks: Number(e.target.value)})} className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-indigo-500" />
-                    <p className="text-[9px] text-slate-500 italic text-center font-medium">Show only the top {prefs.maxStocks} ranked opportunities.</p>
+                    <p className="text-[9px] text-slate-500 italic text-center font-medium">Ranking the top {prefs.maxStocks} setups by Power Score.</p>
                   </div>
                 </div>
                 <div className="space-y-4">
@@ -404,7 +411,7 @@ const App = () => {
         )}
 
         <footer className="mt-12 py-8 border-t border-slate-900 text-center">
-            <p className="text-slate-600 text-[10px] uppercase font-bold tracking-[0.3em] opacity-40 italic">SwingScan Intelligence • V6.2 Build</p>
+            <p className="text-slate-600 text-[10px] uppercase font-bold tracking-[0.3em] opacity-40 italic">SwingScan Intelligence • V6.3 Build</p>
         </footer>
       </div>
     </div>
