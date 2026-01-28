@@ -243,7 +243,14 @@ const App = () => {
                                     </div>
                                   )}
                                 </div>
-                                <span className="text-[9px] text-slate-500 font-bold uppercase tracking-widest">NYSE/NASDAQ</span>
+                                <div className="flex items-center gap-1.5">
+                                  <span className="text-[9px] text-slate-500 font-bold uppercase tracking-widest">NYSE/NASDAQ</span>
+                                  {earnsSoon && (
+                                    <span className="text-[9px] text-rose-500 font-black uppercase tracking-widest flex items-center gap-1">
+                                      <span className="text-slate-700">•</span> Earnings Soon
+                                    </span>
+                                  )}
+                                </div>
                               </div>
                             </td>
                             <td className="px-6 py-6 font-mono font-black text-indigo-400 text-lg tracking-tight">${s.buyAt}</td>
