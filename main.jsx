@@ -94,6 +94,12 @@ const App = () => {
     return () => clearInterval(interval);
   }, []);
 
+  // Calculate how many were hidden by the guard
+  const hiddenCount = useMemo(() => {
+    if (!prefs.hideEarnings) return 0;
+    return data.signals.filter(s => s.daysToEarnings !== null && s.daysToEarnings <= 3).length;
+  }, [data.signals, prefs.hideEarnings]);
+
   const displaySignals = useMemo(() => {
     let baseData = [...data.signals];
 
@@ -173,6 +179,20 @@ const App = () => {
           <div className={`grid grid-cols-1 ${prefs.showNews ? 'xl:grid-cols-4' : 'xl:grid-cols-1'} gap-8`}>
             {/* MAIN CONTENT */}
             <div className={`${prefs.showNews ? 'xl:col-span-3' : 'xl:col-span-1'} space-y-8`}>
+              
+              {/* STATUS BAR: Hiden Count Notification */}
+              {hiddenCount > 0 && prefs.hideEarnings && (
+                <div className="bg-rose-500/10 border border-rose-500/20 px-6 py-3 rounded-2xl flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <ShieldAlert size={18} className="text-rose-500" />
+                    <span className="text-xs font-bold text-rose-200 uppercase tracking-wide">
+                      Earnings Guard is active: {hiddenCount} high-risk trades are hidden to protect your capital.
+                    </span>
+                  </div>
+                  <button onClick={() => setPrefs({...prefs, hideEarnings: false})} className="text-[10px] font-black uppercase text-rose-500 hover:underline">Show Anyway</button>
+                </div>
+              )}
+
               <div className="bg-slate-900/40 border border-slate-800 rounded-3xl overflow-hidden shadow-2xl backdrop-blur-sm">
                 <div className="px-6 py-5 border-b border-slate-800 flex flex-col sm:flex-row justify-between items-center bg-slate-900/60 gap-4">
                   <div className="flex items-center gap-3">
@@ -221,7 +241,9 @@ const App = () => {
                                          score >= 80 ? 'text-emerald-400 border-emerald-400/30 bg-emerald-400/10' : 
                                          'text-slate-400 border-white/5 bg-slate-800';
                         
-                        const earnsSoon = s.daysToEarnings !== null && s.daysToEarnings <= 3;
+                        // Robust Earnings Check
+                        const days = s.daysToEarnings !== null ? parseInt(s.daysToEarnings) : 999;
+                        const earnsSoon = days <= 3;
 
                         return (
                           <tr key={s.ticker} className={`hover:${activeTheme.lightBg} transition-all group`}>
@@ -238,8 +260,8 @@ const App = () => {
                                   <span className="font-black text-white uppercase text-xl tracking-tighter group-hover:text-indigo-400 transition-colors">{s.ticker}</span>
                                   {earnsSoon && (
                                     <div className="flex items-center gap-1 bg-rose-500/20 text-rose-500 px-1.5 py-0.5 rounded border border-rose-500/20 animate-pulse">
-                                      <CalendarDays size={10} />
-                                      <span className="text-[8px] font-black uppercase">EARNINGS {s.daysToEarnings === 0 ? 'TODAY' : `IN ${s.daysToEarnings}D`}</span>
+                                      <Star size={10} className="fill-rose-500" />
+                                      <span className="text-[8px] font-black uppercase">EARNINGS {days === 0 ? 'TODAY' : `IN ${days}D`}</span>
                                     </div>
                                   )}
                                 </div>
@@ -288,7 +310,7 @@ const App = () => {
                         </p>
                         <p className="text-xs max-w-xs mx-auto">
                           {listFilter === 'watchlist' 
-                            ? "None of your watchlist items currently pass the trend-following filters for a valid signal." 
+                            ? "None of your watchlist items currently pass the technical scanners for a valid signal." 
                             : "Adjust your settings or check back later."}
                         </p>
                       </div>
@@ -461,7 +483,7 @@ const App = () => {
               <span className="text-[10px] font-black uppercase tracking-[0.4em]">Proprietary</span>
             </div>
             <p className="text-slate-700 text-[9px] uppercase font-bold tracking-[0.5em] italic">
-              Institutional Grade Market Scanner • Version 9.1 Stable • Earnings Guard V1.0
+              Institutional Grade Market Scanner • Version 9.1 Stable • Earnings Guard V1.1
             </p>
         </footer>
       </div>
