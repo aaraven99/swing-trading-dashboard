@@ -21,13 +21,15 @@ import {
   Eye,
   CheckCircle2,
   AlertCircle,
-  ListFilter
+  ListFilter,
+  CalendarDays
 } from 'lucide-react';
 
 /**
  * App.jsx: V9.1 Ultra Dashboard.
  * Restoration of all features + Rescan functionality + Tabbed List View.
  * Responsive Full-Screen Layout: Dashboard expands when News Feed is off.
+ * New: Earnings Guard (Visual warnings and filters for upcoming earnings).
  */
 const App = () => {
   const [data, setData] = useState({ marketHealthy: true, signals: [], lastUpdated: "Never" });
@@ -36,12 +38,13 @@ const App = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [listFilter, setListFilter] = useState('top'); // 'top' or 'watchlist'
   
-  // Preferences with ALL features restored
+  // Preferences with ALL features restored + Earnings Guard
   const [prefs, setPrefs] = useState(() => {
     const saved = localStorage.getItem('ss_prefs_v9');
     const defaults = {
       theme: 'indigo',
       showNews: true,
+      hideEarnings: false, // NEW: Filter out earnings fluff
       maxStocks: 10,
       watchlist: ['AAPL', 'NVDA', 'UPS', 'PKG', 'DHR'],
       sortKey: 'score',
@@ -93,6 +96,11 @@ const App = () => {
 
   const displaySignals = useMemo(() => {
     let baseData = [...data.signals];
+
+    // Filter out earnings if the user requested it
+    if (prefs.hideEarnings) {
+      baseData = baseData.filter(s => s.daysToEarnings === null || s.daysToEarnings > 3);
+    }
 
     // Apply Tab Filtering
     if (listFilter === 'watchlist') {
@@ -213,6 +221,8 @@ const App = () => {
                                          score >= 80 ? 'text-emerald-400 border-emerald-400/30 bg-emerald-400/10' : 
                                          'text-slate-400 border-white/5 bg-slate-800';
                         
+                        const earnsSoon = s.daysToEarnings !== null && s.daysToEarnings <= 3;
+
                         return (
                           <tr key={s.ticker} className={`hover:${activeTheme.lightBg} transition-all group`}>
                             <td className="px-6 py-6">
@@ -224,7 +234,15 @@ const App = () => {
                             </td>
                             <td className="px-6 py-6">
                               <div className="flex flex-col">
-                                <span className="font-black text-white uppercase text-xl tracking-tighter group-hover:text-indigo-400 transition-colors">{s.ticker}</span>
+                                <div className="flex items-center gap-2">
+                                  <span className="font-black text-white uppercase text-xl tracking-tighter group-hover:text-indigo-400 transition-colors">{s.ticker}</span>
+                                  {earnsSoon && (
+                                    <div className="flex items-center gap-1 bg-rose-500/20 text-rose-500 px-1.5 py-0.5 rounded border border-rose-500/20 animate-pulse">
+                                      <CalendarDays size={10} />
+                                      <span className="text-[8px] font-black uppercase">EARNINGS {s.daysToEarnings === 0 ? 'TODAY' : `IN ${s.daysToEarnings}D`}</span>
+                                    </div>
+                                  )}
+                                </div>
                                 <span className="text-[9px] text-slate-500 font-bold uppercase tracking-widest">NYSE/NASDAQ</span>
                               </div>
                             </td>
@@ -294,9 +312,12 @@ const App = () => {
                     </div>
                     {data.signals.slice(0, 2).map(s => (
                       <div key={s.ticker} className="p-4 rounded-2xl bg-slate-950/50 border border-slate-800/50 space-y-2">
-                        <span className="text-[10px] font-black uppercase text-emerald-400">{s.ticker} Alert</span>
+                        <div className="flex items-center justify-between">
+                          <span className="text-[10px] font-black uppercase text-emerald-400">{s.ticker} Alert</span>
+                          {s.daysToEarnings !== null && s.daysToEarnings <= 3 && <ShieldAlert size={12} className="text-rose-500" />}
+                        </div>
                         <p className="text-xs leading-relaxed text-slate-400 font-medium">
-                          Identified as a <strong>{s.pattern}</strong>. Relative strength is hitting local highs compared to SPY.
+                          Identified as a <strong>{s.pattern}</strong>. {s.daysToEarnings !== null && s.daysToEarnings <= 3 ? "WARNING: Earnings report imminent. Exercise extreme caution." : "Relative strength is hitting local highs compared to SPY."}
                         </p>
                       </div>
                     ))}
@@ -379,9 +400,22 @@ const App = () => {
 
                 <div className="space-y-4">
                   <h3 className="text-xs font-black uppercase text-slate-400 tracking-widest flex items-center gap-2">
-                    <ShieldAlert size={16} className="text-rose-500" /> Preferences
+                    <ShieldAlert size={16} className="text-rose-500" /> Risk Management
                   </h3>
                   <div className="bg-slate-950/50 p-6 rounded-2xl border border-slate-800 space-y-6 shadow-inner">
+                    <div className="flex items-center justify-between">
+                      <div className="flex flex-col">
+                        <span className="text-xs font-bold text-white uppercase tracking-tight">Earnings Guard</span>
+                        <span className="text-[9px] text-slate-500 uppercase">Hide trades with earnings within 3 days</span>
+                      </div>
+                      <button 
+                        onClick={() => setPrefs({...prefs, hideEarnings: !prefs.hideEarnings})}
+                        className={`w-12 h-6 rounded-full transition-all flex items-center px-1 ${prefs.hideEarnings ? activeTheme.bg : 'bg-slate-800'}`}
+                      >
+                        <div className={`w-4 h-4 bg-white rounded-full transition-all ${prefs.hideEarnings ? 'translate-x-6' : 'translate-x-0'}`}></div>
+                      </button>
+                    </div>
+
                     <div className="flex items-center justify-between">
                       <div className="flex flex-col">
                         <span className="text-xs font-bold text-white uppercase tracking-tight">News Feed</span>
@@ -420,7 +454,7 @@ const App = () => {
               <span className="text-[10px] font-black uppercase tracking-[0.4em]">Proprietary</span>
             </div>
             <p className="text-slate-700 text-[9px] uppercase font-bold tracking-[0.5em] italic">
-              Institutional Grade Market Scanner • Version 9.1 Stable
+              Institutional Grade Market Scanner • Version 9.1 Stable • Earnings Guard V1.0
             </p>
         </footer>
       </div>
