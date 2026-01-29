@@ -2,45 +2,15 @@
     "marketHealthy": true,
     "signals": [
         {
-            "ticker": "AOS",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 74.09,
-            "buyAt": 74.13,
-            "goal": 77.58,
-            "stopLoss": 71.47,
-            "rsi": 63.17
-        },
-        {
-            "ticker": "PSX",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 146.57,
-            "buyAt": 147.87,
-            "goal": 154.54,
-            "stopLoss": 140.6,
-            "rsi": 64.87
-        },
-        {
-            "ticker": "ROK",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 425.93,
-            "buyAt": 429.58,
-            "goal": 444.13,
-            "stopLoss": 412.29,
-            "rsi": 60.5
-        },
-        {
             "ticker": "HOLX",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.02,
+            "currentPrice": 75.05,
             "buyAt": 75.36,
-            "goal": 75.5,
-            "stopLoss": 74.66,
-            "rsi": 54.63
+            "goal": 75.53,
+            "stopLoss": 74.69,
+            "rsi": 56.06
         }
     ],
-    "lastUpdated": "2026-01-29 17:35:03"
+    "lastUpdated": "2026-01-29 18:36:41"
 }
