@@ -2,15 +2,65 @@
     "marketHealthy": true,
     "signals": [
         {
+            "ticker": "AOS",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 73.79,
+            "buyAt": 74.42,
+            "goal": 77.33,
+            "stopLoss": 71.14,
+            "rsi": 62.45
+        },
+        {
+            "ticker": "CNP",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 39.73,
+            "buyAt": 40.0,
+            "goal": 40.93,
+            "stopLoss": 38.83,
+            "rsi": 60.29
+        },
+        {
+            "ticker": "CSX",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 37.83,
+            "buyAt": 38.11,
+            "goal": 39.33,
+            "stopLoss": 36.71,
+            "rsi": 63.2
+        },
+        {
+            "ticker": "HUBB",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 494.65,
+            "buyAt": 498.89,
+            "goal": 518.6,
+            "stopLoss": 476.68,
+            "rsi": 64.64
+        },
+        {
+            "ticker": "ITW",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 261.65,
+            "buyAt": 264.27,
+            "goal": 270.37,
+            "stopLoss": 255.11,
+            "rsi": 59.83
+        },
+        {
             "ticker": "HOLX",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.05,
+            "currentPrice": 75.01,
             "buyAt": 75.36,
-            "goal": 75.53,
-            "stopLoss": 74.69,
-            "rsi": 56.06
+            "goal": 75.5,
+            "stopLoss": 74.65,
+            "rsi": 54.52
         }
     ],
-    "lastUpdated": "2026-01-29 18:36:41"
+    "lastUpdated": "2026-01-29 19:27:59"
 }
