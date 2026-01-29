@@ -5,72 +5,62 @@
             "ticker": "AEE",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 104.32,
+            "currentPrice": 103.85,
             "buyAt": 104.87,
-            "goal": 107.34,
-            "stopLoss": 102.05,
-            "rsi": 62.21
+            "goal": 106.87,
+            "stopLoss": 101.58,
+            "rsi": 60.38
+        },
+        {
+            "ticker": "AOS",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 72.8,
+            "buyAt": 73.49,
+            "goal": 76.2,
+            "stopLoss": 70.25,
+            "rsi": 59.87
         },
         {
             "ticker": "CNP",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 39.85,
+            "currentPrice": 39.69,
             "buyAt": 40.0,
-            "goal": 40.99,
-            "stopLoss": 38.98,
-            "rsi": 61.63
-        },
-        {
-            "ticker": "ETR",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 97.35,
-            "buyAt": 97.99,
-            "goal": 100.84,
-            "stopLoss": 94.74,
-            "rsi": 61.5
+            "goal": 40.83,
+            "stopLoss": 38.82,
+            "rsi": 59.62
         },
         {
             "ticker": "HOLX",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.06,
+            "currentPrice": 75.04,
             "buyAt": 75.36,
-            "goal": 75.54,
-            "stopLoss": 74.7,
-            "rsi": 56.52
+            "goal": 75.52,
+            "stopLoss": 74.67,
+            "rsi": 55.39
         },
         {
-            "ticker": "KO",
+            "ticker": "ROK",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 73.26,
-            "buyAt": 73.68,
-            "goal": 75.25,
-            "stopLoss": 71.77,
-            "rsi": 64.42
-        },
-        {
-            "ticker": "PNW",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 94.2,
-            "buyAt": 95.0,
-            "goal": 97.2,
-            "stopLoss": 91.95,
-            "rsi": 63.61
+            "currentPrice": 425.54,
+            "buyAt": 429.58,
+            "goal": 443.73,
+            "stopLoss": 411.89,
+            "rsi": 60.29
         },
         {
             "ticker": "EVRG",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 77.17,
+            "currentPrice": 76.87,
             "buyAt": 77.51,
-            "goal": 79.36,
-            "stopLoss": 75.53,
-            "rsi": 64.01
+            "goal": 79.06,
+            "stopLoss": 75.23,
+            "rsi": 62.58
         }
     ],
-    "lastUpdated": "2026-01-29 15:32:44"
+    "lastUpdated": "2026-01-29 16:37:03"
 }
