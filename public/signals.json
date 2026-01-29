@@ -8,7 +8,7 @@
             "currentPrice": 39.79,
             "buyAt": 40.0,
             "goal": 40.98,
-            "stopLoss": 38.9,
+            "stopLoss": 38.89,
             "rsi": 61.12
         },
         {
@@ -32,5 +32,5 @@
             "rsi": 58.43
         }
     ],
-    "lastUpdated": "2026-01-29 01:21:56"
+    "lastUpdated": "2026-01-29 04:05:27"
 }
