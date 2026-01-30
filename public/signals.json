@@ -27,8 +27,8 @@
             "pattern": "Conservative VCP",
             "currentPrice": 717.39,
             "buyAt": 723.0,
-            "goal": 779.45,
-            "stopLoss": 670.84,
+            "goal": 779.48,
+            "stopLoss": 670.82,
             "rsi": 64.6
         },
         {
@@ -92,5 +92,5 @@
             "rsi": 59.75
         }
     ],
-    "lastUpdated": "2026-01-30 01:22:05"
+    "lastUpdated": "2026-01-30 04:05:56"
 }
