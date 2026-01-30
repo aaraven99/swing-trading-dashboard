@@ -1,36 +1,5 @@
 {
     "marketHealthy": true,
-    "signals": [
-        {
-            "ticker": "USB",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 56.13,
-            "buyAt": 56.7,
-            "goal": 58.11,
-            "stopLoss": 54.66,
-            "rsi": 60.77
-        },
-        {
-            "ticker": "HOLX",
-            "score": 80,
-            "pattern": "Conservative VCP",
-            "currentPrice": 74.99,
-            "buyAt": 75.36,
-            "goal": 75.47,
-            "stopLoss": 74.62,
-            "rsi": 53.25
-        },
-        {
-            "ticker": "NVDA",
-            "score": 80,
-            "pattern": "Conservative VCP",
-            "currentPrice": 191.98,
-            "buyAt": 193.63,
-            "goal": 201.98,
-            "stopLoss": 184.47,
-            "rsi": 58.79
-        }
-    ],
-    "lastUpdated": "2026-01-30 15:29:19"
+    "signals": [],
+    "lastUpdated": "2026-01-30 16:32:35"
 }
