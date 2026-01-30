@@ -5,12 +5,22 @@
             "ticker": "GWW",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 1081.24,
+            "currentPrice": 1079.08,
             "buyAt": 1086.78,
-            "goal": 1122.03,
-            "stopLoss": 1050.65,
-            "rsi": 63.88
+            "goal": 1119.87,
+            "stopLoss": 1048.49,
+            "rsi": 62.98
+        },
+        {
+            "ticker": "DAY",
+            "score": 80,
+            "pattern": "Conservative VCP",
+            "currentPrice": 69.32,
+            "buyAt": 69.65,
+            "goal": 69.71,
+            "stopLoss": 69.03,
+            "rsi": 53.02
         }
     ],
-    "lastUpdated": "2026-01-30 19:29:05"
+    "lastUpdated": "2026-01-30 20:24:24"
 }
