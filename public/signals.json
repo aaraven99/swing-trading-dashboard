@@ -5,21 +5,21 @@
             "ticker": "CAH",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 214.82,
+            "currentPrice": 214.88,
             "buyAt": 216.51,
-            "goal": 223.58,
-            "stopLoss": 208.25,
-            "rsi": 62.37
+            "goal": 223.64,
+            "stopLoss": 208.31,
+            "rsi": 62.44
         },
         {
             "ticker": "CNP",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 39.67,
+            "currentPrice": 39.69,
             "buyAt": 40.0,
-            "goal": 40.87,
-            "stopLoss": 38.76,
-            "rsi": 59.08
+            "goal": 40.9,
+            "stopLoss": 38.78,
+            "rsi": 59.33
         },
         {
             "ticker": "CSX",
@@ -35,22 +35,12 @@
             "ticker": "GWW",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 1079.37,
+            "currentPrice": 1079.94,
             "buyAt": 1086.78,
-            "goal": 1120.16,
-            "stopLoss": 1048.78,
-            "rsi": 63.1
-        },
-        {
-            "ticker": "ROL",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 63.33,
-            "buyAt": 63.84,
-            "goal": 65.3,
-            "stopLoss": 61.85,
-            "rsi": 64.98
+            "goal": 1120.73,
+            "stopLoss": 1049.35,
+            "rsi": 63.33
         }
     ],
-    "lastUpdated": "2026-01-30 21:23:59"
+    "lastUpdated": "2026-01-30 22:20:06"
 }
