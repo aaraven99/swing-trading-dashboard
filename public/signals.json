@@ -2,75 +2,35 @@
     "marketHealthy": true,
     "signals": [
         {
-            "ticker": "GWW",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 1079.97,
-            "buyAt": 1086.78,
-            "goal": 1119.58,
-            "stopLoss": 1050.27,
-            "rsi": 63.35
-        },
-        {
-            "ticker": "ITW",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 262.54,
-            "buyAt": 264.27,
-            "goal": 270.76,
-            "stopLoss": 256.36,
-            "rsi": 60.63
-        },
-        {
-            "ticker": "TFC",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 51.48,
-            "buyAt": 51.52,
-            "goal": 53.47,
-            "stopLoss": 49.99,
-            "rsi": 61.23
-        },
-        {
             "ticker": "USB",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 56.35,
+            "currentPrice": 56.13,
             "buyAt": 56.7,
-            "goal": 58.31,
-            "stopLoss": 54.89,
-            "rsi": 62.48
-        },
-        {
-            "ticker": "CBRE",
-            "score": 80,
-            "pattern": "Conservative VCP",
-            "currentPrice": 171.61,
-            "buyAt": 173.05,
-            "goal": 178.52,
-            "stopLoss": 166.43,
-            "rsi": 61.54
+            "goal": 58.11,
+            "stopLoss": 54.66,
+            "rsi": 60.77
         },
         {
             "ticker": "HOLX",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.07,
+            "currentPrice": 74.99,
             "buyAt": 75.36,
-            "goal": 75.54,
-            "stopLoss": 74.71,
-            "rsi": 56.3
+            "goal": 75.47,
+            "stopLoss": 74.62,
+            "rsi": 53.25
         },
         {
             "ticker": "NVDA",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 192.15,
+            "currentPrice": 191.98,
             "buyAt": 193.63,
-            "goal": 202.03,
-            "stopLoss": 184.75,
-            "rsi": 59.11
+            "goal": 201.98,
+            "stopLoss": 184.47,
+            "rsi": 58.79
         }
     ],
-    "lastUpdated": "2026-01-30 14:32:51"
+    "lastUpdated": "2026-01-30 15:29:19"
 }
