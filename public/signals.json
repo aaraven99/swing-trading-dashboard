@@ -2,75 +2,85 @@
     "marketHealthy": true,
     "signals": [
         {
-            "ticker": "AOS",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 74.33,
-            "buyAt": 74.43,
-            "goal": 77.81,
-            "stopLoss": 71.72,
-            "rsi": 64.95
-        },
-        {
-            "ticker": "CAH",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 216.4,
-            "buyAt": 218.03,
-            "goal": 225.05,
-            "stopLoss": 209.91,
-            "rsi": 64.38
-        },
-        {
             "ticker": "CBRE",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 172.57,
+            "currentPrice": 172.33,
             "buyAt": 173.05,
-            "goal": 179.52,
-            "stopLoss": 167.36,
-            "rsi": 62.09
+            "goal": 179.28,
+            "stopLoss": 167.12,
+            "rsi": 61.7
         },
         {
             "ticker": "CSX",
             "score": 100,
             "pattern": "Conservative VCP",
             "currentPrice": 38.06,
-            "buyAt": 38.11,
-            "goal": 39.55,
-            "stopLoss": 36.95,
-            "rsi": 64.29
+            "buyAt": 38.13,
+            "goal": 39.54,
+            "stopLoss": 36.94,
+            "rsi": 64.22
         },
         {
             "ticker": "HUBB",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 497.21,
+            "currentPrice": 496.97,
             "buyAt": 501.32,
-            "goal": 522.06,
-            "stopLoss": 478.58,
-            "rsi": 62.79
+            "goal": 521.82,
+            "stopLoss": 478.34,
+            "rsi": 62.69
         },
         {
             "ticker": "ITW",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 262.99,
+            "currentPrice": 263.67,
             "buyAt": 264.27,
-            "goal": 271.64,
-            "stopLoss": 256.5,
-            "rsi": 60.52
+            "goal": 272.4,
+            "stopLoss": 257.13,
+            "rsi": 61.32
         },
         {
-            "ticker": "MRK",
+            "ticker": "O",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 112.29,
-            "buyAt": 112.9,
-            "goal": 117.21,
-            "stopLoss": 108.6,
-            "rsi": 64.46
+            "currentPrice": 61.16,
+            "buyAt": 61.67,
+            "goal": 62.88,
+            "stopLoss": 59.87,
+            "rsi": 64.61
+        },
+        {
+            "ticker": "RF",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 29.06,
+            "buyAt": 29.26,
+            "goal": 30.34,
+            "stopLoss": 28.1,
+            "rsi": 62.3
+        },
+        {
+            "ticker": "ROK",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 426.11,
+            "buyAt": 429.58,
+            "goal": 444.29,
+            "stopLoss": 412.47,
+            "rsi": 59.43
+        },
+        {
+            "ticker": "STLD",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 185.09,
+            "buyAt": 185.56,
+            "goal": 196.09,
+            "stopLoss": 176.84,
+            "rsi": 62.47
         }
     ],
-    "lastUpdated": "2026-02-02 16:33:14"
+    "lastUpdated": "2026-02-02 17:37:32"
 }
