@@ -2,13 +2,23 @@
     "marketHealthy": true,
     "signals": [
         {
+            "ticker": "AOS",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 73.49,
+            "buyAt": 74.05,
+            "goal": 76.99,
+            "stopLoss": 70.87,
+            "rsi": 62.73
+        },
+        {
             "ticker": "CAH",
             "score": 100,
             "pattern": "Conservative VCP",
             "currentPrice": 214.88,
             "buyAt": 216.51,
-            "goal": 223.64,
-            "stopLoss": 208.31,
+            "goal": 223.66,
+            "stopLoss": 208.3,
             "rsi": 62.44
         },
         {
@@ -37,10 +47,20 @@
             "pattern": "Conservative VCP",
             "currentPrice": 1079.94,
             "buyAt": 1086.78,
-            "goal": 1120.73,
-            "stopLoss": 1049.35,
+            "goal": 1120.74,
+            "stopLoss": 1049.34,
             "rsi": 63.33
+        },
+        {
+            "ticker": "O",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 61.16,
+            "buyAt": 61.67,
+            "goal": 62.93,
+            "stopLoss": 59.83,
+            "rsi": 64.61
         }
     ],
-    "lastUpdated": "2026-01-30 23:21:20"
+    "lastUpdated": "2026-02-02 01:27:27"
 }
