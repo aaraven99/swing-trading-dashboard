@@ -2,115 +2,105 @@
     "marketHealthy": true,
     "signals": [
         {
-            "ticker": "APA",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 27.34,
-            "buyAt": 27.49,
-            "goal": 29.35,
-            "stopLoss": 25.84,
-            "rsi": 62.98
-        },
-        {
-            "ticker": "DGX",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 189.73,
-            "buyAt": 191.07,
-            "goal": 197.09,
-            "stopLoss": 184.21,
-            "rsi": 62.27
-        },
-        {
             "ticker": "EIX",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 63.9,
-            "buyAt": 63.91,
-            "goal": 66.71,
-            "stopLoss": 61.8,
-            "rsi": 64.47
-        },
-        {
-            "ticker": "EVRG",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 77.84,
-            "buyAt": 78.48,
-            "goal": 80.23,
-            "stopLoss": 76.05,
-            "rsi": 64.44
+            "currentPrice": 63.61,
+            "buyAt": 63.99,
+            "goal": 66.43,
+            "stopLoss": 61.5,
+            "rsi": 63.55
         },
         {
             "ticker": "FRT",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 103.4,
+            "currentPrice": 103.21,
             "buyAt": 103.86,
-            "goal": 106.9,
-            "stopLoss": 100.78,
-            "rsi": 61.48
+            "goal": 106.71,
+            "stopLoss": 100.59,
+            "rsi": 60.82
+        },
+        {
+            "ticker": "MLM",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 672.3,
+            "buyAt": 676.74,
+            "goal": 701.95,
+            "stopLoss": 650.06,
+            "rsi": 63.15
         },
         {
             "ticker": "PFE",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 26.75,
+            "currentPrice": 26.9,
             "buyAt": 26.94,
-            "goal": 27.96,
-            "stopLoss": 25.84,
-            "rsi": 62.29
+            "goal": 28.11,
+            "stopLoss": 25.99,
+            "rsi": 63.39
+        },
+        {
+            "ticker": "PNW",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 94.39,
+            "buyAt": 95.05,
+            "goal": 97.7,
+            "stopLoss": 91.91,
+            "rsi": 64.57
         },
         {
             "ticker": "ROL",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 63.57,
+            "currentPrice": 63.42,
             "buyAt": 63.84,
-            "goal": 65.59,
-            "stopLoss": 62.06,
-            "rsi": 63.92
+            "goal": 65.44,
+            "stopLoss": 61.91,
+            "rsi": 62.92
         },
         {
-            "ticker": "YUM",
+            "ticker": "SWK",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 159.63,
-            "buyAt": 161.06,
-            "goal": 165.95,
-            "stopLoss": 154.9,
-            "rsi": 64.14
+            "currentPrice": 84.72,
+            "buyAt": 85.16,
+            "goal": 89.98,
+            "stopLoss": 80.77,
+            "rsi": 64.42
         },
         {
             "ticker": "AEE",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 105.4,
+            "currentPrice": 104.84,
             "buyAt": 105.55,
-            "goal": 108.66,
-            "stopLoss": 102.96,
-            "rsi": 64.2
+            "goal": 108.1,
+            "stopLoss": 102.4,
+            "rsi": 62.3
         },
         {
-            "ticker": "AEP",
+            "ticker": "D",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 121.32,
-            "buyAt": 122.19,
-            "goal": 125.35,
-            "stopLoss": 118.29,
-            "rsi": 62.71
+            "currentPrice": 62.33,
+            "buyAt": 62.91,
+            "goal": 64.8,
+            "stopLoss": 60.48,
+            "rsi": 64.11
         },
         {
             "ticker": "LNT",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 67.18,
+            "currentPrice": 66.89,
             "buyAt": 67.32,
-            "goal": 69.15,
-            "stopLoss": 65.71,
-            "rsi": 60.27
+            "goal": 68.85,
+            "stopLoss": 65.41,
+            "rsi": 58.42
         }
     ],
-    "lastUpdated": "2026-02-04 19:36:56"
+    "lastUpdated": "2026-02-04 20:29:39"
 }
