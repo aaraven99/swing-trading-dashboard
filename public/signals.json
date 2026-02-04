@@ -17,8 +17,8 @@
             "pattern": "Conservative VCP",
             "currentPrice": 40.19,
             "buyAt": 40.22,
-            "goal": 41.46,
-            "stopLoss": 39.24,
+            "goal": 41.47,
+            "stopLoss": 39.23,
             "rsi": 62.71
         },
         {
@@ -87,8 +87,8 @@
             "pattern": "Conservative VCP",
             "currentPrice": 93.63,
             "buyAt": 94.08,
-            "goal": 96.95,
-            "stopLoss": 91.14,
+            "goal": 96.97,
+            "stopLoss": 91.12,
             "rsi": 62.25
         },
         {
@@ -107,8 +107,8 @@
             "pattern": "Conservative VCP",
             "currentPrice": 104.01,
             "buyAt": 104.87,
-            "goal": 107.26,
-            "stopLoss": 101.58,
+            "goal": 107.28,
+            "stopLoss": 101.55,
             "rsi": 59.08
         },
         {
@@ -152,5 +152,5 @@
             "rsi": 60.9
         }
     ],
-    "lastUpdated": "2026-02-04 01:23:14"
+    "lastUpdated": "2026-02-04 04:08:41"
 }
