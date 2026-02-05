@@ -5,72 +5,42 @@
             "ticker": "AEE",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 105.4,
+            "currentPrice": 104.86,
             "buyAt": 105.66,
-            "goal": 108.6,
-            "stopLoss": 103.0,
-            "rsi": 64.36
+            "goal": 108.06,
+            "stopLoss": 102.46,
+            "rsi": 62.4
         },
         {
             "ticker": "AIZ",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 242.93,
+            "currentPrice": 242.91,
             "buyAt": 244.83,
-            "goal": 252.03,
-            "stopLoss": 236.11,
-            "rsi": 63.21
+            "goal": 252.01,
+            "stopLoss": 236.09,
+            "rsi": 63.18
         },
         {
-            "ticker": "EIX",
+            "ticker": "CNP",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 63.47,
-            "buyAt": 64.0,
-            "goal": 66.24,
-            "stopLoss": 61.39,
-            "rsi": 63.09
+            "currentPrice": 40.44,
+            "buyAt": 40.8,
+            "goal": 41.69,
+            "stopLoss": 39.49,
+            "rsi": 64.75
         },
         {
-            "ticker": "ETR",
+            "ticker": "DGX",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 97.67,
-            "buyAt": 98.54,
-            "goal": 101.23,
-            "stopLoss": 95.0,
-            "rsi": 61.18
-        },
-        {
-            "ticker": "EVRG",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 77.71,
-            "buyAt": 78.48,
-            "goal": 80.1,
-            "stopLoss": 75.91,
-            "rsi": 62.34
-        },
-        {
-            "ticker": "LNT",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 67.23,
-            "buyAt": 67.55,
-            "goal": 69.17,
-            "stopLoss": 65.77,
-            "rsi": 60.74
-        },
-        {
-            "ticker": "AEP",
-            "score": 80,
-            "pattern": "Conservative VCP",
-            "currentPrice": 121.35,
-            "buyAt": 122.19,
-            "goal": 125.45,
-            "stopLoss": 118.27,
-            "rsi": 61.86
+            "currentPrice": 191.76,
+            "buyAt": 193.43,
+            "goal": 199.28,
+            "stopLoss": 186.13,
+            "rsi": 64.85
         }
     ],
-    "lastUpdated": "2026-02-05 15:37:49"
+    "lastUpdated": "2026-02-05 16:41:59"
 }
