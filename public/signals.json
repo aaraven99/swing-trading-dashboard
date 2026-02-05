@@ -5,42 +5,52 @@
             "ticker": "AEE",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 105.33,
+            "currentPrice": 105.21,
             "buyAt": 105.66,
-            "goal": 108.53,
-            "stopLoss": 102.94,
-            "rsi": 64.13
+            "goal": 108.4,
+            "stopLoss": 102.81,
+            "rsi": 63.67
+        },
+        {
+            "ticker": "D",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 62.47,
+            "buyAt": 62.91,
+            "goal": 64.87,
+            "stopLoss": 60.68,
+            "rsi": 64.77
         },
         {
             "ticker": "DGX",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 191.78,
+            "currentPrice": 191.52,
             "buyAt": 193.43,
-            "goal": 199.3,
-            "stopLoss": 186.14,
-            "rsi": 64.86
+            "goal": 199.04,
+            "stopLoss": 185.88,
+            "rsi": 64.56
         },
         {
             "ticker": "EIX",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 63.6,
+            "currentPrice": 63.38,
             "buyAt": 64.0,
-            "goal": 66.38,
-            "stopLoss": 61.52,
-            "rsi": 63.57
+            "goal": 66.15,
+            "stopLoss": 61.3,
+            "rsi": 62.56
         },
         {
             "ticker": "PFE",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 26.99,
+            "currentPrice": 27.1,
             "buyAt": 27.19,
-            "goal": 28.21,
-            "stopLoss": 26.08,
-            "rsi": 64.18
+            "goal": 28.32,
+            "stopLoss": 26.19,
+            "rsi": 64.98
         }
     ],
-    "lastUpdated": "2026-02-05 17:45:12"
+    "lastUpdated": "2026-02-05 18:41:41"
 }
