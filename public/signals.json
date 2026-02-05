@@ -5,42 +5,42 @@
             "ticker": "AEE",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 104.86,
+            "currentPrice": 105.33,
             "buyAt": 105.66,
-            "goal": 108.06,
-            "stopLoss": 102.46,
-            "rsi": 62.4
-        },
-        {
-            "ticker": "AIZ",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 242.91,
-            "buyAt": 244.83,
-            "goal": 252.01,
-            "stopLoss": 236.09,
-            "rsi": 63.18
-        },
-        {
-            "ticker": "CNP",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 40.44,
-            "buyAt": 40.8,
-            "goal": 41.69,
-            "stopLoss": 39.49,
-            "rsi": 64.75
+            "goal": 108.53,
+            "stopLoss": 102.94,
+            "rsi": 64.13
         },
         {
             "ticker": "DGX",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 191.76,
+            "currentPrice": 191.78,
             "buyAt": 193.43,
-            "goal": 199.28,
-            "stopLoss": 186.13,
-            "rsi": 64.85
+            "goal": 199.3,
+            "stopLoss": 186.14,
+            "rsi": 64.86
+        },
+        {
+            "ticker": "EIX",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 63.6,
+            "buyAt": 64.0,
+            "goal": 66.38,
+            "stopLoss": 61.52,
+            "rsi": 63.57
+        },
+        {
+            "ticker": "PFE",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 26.99,
+            "buyAt": 27.19,
+            "goal": 28.21,
+            "stopLoss": 26.08,
+            "rsi": 64.18
         }
     ],
-    "lastUpdated": "2026-02-05 16:41:59"
+    "lastUpdated": "2026-02-05 17:45:12"
 }
