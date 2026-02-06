@@ -2,55 +2,55 @@
     "marketHealthy": true,
     "signals": [
         {
-            "ticker": "APA",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 27.51,
-            "buyAt": 27.65,
-            "goal": 29.66,
-            "stopLoss": 25.9,
-            "rsi": 61.35
-        },
-        {
             "ticker": "C",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 121.84,
-            "buyAt": 121.92,
-            "goal": 128.42,
-            "stopLoss": 116.9,
-            "rsi": 63.35
+            "currentPrice": 122.14,
+            "buyAt": 122.16,
+            "goal": 128.75,
+            "stopLoss": 117.18,
+            "rsi": 63.78
         },
         {
             "ticker": "CCL",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 32.89,
-            "buyAt": 33.15,
-            "goal": 35.32,
-            "stopLoss": 31.07,
-            "rsi": 63.43
+            "currentPrice": 33.29,
+            "buyAt": 33.25,
+            "goal": 35.78,
+            "stopLoss": 31.43,
+            "rsi": 64.83
         },
         {
-            "ticker": "FANG",
+            "ticker": "DHI",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 168.35,
-            "buyAt": 169.49,
-            "goal": 178.88,
-            "stopLoss": 160.46,
-            "rsi": 64.41
+            "currentPrice": 160.35,
+            "buyAt": 161.47,
+            "goal": 170.67,
+            "stopLoss": 152.61,
+            "rsi": 61.92
         },
         {
-            "ticker": "PWR",
+            "ticker": "FIX",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 497.52,
-            "buyAt": 501.32,
-            "goal": 533.51,
-            "stopLoss": 470.54,
-            "rsi": 63.97
+            "currentPrice": 1217.63,
+            "buyAt": 1220.0,
+            "goal": 1327.83,
+            "stopLoss": 1134.98,
+            "rsi": 64.16
+        },
+        {
+            "ticker": "PFE",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 27.14,
+            "buyAt": 27.24,
+            "goal": 28.39,
+            "stopLoss": 26.2,
+            "rsi": 63.98
         }
     ],
-    "lastUpdated": "2026-02-06 15:36:58"
+    "lastUpdated": "2026-02-06 16:38:38"
 }
