@@ -2,35 +2,85 @@
     "marketHealthy": true,
     "signals": [
         {
-            "ticker": "AEE",
+            "ticker": "DAL",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 104.81,
-            "buyAt": 105.69,
-            "goal": 108.01,
-            "stopLoss": 102.41,
-            "rsi": 62.2
+            "currentPrice": 72.46,
+            "buyAt": 72.95,
+            "goal": 77.06,
+            "stopLoss": 69.01,
+            "rsi": 60.92
         },
         {
-            "ticker": "D",
+            "ticker": "EME",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 62.52,
-            "buyAt": 62.91,
-            "goal": 64.92,
-            "stopLoss": 60.72,
-            "rsi": 64.96
+            "currentPrice": 746.73,
+            "buyAt": 749.08,
+            "goal": 795.75,
+            "stopLoss": 709.96,
+            "rsi": 64.82
         },
         {
-            "ticker": "EIX",
+            "ticker": "ETR",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 63.71,
-            "buyAt": 64.0,
-            "goal": 66.48,
-            "stopLoss": 61.63,
-            "rsi": 63.93
+            "currentPrice": 97.94,
+            "buyAt": 98.54,
+            "goal": 101.5,
+            "stopLoss": 95.27,
+            "rsi": 62.25
+        },
+        {
+            "ticker": "EVRG",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 78.29,
+            "buyAt": 78.48,
+            "goal": 80.62,
+            "stopLoss": 76.53,
+            "rsi": 64.87
+        },
+        {
+            "ticker": "MAR",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 328.0,
+            "buyAt": 331.09,
+            "goal": 341.63,
+            "stopLoss": 317.78,
+            "rsi": 60.89
+        },
+        {
+            "ticker": "PWR",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 498.41,
+            "buyAt": 501.32,
+            "goal": 534.4,
+            "stopLoss": 471.42,
+            "rsi": 64.22
+        },
+        {
+            "ticker": "AEP",
+            "score": 80,
+            "pattern": "Conservative VCP",
+            "currentPrice": 121.86,
+            "buyAt": 122.19,
+            "goal": 125.86,
+            "stopLoss": 118.85,
+            "rsi": 63.46
+        },
+        {
+            "ticker": "LNT",
+            "score": 80,
+            "pattern": "Conservative VCP",
+            "currentPrice": 67.12,
+            "buyAt": 67.56,
+            "goal": 69.03,
+            "stopLoss": 65.68,
+            "rsi": 60.19
         }
     ],
-    "lastUpdated": "2026-02-06 14:00:06"
+    "lastUpdated": "2026-02-06 14:41:15"
 }
