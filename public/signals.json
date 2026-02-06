@@ -5,21 +5,21 @@
             "ticker": "C",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 122.09,
+            "currentPrice": 122.07,
             "buyAt": 122.97,
-            "goal": 128.82,
-            "stopLoss": 117.04,
-            "rsi": 63.71
+            "goal": 128.8,
+            "stopLoss": 117.02,
+            "rsi": 63.68
         },
         {
             "ticker": "FIX",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 1224.0,
+            "currentPrice": 1223.53,
             "buyAt": 1228.0,
-            "goal": 1335.9,
-            "stopLoss": 1140.07,
-            "rsi": 64.69
+            "goal": 1335.43,
+            "stopLoss": 1139.6,
+            "rsi": 64.65
         },
         {
             "ticker": "HST",
@@ -32,45 +32,35 @@
             "rsi": 63.92
         },
         {
-            "ticker": "JBL",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 258.42,
-            "buyAt": 260.56,
-            "goal": 280.24,
-            "stopLoss": 242.04,
-            "rsi": 63.48
-        },
-        {
             "ticker": "PFE",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 27.26,
-            "buyAt": 27.3,
-            "goal": 28.52,
-            "stopLoss": 26.31,
-            "rsi": 64.78
+            "currentPrice": 27.19,
+            "buyAt": 27.36,
+            "goal": 28.46,
+            "stopLoss": 26.24,
+            "rsi": 64.31
         },
         {
             "ticker": "SCHW",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 104.79,
+            "currentPrice": 104.98,
             "buyAt": 105.81,
-            "goal": 109.36,
-            "stopLoss": 101.37,
-            "rsi": 58.43
+            "goal": 109.55,
+            "stopLoss": 101.55,
+            "rsi": 58.89
         },
         {
             "ticker": "INCY",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 107.54,
+            "currentPrice": 108.31,
             "buyAt": 108.58,
-            "goal": 114.45,
-            "stopLoss": 102.35,
-            "rsi": 60.05
+            "goal": 115.39,
+            "stopLoss": 103.0,
+            "rsi": 61.25
         }
     ],
-    "lastUpdated": "2026-02-06 19:36:11"
+    "lastUpdated": "2026-02-06 20:28:25"
 }
