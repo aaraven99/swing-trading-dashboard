@@ -2,95 +2,55 @@
     "marketHealthy": true,
     "signals": [
         {
-            "ticker": "CBRE",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 171.38,
-            "buyAt": 173.05,
-            "goal": 179.15,
-            "stopLoss": 165.55,
-            "rsi": 58.31
-        },
-        {
             "ticker": "ETR",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 98.38,
+            "currentPrice": 98.3,
             "buyAt": 98.55,
-            "goal": 102.03,
-            "stopLoss": 95.65,
-            "rsi": 63.71
+            "goal": 101.95,
+            "stopLoss": 95.56,
+            "rsi": 63.45
         },
         {
             "ticker": "IBKR",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 78.47,
+            "currentPrice": 78.17,
             "buyAt": 78.8,
-            "goal": 84.47,
-            "stopLoss": 73.97,
-            "rsi": 62.86
-        },
-        {
-            "ticker": "NI",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 44.32,
-            "buyAt": 44.64,
-            "goal": 45.8,
-            "stopLoss": 43.21,
-            "rsi": 64.61
-        },
-        {
-            "ticker": "PFE",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 27.12,
-            "buyAt": 27.37,
-            "goal": 28.39,
-            "stopLoss": 26.18,
-            "rsi": 63.3
+            "goal": 84.19,
+            "stopLoss": 73.66,
+            "rsi": 62.38
         },
         {
             "ticker": "RJF",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 173.65,
+            "currentPrice": 173.43,
             "buyAt": 174.7,
-            "goal": 182.21,
-            "stopLoss": 167.23,
-            "rsi": 60.39
+            "goal": 182.0,
+            "stopLoss": 167.01,
+            "rsi": 60.09
         },
         {
             "ticker": "ROST",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 193.9,
+            "currentPrice": 193.63,
             "buyAt": 194.92,
-            "goal": 200.76,
-            "stopLoss": 188.76,
-            "rsi": 64.62
+            "goal": 200.49,
+            "stopLoss": 188.49,
+            "rsi": 64.17
         },
         {
             "ticker": "SCHW",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 107.19,
+            "currentPrice": 106.83,
             "buyAt": 107.23,
-            "goal": 111.81,
-            "stopLoss": 103.72,
-            "rsi": 64.11
-        },
-        {
-            "ticker": "WSM",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 219.65,
-            "buyAt": 221.81,
-            "goal": 233.97,
-            "stopLoss": 208.91,
-            "rsi": 64.77
+            "goal": 111.45,
+            "stopLoss": 103.36,
+            "rsi": 63.35
         }
     ],
-    "lastUpdated": "2026-02-09 20:01:25"
+    "lastUpdated": "2026-02-09 20:43:23"
 }
