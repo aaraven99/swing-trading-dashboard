@@ -5,42 +5,52 @@
             "ticker": "APA",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 27.75,
-            "buyAt": 27.9,
-            "goal": 29.83,
-            "stopLoss": 26.18,
-            "rsi": 62.52
+            "currentPrice": 27.65,
+            "buyAt": 27.92,
+            "goal": 29.74,
+            "stopLoss": 26.08,
+            "rsi": 62.06
         },
         {
             "ticker": "ETR",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 98.28,
+            "currentPrice": 97.99,
             "buyAt": 98.55,
-            "goal": 101.93,
-            "stopLoss": 95.55,
-            "rsi": 63.39
+            "goal": 101.64,
+            "stopLoss": 95.26,
+            "rsi": 62.42
+        },
+        {
+            "ticker": "RJF",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 173.04,
+            "buyAt": 174.7,
+            "goal": 181.54,
+            "stopLoss": 166.66,
+            "rsi": 59.53
         },
         {
             "ticker": "ROST",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 193.52,
+            "currentPrice": 193.74,
             "buyAt": 194.92,
-            "goal": 200.31,
-            "stopLoss": 188.43,
-            "rsi": 63.99
+            "goal": 200.56,
+            "stopLoss": 188.62,
+            "rsi": 64.34
         },
         {
             "ticker": "SCHW",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 106.82,
-            "buyAt": 106.92,
-            "goal": 111.4,
-            "stopLoss": 103.39,
-            "rsi": 63.34
+            "currentPrice": 107.06,
+            "buyAt": 107.2,
+            "goal": 111.67,
+            "stopLoss": 103.59,
+            "rsi": 63.82
         }
     ],
-    "lastUpdated": "2026-02-09 17:48:18"
+    "lastUpdated": "2026-02-09 18:50:21"
 }
