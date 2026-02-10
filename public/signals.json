@@ -2,45 +2,55 @@
     "marketHealthy": true,
     "signals": [
         {
+            "ticker": "EVRG",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 78.74,
+            "buyAt": 79.12,
+            "goal": 81.29,
+            "stopLoss": 76.82,
+            "rsi": 65.0
+        },
+        {
             "ticker": "PHM",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 137.46,
-            "buyAt": 137.46,
-            "goal": 146.23,
-            "stopLoss": 130.88,
-            "rsi": 64.15
+            "currentPrice": 137.27,
+            "buyAt": 137.88,
+            "goal": 146.1,
+            "stopLoss": 130.65,
+            "rsi": 63.94
         },
         {
-            "ticker": "TXT",
+            "ticker": "PNW",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 96.51,
-            "buyAt": 96.98,
-            "goal": 101.07,
-            "stopLoss": 93.09,
-            "rsi": 64.01
+            "currentPrice": 95.42,
+            "buyAt": 95.89,
+            "goal": 98.9,
+            "stopLoss": 92.81,
+            "rsi": 64.89
+        },
+        {
+            "ticker": "AEP",
+            "score": 80,
+            "pattern": "Conservative VCP",
+            "currentPrice": 121.69,
+            "buyAt": 122.44,
+            "goal": 125.88,
+            "stopLoss": 118.54,
+            "rsi": 63.33
         },
         {
             "ticker": "HOLX",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.19,
+            "currentPrice": 75.21,
             "buyAt": 75.36,
-            "goal": 75.71,
-            "stopLoss": 74.8,
-            "rsi": 60.97
-        },
-        {
-            "ticker": "XEL",
-            "score": 80,
-            "pattern": "Conservative VCP",
-            "currentPrice": 78.21,
-            "buyAt": 78.3,
-            "goal": 81.19,
-            "stopLoss": 75.98,
-            "rsi": 64.19
+            "goal": 75.73,
+            "stopLoss": 74.81,
+            "rsi": 61.35
         }
     ],
-    "lastUpdated": "2026-02-10 20:00:02"
+    "lastUpdated": "2026-02-10 20:46:02"
 }
