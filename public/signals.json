@@ -6,10 +6,10 @@
             "score": 100,
             "pattern": "Conservative VCP",
             "currentPrice": 98.15,
-            "buyAt": 98.55,
-            "goal": 101.8,
-            "stopLoss": 95.41,
-            "rsi": 62.96
+            "buyAt": 98.46,
+            "goal": 101.78,
+            "stopLoss": 95.43,
+            "rsi": 64.99
         },
         {
             "ticker": "HWM",
@@ -28,7 +28,7 @@
             "currentPrice": 78.42,
             "buyAt": 78.8,
             "goal": 84.44,
-            "stopLoss": 73.91,
+            "stopLoss": 73.9,
             "rsi": 62.78
         },
         {
@@ -57,10 +57,10 @@
             "pattern": "Conservative VCP",
             "currentPrice": 66.9,
             "buyAt": 67.56,
-            "goal": 68.9,
-            "stopLoss": 65.4,
+            "goal": 68.91,
+            "stopLoss": 65.39,
             "rsi": 58.33
         }
     ],
-    "lastUpdated": "2026-02-10 01:52:07"
+    "lastUpdated": "2026-02-10 04:29:55"
 }
