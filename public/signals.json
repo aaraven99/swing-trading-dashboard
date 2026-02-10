@@ -2,85 +2,45 @@
     "marketHealthy": true,
     "signals": [
         {
-            "ticker": "DHI",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 160.12,
-            "buyAt": 161.47,
-            "goal": 171.51,
-            "stopLoss": 151.58,
-            "rsi": 59.86
-        },
-        {
-            "ticker": "EVRG",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 78.6,
-            "buyAt": 78.61,
-            "goal": 81.08,
-            "stopLoss": 76.74,
-            "rsi": 64.49
-        },
-        {
             "ticker": "PHM",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 136.65,
-            "buyAt": 137.29,
-            "goal": 145.39,
-            "stopLoss": 130.09,
-            "rsi": 63.26
-        },
-        {
-            "ticker": "PNW",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 95.29,
-            "buyAt": 95.67,
-            "goal": 98.7,
-            "stopLoss": 92.74,
-            "rsi": 64.53
+            "currentPrice": 137.46,
+            "buyAt": 137.46,
+            "goal": 146.23,
+            "stopLoss": 130.88,
+            "rsi": 64.15
         },
         {
             "ticker": "TXT",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 96.16,
+            "currentPrice": 96.51,
             "buyAt": 96.98,
-            "goal": 100.72,
-            "stopLoss": 92.73,
-            "rsi": 63.31
-        },
-        {
-            "ticker": "AEP",
-            "score": 80,
-            "pattern": "Conservative VCP",
-            "currentPrice": 121.88,
-            "buyAt": 122.44,
-            "goal": 126.01,
-            "stopLoss": 118.78,
-            "rsi": 63.93
+            "goal": 101.07,
+            "stopLoss": 93.09,
+            "rsi": 64.01
         },
         {
             "ticker": "HOLX",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.2,
+            "currentPrice": 75.19,
             "buyAt": 75.36,
-            "goal": 75.72,
-            "stopLoss": 74.81,
-            "rsi": 61.22
+            "goal": 75.71,
+            "stopLoss": 74.8,
+            "rsi": 60.97
         },
         {
             "ticker": "XEL",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 77.79,
-            "buyAt": 77.81,
-            "goal": 80.69,
-            "stopLoss": 75.6,
-            "rsi": 62.43
+            "currentPrice": 78.21,
+            "buyAt": 78.3,
+            "goal": 81.19,
+            "stopLoss": 75.98,
+            "rsi": 64.19
         }
     ],
-    "lastUpdated": "2026-02-10 19:00:16"
+    "lastUpdated": "2026-02-10 20:00:02"
 }
