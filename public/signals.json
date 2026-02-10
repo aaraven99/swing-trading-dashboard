@@ -2,105 +2,85 @@
     "marketHealthy": true,
     "signals": [
         {
-            "ticker": "CBRE",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 173.18,
-            "buyAt": 174.27,
-            "goal": 181.02,
-            "stopLoss": 167.29,
-            "rsi": 61.1
-        },
-        {
             "ticker": "DHI",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 160.32,
+            "currentPrice": 160.12,
             "buyAt": 161.47,
-            "goal": 171.67,
-            "stopLoss": 151.82,
-            "rsi": 60.07
+            "goal": 171.51,
+            "stopLoss": 151.58,
+            "rsi": 59.86
+        },
+        {
+            "ticker": "EVRG",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 78.6,
+            "buyAt": 78.61,
+            "goal": 81.08,
+            "stopLoss": 76.74,
+            "rsi": 64.49
         },
         {
             "ticker": "PHM",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 136.6,
-            "buyAt": 136.82,
-            "goal": 145.28,
+            "currentPrice": 136.65,
+            "buyAt": 137.29,
+            "goal": 145.39,
             "stopLoss": 130.09,
-            "rsi": 63.21
+            "rsi": 63.26
+        },
+        {
+            "ticker": "PNW",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 95.29,
+            "buyAt": 95.67,
+            "goal": 98.7,
+            "stopLoss": 92.74,
+            "rsi": 64.53
         },
         {
             "ticker": "TXT",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 96.17,
+            "currentPrice": 96.16,
             "buyAt": 96.98,
             "goal": 100.72,
-            "stopLoss": 92.75,
-            "rsi": 63.34
+            "stopLoss": 92.73,
+            "rsi": 63.31
         },
         {
             "ticker": "AEP",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 121.26,
+            "currentPrice": 121.88,
             "buyAt": 122.44,
-            "goal": 125.29,
-            "stopLoss": 118.24,
-            "rsi": 61.89
-        },
-        {
-            "ticker": "CNP",
-            "score": 80,
-            "pattern": "Conservative VCP",
-            "currentPrice": 40.44,
-            "buyAt": 40.8,
-            "goal": 41.69,
-            "stopLoss": 39.51,
-            "rsi": 63.44
-        },
-        {
-            "ticker": "EVRG",
-            "score": 80,
-            "pattern": "Conservative VCP",
-            "currentPrice": 78.15,
-            "buyAt": 78.51,
-            "goal": 80.58,
-            "stopLoss": 76.34,
-            "rsi": 62.73
+            "goal": 126.01,
+            "stopLoss": 118.78,
+            "rsi": 63.93
         },
         {
             "ticker": "HOLX",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.18,
+            "currentPrice": 75.2,
             "buyAt": 75.36,
-            "goal": 75.71,
-            "stopLoss": 74.79,
-            "rsi": 60.84
-        },
-        {
-            "ticker": "LNT",
-            "score": 80,
-            "pattern": "Conservative VCP",
-            "currentPrice": 67.72,
-            "buyAt": 67.74,
-            "goal": 69.71,
-            "stopLoss": 66.23,
-            "rsi": 64.13
+            "goal": 75.72,
+            "stopLoss": 74.81,
+            "rsi": 61.22
         },
         {
             "ticker": "XEL",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 77.31,
-            "buyAt": 77.42,
-            "goal": 80.16,
-            "stopLoss": 75.17,
-            "rsi": 60.25
+            "currentPrice": 77.79,
+            "buyAt": 77.81,
+            "goal": 80.69,
+            "stopLoss": 75.6,
+            "rsi": 62.43
         }
     ],
-    "lastUpdated": "2026-02-10 17:11:00"
+    "lastUpdated": "2026-02-10 19:00:16"
 }
