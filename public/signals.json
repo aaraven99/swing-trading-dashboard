@@ -2,55 +2,35 @@
     "marketHealthy": true,
     "signals": [
         {
-            "ticker": "PHM",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 137.33,
-            "buyAt": 137.88,
-            "goal": 146.16,
-            "stopLoss": 130.71,
-            "rsi": 64.01
-        },
-        {
             "ticker": "PNW",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 95.2,
+            "currentPrice": 95.29,
             "buyAt": 95.9,
-            "goal": 98.68,
-            "stopLoss": 92.59,
-            "rsi": 64.28
+            "goal": 98.65,
+            "stopLoss": 92.76,
+            "rsi": 64.54
         },
         {
             "ticker": "AEE",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 105.78,
+            "currentPrice": 105.62,
             "buyAt": 106.58,
-            "goal": 109.1,
-            "stopLoss": 103.29,
-            "rsi": 64.0
-        },
-        {
-            "ticker": "AEP",
-            "score": 80,
-            "pattern": "Conservative VCP",
-            "currentPrice": 121.23,
-            "buyAt": 122.4,
-            "goal": 125.39,
-            "stopLoss": 118.11,
-            "rsi": 64.87
+            "goal": 108.86,
+            "stopLoss": 103.19,
+            "rsi": 62.96
         },
         {
             "ticker": "HOLX",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.15,
+            "currentPrice": 75.18,
             "buyAt": 75.36,
-            "goal": 75.68,
-            "stopLoss": 74.75,
-            "rsi": 59.91
+            "goal": 75.69,
+            "stopLoss": 74.8,
+            "rsi": 60.77
         }
     ],
-    "lastUpdated": "2026-02-11 14:14:34"
+    "lastUpdated": "2026-02-11 15:56:55"
 }
