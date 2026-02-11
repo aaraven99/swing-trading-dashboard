@@ -2,35 +2,45 @@
     "marketHealthy": true,
     "signals": [
         {
-            "ticker": "PNW",
+            "ticker": "FANG",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 95.29,
-            "buyAt": 95.9,
-            "goal": 98.65,
-            "stopLoss": 92.76,
-            "rsi": 64.54
+            "currentPrice": 169.09,
+            "buyAt": 169.53,
+            "goal": 178.93,
+            "stopLoss": 161.71,
+            "rsi": 64.18
         },
         {
-            "ticker": "AEE",
-            "score": 80,
+            "ticker": "MCHP",
+            "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 105.62,
-            "buyAt": 106.58,
-            "goal": 108.86,
-            "stopLoss": 103.19,
-            "rsi": 62.96
+            "currentPrice": 80.66,
+            "buyAt": 81.43,
+            "goal": 87.14,
+            "stopLoss": 75.8,
+            "rsi": 63.23
+        },
+        {
+            "ticker": "TXT",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 96.71,
+            "buyAt": 97.13,
+            "goal": 101.14,
+            "stopLoss": 93.39,
+            "rsi": 64.51
         },
         {
             "ticker": "HOLX",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.18,
+            "currentPrice": 75.15,
             "buyAt": 75.36,
-            "goal": 75.69,
-            "stopLoss": 74.8,
-            "rsi": 60.77
+            "goal": 75.66,
+            "stopLoss": 74.77,
+            "rsi": 59.91
         }
     ],
-    "lastUpdated": "2026-02-11 15:56:55"
+    "lastUpdated": "2026-02-11 17:00:31"
 }
