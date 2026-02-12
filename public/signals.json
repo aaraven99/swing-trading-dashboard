@@ -5,32 +5,22 @@
             "ticker": "REGN",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 791.72,
+            "currentPrice": 791.23,
             "buyAt": 796.36,
-            "goal": 838.29,
-            "stopLoss": 756.8,
-            "rsi": 58.73
-        },
-        {
-            "ticker": "YUM",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 162.36,
-            "buyAt": 163.78,
-            "goal": 169.04,
-            "stopLoss": 157.35,
-            "rsi": 64.18
+            "goal": 837.8,
+            "stopLoss": 756.31,
+            "rsi": 58.61
         },
         {
             "ticker": "ES",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 70.95,
+            "currentPrice": 71.04,
             "buyAt": 71.6,
-            "goal": 74.12,
-            "stopLoss": 68.58,
-            "rsi": 61.0
+            "goal": 74.21,
+            "stopLoss": 68.67,
+            "rsi": 61.35
         }
     ],
-    "lastUpdated": "2026-02-12 19:47:38"
+    "lastUpdated": "2026-02-12 20:29:04"
 }
