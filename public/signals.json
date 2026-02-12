@@ -1,26 +1,5 @@
 {
     "marketHealthy": true,
-    "signals": [
-        {
-            "ticker": "REGN",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 791.23,
-            "buyAt": 796.36,
-            "goal": 837.8,
-            "stopLoss": 756.31,
-            "rsi": 58.61
-        },
-        {
-            "ticker": "ES",
-            "score": 80,
-            "pattern": "Conservative VCP",
-            "currentPrice": 71.04,
-            "buyAt": 71.6,
-            "goal": 74.21,
-            "stopLoss": 68.67,
-            "rsi": 61.35
-        }
-    ],
-    "lastUpdated": "2026-02-12 20:29:04"
+    "signals": [],
+    "lastUpdated": "2026-02-12 21:30:05"
 }
