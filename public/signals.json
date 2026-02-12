@@ -5,52 +5,32 @@
             "ticker": "REGN",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 790.91,
+            "currentPrice": 791.72,
             "buyAt": 796.36,
-            "goal": 837.48,
-            "stopLoss": 755.99,
-            "rsi": 58.54
-        },
-        {
-            "ticker": "ROST",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 195.42,
-            "buyAt": 197.18,
-            "goal": 202.33,
-            "stopLoss": 190.24,
-            "rsi": 64.82
+            "goal": 838.29,
+            "stopLoss": 756.8,
+            "rsi": 58.73
         },
         {
             "ticker": "YUM",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 162.55,
+            "currentPrice": 162.36,
             "buyAt": 163.78,
-            "goal": 169.23,
-            "stopLoss": 157.54,
-            "rsi": 64.5
+            "goal": 169.04,
+            "stopLoss": 157.35,
+            "rsi": 64.18
         },
         {
             "ticker": "ES",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 71.04,
+            "currentPrice": 70.95,
             "buyAt": 71.6,
-            "goal": 74.21,
-            "stopLoss": 68.67,
-            "rsi": 61.35
-        },
-        {
-            "ticker": "HOLX",
-            "score": 80,
-            "pattern": "Conservative VCP",
-            "currentPrice": 75.07,
-            "buyAt": 75.36,
-            "goal": 75.57,
-            "stopLoss": 74.69,
-            "rsi": 56.37
+            "goal": 74.12,
+            "stopLoss": 68.58,
+            "rsi": 61.0
         }
     ],
-    "lastUpdated": "2026-02-12 18:55:24"
+    "lastUpdated": "2026-02-12 19:47:38"
 }
