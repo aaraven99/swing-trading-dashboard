@@ -2,35 +2,35 @@
     "marketHealthy": true,
     "signals": [
         {
-            "ticker": "YUM",
+            "ticker": "ROST",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 162.82,
-            "buyAt": 163.78,
-            "goal": 169.5,
-            "stopLoss": 157.81,
-            "rsi": 64.94
+            "currentPrice": 195.23,
+            "buyAt": 197.18,
+            "goal": 202.14,
+            "stopLoss": 190.05,
+            "rsi": 64.53
         },
         {
             "ticker": "ES",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 71.32,
+            "currentPrice": 71.16,
             "buyAt": 71.6,
-            "goal": 74.48,
-            "stopLoss": 68.94,
-            "rsi": 62.38
+            "goal": 74.33,
+            "stopLoss": 68.79,
+            "rsi": 61.8
         },
         {
             "ticker": "HOLX",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.07,
+            "currentPrice": 75.1,
             "buyAt": 75.36,
-            "goal": 75.58,
-            "stopLoss": 74.7,
-            "rsi": 56.78
+            "goal": 75.6,
+            "stopLoss": 74.72,
+            "rsi": 57.58
         }
     ],
-    "lastUpdated": "2026-02-12 16:54:01"
+    "lastUpdated": "2026-02-12 17:55:29"
 }
