@@ -2,65 +2,55 @@
     "marketHealthy": true,
     "signals": [
         {
-            "ticker": "DG",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 152.94,
-            "buyAt": 153.75,
-            "goal": 161.64,
-            "stopLoss": 146.42,
-            "rsi": 64.25
-        },
-        {
             "ticker": "FANG",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 169.03,
+            "currentPrice": 169.14,
             "buyAt": 170.54,
-            "goal": 178.91,
-            "stopLoss": 161.62,
-            "rsi": 63.1
+            "goal": 179.02,
+            "stopLoss": 161.73,
+            "rsi": 63.21
         },
         {
             "ticker": "REGN",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 799.17,
+            "currentPrice": 803.17,
             "buyAt": 806.18,
-            "goal": 845.74,
-            "stopLoss": 764.24,
-            "rsi": 60.72
+            "goal": 849.74,
+            "stopLoss": 768.24,
+            "rsi": 61.64
         },
         {
             "ticker": "TGT",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 115.5,
+            "currentPrice": 115.76,
             "buyAt": 116.37,
-            "goal": 122.39,
-            "stopLoss": 110.33,
-            "rsi": 64.07
+            "goal": 122.65,
+            "stopLoss": 110.59,
+            "rsi": 64.39
         },
         {
             "ticker": "EQT",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 58.45,
+            "currentPrice": 58.7,
             "buyAt": 59.01,
-            "goal": 62.25,
-            "stopLoss": 55.6,
-            "rsi": 61.56
+            "goal": 62.5,
+            "stopLoss": 55.85,
+            "rsi": 62.24
         },
         {
             "ticker": "HOLX",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.05,
+            "currentPrice": 75.04,
             "buyAt": 75.36,
-            "goal": 75.57,
-            "stopLoss": 74.66,
-            "rsi": 55.07
+            "goal": 75.56,
+            "stopLoss": 74.65,
+            "rsi": 54.78
         }
     ],
-    "lastUpdated": "2026-02-13 20:31:22"
+    "lastUpdated": "2026-02-13 21:30:45"
 }
