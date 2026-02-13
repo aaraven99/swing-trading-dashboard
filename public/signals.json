@@ -1,5 +1,26 @@
 {
     "marketHealthy": true,
-    "signals": [],
-    "lastUpdated": "2026-02-13 14:00:16"
+    "signals": [
+        {
+            "ticker": "REGN",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 795.75,
+            "buyAt": 798.96,
+            "goal": 841.29,
+            "stopLoss": 761.59,
+            "rsi": 59.9
+        },
+        {
+            "ticker": "HOLX",
+            "score": 80,
+            "pattern": "Conservative VCP",
+            "currentPrice": 75.02,
+            "buyAt": 75.36,
+            "goal": 75.53,
+            "stopLoss": 74.63,
+            "rsi": 54.18
+        }
+    ],
+    "lastUpdated": "2026-02-13 14:42:42"
 }
