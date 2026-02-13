@@ -2,25 +2,65 @@
     "marketHealthy": true,
     "signals": [
         {
+            "ticker": "DG",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 152.9,
+            "buyAt": 152.94,
+            "goal": 161.48,
+            "stopLoss": 146.47,
+            "rsi": 64.2
+        },
+        {
             "ticker": "REGN",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 795.75,
-            "buyAt": 798.96,
-            "goal": 841.29,
-            "stopLoss": 761.59,
-            "rsi": 59.9
+            "currentPrice": 801.31,
+            "buyAt": 801.78,
+            "goal": 847.26,
+            "stopLoss": 766.86,
+            "rsi": 61.22
+        },
+        {
+            "ticker": "TGT",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 115.28,
+            "buyAt": 116.37,
+            "goal": 122.06,
+            "stopLoss": 110.19,
+            "rsi": 63.8
+        },
+        {
+            "ticker": "VRTX",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 494.95,
+            "buyAt": 497.55,
+            "goal": 522.26,
+            "stopLoss": 474.46,
+            "rsi": 63.78
+        },
+        {
+            "ticker": "EQT",
+            "score": 80,
+            "pattern": "Conservative VCP",
+            "currentPrice": 57.84,
+            "buyAt": 58.28,
+            "goal": 61.49,
+            "stopLoss": 55.1,
+            "rsi": 59.79
         },
         {
             "ticker": "HOLX",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.02,
+            "currentPrice": 75.01,
             "buyAt": 75.36,
             "goal": 75.53,
             "stopLoss": 74.63,
-            "rsi": 54.18
+            "rsi": 54.03
         }
     ],
-    "lastUpdated": "2026-02-13 14:42:42"
+    "lastUpdated": "2026-02-13 15:37:57"
 }
