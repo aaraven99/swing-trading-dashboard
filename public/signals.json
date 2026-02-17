@@ -5,22 +5,22 @@
             "ticker": "ULTA",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 693.92,
+            "currentPrice": 693.97,
             "buyAt": 700.81,
-            "goal": 730.37,
-            "stopLoss": 666.58,
-            "rsi": 61.95
+            "goal": 730.42,
+            "stopLoss": 666.63,
+            "rsi": 61.97
         },
         {
             "ticker": "HOLX",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.11,
+            "currentPrice": 75.15,
             "buyAt": 75.36,
-            "goal": 75.63,
-            "stopLoss": 74.73,
-            "rsi": 57.03
+            "goal": 75.67,
+            "stopLoss": 74.76,
+            "rsi": 58.01
         }
     ],
-    "lastUpdated": "2026-02-17 16:52:41"
+    "lastUpdated": "2026-02-17 17:53:13"
 }
