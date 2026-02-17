@@ -2,25 +2,35 @@
     "marketHealthy": true,
     "signals": [
         {
+            "ticker": "MNST",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 82.49,
+            "buyAt": 83.24,
+            "goal": 85.48,
+            "stopLoss": 80.25,
+            "rsi": 62.81
+        },
+        {
             "ticker": "ULTA",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 693.97,
+            "currentPrice": 699.15,
             "buyAt": 700.81,
-            "goal": 730.42,
-            "stopLoss": 666.63,
-            "rsi": 61.97
+            "goal": 735.6,
+            "stopLoss": 671.81,
+            "rsi": 63.36
         },
         {
             "ticker": "HOLX",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.15,
+            "currentPrice": 75.18,
             "buyAt": 75.36,
-            "goal": 75.67,
-            "stopLoss": 74.76,
-            "rsi": 58.01
+            "goal": 75.7,
+            "stopLoss": 74.79,
+            "rsi": 58.81
         }
     ],
-    "lastUpdated": "2026-02-17 17:53:13"
+    "lastUpdated": "2026-02-17 18:48:59"
 }
