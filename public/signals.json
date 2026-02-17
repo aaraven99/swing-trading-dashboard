@@ -2,55 +2,15 @@
     "marketHealthy": true,
     "signals": [
         {
-            "ticker": "FANG",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 169.14,
-            "buyAt": 170.54,
-            "goal": 179.02,
-            "stopLoss": 161.73,
-            "rsi": 63.21
-        },
-        {
-            "ticker": "REGN",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 803.17,
-            "buyAt": 806.18,
-            "goal": 849.74,
-            "stopLoss": 768.24,
-            "rsi": 61.64
-        },
-        {
-            "ticker": "TGT",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 115.76,
-            "buyAt": 116.37,
-            "goal": 122.65,
-            "stopLoss": 110.59,
-            "rsi": 64.39
-        },
-        {
-            "ticker": "EQT",
-            "score": 80,
-            "pattern": "Conservative VCP",
-            "currentPrice": 58.7,
-            "buyAt": 59.01,
-            "goal": 62.5,
-            "stopLoss": 55.85,
-            "rsi": 62.24
-        },
-        {
             "ticker": "HOLX",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.04,
+            "currentPrice": 75.09,
             "buyAt": 75.36,
-            "goal": 75.56,
-            "stopLoss": 74.65,
-            "rsi": 54.78
+            "goal": 75.61,
+            "stopLoss": 74.7,
+            "rsi": 56.31
         }
     ],
-    "lastUpdated": "2026-02-17 14:05:42"
+    "lastUpdated": "2026-02-17 15:46:50"
 }
