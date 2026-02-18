@@ -2,25 +2,75 @@
     "marketHealthy": true,
     "signals": [
         {
+            "ticker": "APA",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 28.54,
+            "buyAt": 28.66,
+            "goal": 30.83,
+            "stopLoss": 26.82,
+            "rsi": 61.57
+        },
+        {
+            "ticker": "DG",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 153.5,
+            "buyAt": 155.0,
+            "goal": 162.66,
+            "stopLoss": 146.63,
+            "rsi": 61.85
+        },
+        {
             "ticker": "NCLH",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 24.3,
-            "buyAt": 24.46,
-            "goal": 26.89,
-            "stopLoss": 22.36,
-            "rsi": 58.02
+            "currentPrice": 24.57,
+            "buyAt": 24.64,
+            "goal": 27.2,
+            "stopLoss": 22.59,
+            "rsi": 58.96
+        },
+        {
+            "ticker": "NOC",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 711.51,
+            "buyAt": 715.61,
+            "goal": 747.46,
+            "stopLoss": 684.55,
+            "rsi": 64.95
+        },
+        {
+            "ticker": "YUM",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 163.9,
+            "buyAt": 165.32,
+            "goal": 170.71,
+            "stopLoss": 158.78,
+            "rsi": 63.92
+        },
+        {
+            "ticker": "EQT",
+            "score": 80,
+            "pattern": "Conservative VCP",
+            "currentPrice": 59.2,
+            "buyAt": 59.55,
+            "goal": 63.32,
+            "stopLoss": 56.11,
+            "rsi": 62.89
         },
         {
             "ticker": "HOLX",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.19,
+            "currentPrice": 75.15,
             "buyAt": 75.36,
-            "goal": 75.69,
-            "stopLoss": 74.82,
-            "rsi": 59.29
+            "goal": 75.65,
+            "stopLoss": 74.78,
+            "rsi": 58.16
         }
     ],
-    "lastUpdated": "2026-02-18 15:46:51"
+    "lastUpdated": "2026-02-18 16:59:07"
 }
