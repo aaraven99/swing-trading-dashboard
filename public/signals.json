@@ -5,22 +5,22 @@
             "ticker": "APA",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 28.73,
+            "currentPrice": 28.67,
             "buyAt": 28.86,
-            "goal": 31.04,
-            "stopLoss": 26.99,
-            "rsi": 62.33
+            "goal": 30.99,
+            "stopLoss": 26.94,
+            "rsi": 62.13
         },
         {
             "ticker": "HOLX",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.21,
+            "currentPrice": 75.18,
             "buyAt": 75.36,
-            "goal": 75.71,
-            "stopLoss": 74.84,
-            "rsi": 59.84
+            "goal": 75.68,
+            "stopLoss": 74.8,
+            "rsi": 58.88
         }
     ],
-    "lastUpdated": "2026-02-18 19:46:33"
+    "lastUpdated": "2026-02-18 20:34:02"
 }
