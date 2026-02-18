@@ -5,32 +5,22 @@
             "ticker": "APA",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 28.68,
-            "buyAt": 28.73,
-            "goal": 30.98,
-            "stopLoss": 26.96,
-            "rsi": 62.17
-        },
-        {
-            "ticker": "YUM",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 163.78,
-            "buyAt": 165.32,
-            "goal": 170.65,
-            "stopLoss": 158.63,
-            "rsi": 63.74
+            "currentPrice": 28.73,
+            "buyAt": 28.86,
+            "goal": 31.04,
+            "stopLoss": 26.99,
+            "rsi": 62.33
         },
         {
             "ticker": "HOLX",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.15,
+            "currentPrice": 75.21,
             "buyAt": 75.36,
-            "goal": 75.65,
-            "stopLoss": 74.78,
-            "rsi": 58.01
+            "goal": 75.71,
+            "stopLoss": 74.84,
+            "rsi": 59.84
         }
     ],
-    "lastUpdated": "2026-02-18 18:44:28"
+    "lastUpdated": "2026-02-18 19:46:33"
 }
