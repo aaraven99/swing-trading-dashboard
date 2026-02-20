@@ -2,15 +2,55 @@
     "marketHealthy": true,
     "signals": [
         {
+            "ticker": "AVY",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 196.17,
+            "buyAt": 197.54,
+            "goal": 204.03,
+            "stopLoss": 190.28,
+            "rsi": 64.16
+        },
+        {
+            "ticker": "HII",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 443.88,
+            "buyAt": 447.65,
+            "goal": 477.56,
+            "stopLoss": 418.62,
+            "rsi": 64.42
+        },
+        {
+            "ticker": "MNST",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 83.47,
+            "buyAt": 83.91,
+            "goal": 86.55,
+            "stopLoss": 81.16,
+            "rsi": 63.44
+        },
+        {
+            "ticker": "PLD",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 140.54,
+            "buyAt": 141.95,
+            "goal": 146.22,
+            "stopLoss": 136.27,
+            "rsi": 63.32
+        },
+        {
             "ticker": "HOLX",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.21,
+            "currentPrice": 75.35,
             "buyAt": 75.36,
-            "goal": 75.71,
-            "stopLoss": 74.84,
-            "rsi": 59.09
+            "goal": 75.86,
+            "stopLoss": 74.97,
+            "rsi": 62.81
         }
     ],
-    "lastUpdated": "2026-02-20 14:40:07"
+    "lastUpdated": "2026-02-20 15:34:04"
 }
