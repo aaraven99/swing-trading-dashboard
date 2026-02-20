@@ -2,24 +2,14 @@
     "marketHealthy": true,
     "signals": [
         {
-            "ticker": "ASML",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 1476.61,
-            "buyAt": 1491.51,
-            "goal": 1570.84,
-            "stopLoss": 1405.94,
-            "rsi": 64.9
-        },
-        {
             "ticker": "MNST",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 83.73,
+            "currentPrice": 83.49,
             "buyAt": 83.95,
-            "goal": 86.86,
-            "stopLoss": 81.38,
-            "rsi": 64.29
+            "goal": 86.62,
+            "stopLoss": 81.14,
+            "rsi": 63.5
         },
         {
             "ticker": "HOLX",
@@ -27,10 +17,10 @@
             "pattern": "Conservative VCP",
             "currentPrice": 75.32,
             "buyAt": 75.39,
-            "goal": 75.84,
-            "stopLoss": 74.94,
-            "rsi": 62.2
+            "goal": 75.83,
+            "stopLoss": 74.93,
+            "rsi": 61.95
         }
     ],
-    "lastUpdated": "2026-02-20 16:32:26"
+    "lastUpdated": "2026-02-20 17:34:06"
 }
