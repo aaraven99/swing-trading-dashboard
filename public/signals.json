@@ -5,22 +5,22 @@
             "ticker": "MNST",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 83.49,
+            "currentPrice": 83.82,
             "buyAt": 83.95,
-            "goal": 86.62,
-            "stopLoss": 81.14,
-            "rsi": 63.5
+            "goal": 86.95,
+            "stopLoss": 81.47,
+            "rsi": 64.57
         },
         {
             "ticker": "HOLX",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.32,
+            "currentPrice": 75.36,
             "buyAt": 75.39,
-            "goal": 75.83,
-            "stopLoss": 74.93,
-            "rsi": 61.95
+            "goal": 75.87,
+            "stopLoss": 74.97,
+            "rsi": 62.93
         }
     ],
-    "lastUpdated": "2026-02-20 17:34:06"
+    "lastUpdated": "2026-02-20 18:38:41"
 }
