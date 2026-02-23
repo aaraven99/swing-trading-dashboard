@@ -2,25 +2,15 @@
     "marketHealthy": true,
     "signals": [
         {
-            "ticker": "AVY",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 196.29,
-            "buyAt": 197.54,
-            "goal": 204.06,
-            "stopLoss": 190.45,
-            "rsi": 63.47
-        },
-        {
             "ticker": "HOLX",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.43,
+            "currentPrice": 75.44,
             "buyAt": 75.47,
-            "goal": 75.95,
-            "stopLoss": 75.05,
-            "rsi": 64.76
+            "goal": 75.96,
+            "stopLoss": 75.06,
+            "rsi": 64.99
         }
     ],
-    "lastUpdated": "2026-02-23 18:59:51"
+    "lastUpdated": "2026-02-23 19:57:43"
 }
