@@ -22,6 +22,16 @@
             "rsi": 64.82
         },
         {
+            "ticker": "YUM",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 163.33,
+            "buyAt": 164.56,
+            "goal": 169.64,
+            "stopLoss": 158.6,
+            "rsi": 64.42
+        },
+        {
             "ticker": "HOLX",
             "score": 80,
             "pattern": "Conservative VCP",
@@ -32,5 +42,5 @@
             "rsi": 64.65
         }
     ],
-    "lastUpdated": "2026-02-20 23:24:15"
+    "lastUpdated": "2026-02-23 01:25:51"
 }
