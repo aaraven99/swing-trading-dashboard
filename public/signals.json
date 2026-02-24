@@ -2,25 +2,35 @@
     "marketHealthy": true,
     "signals": [
         {
-            "ticker": "AVY",
+            "ticker": "F",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 196.62,
-            "buyAt": 197.54,
-            "goal": 204.4,
-            "stopLoss": 190.78,
-            "rsi": 64.42
+            "currentPrice": 14.23,
+            "buyAt": 14.34,
+            "goal": 14.91,
+            "stopLoss": 13.71,
+            "rsi": 59.36
+        },
+        {
+            "ticker": "SNA",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 386.3,
+            "buyAt": 390.13,
+            "goal": 401.94,
+            "stopLoss": 374.57,
+            "rsi": 63.67
         },
         {
             "ticker": "HOLX",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.44,
+            "currentPrice": 75.38,
             "buyAt": 75.47,
-            "goal": 75.95,
-            "stopLoss": 75.06,
-            "rsi": 64.88
+            "goal": 75.87,
+            "stopLoss": 75.01,
+            "rsi": 62.23
         }
     ],
-    "lastUpdated": "2026-02-24 14:09:48"
+    "lastUpdated": "2026-02-24 15:54:17"
 }
