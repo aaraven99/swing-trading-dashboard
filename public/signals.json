@@ -2,35 +2,35 @@
     "marketHealthy": true,
     "signals": [
         {
-            "ticker": "F",
+            "ticker": "HII",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 14.23,
-            "buyAt": 14.34,
-            "goal": 14.91,
-            "stopLoss": 13.71,
-            "rsi": 59.36
+            "currentPrice": 444.73,
+            "buyAt": 447.74,
+            "goal": 477.58,
+            "stopLoss": 420.1,
+            "rsi": 63.81
         },
         {
-            "ticker": "SNA",
+            "ticker": "NVDA",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 386.3,
-            "buyAt": 390.13,
-            "goal": 401.94,
-            "stopLoss": 374.57,
-            "rsi": 63.67
+            "currentPrice": 192.93,
+            "buyAt": 194.49,
+            "goal": 204.8,
+            "stopLoss": 184.03,
+            "rsi": 58.24
         },
         {
             "ticker": "HOLX",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.38,
+            "currentPrice": 75.44,
             "buyAt": 75.47,
-            "goal": 75.87,
-            "stopLoss": 75.01,
-            "rsi": 62.23
+            "goal": 75.93,
+            "stopLoss": 75.07,
+            "rsi": 64.88
         }
     ],
-    "lastUpdated": "2026-02-24 15:54:17"
+    "lastUpdated": "2026-02-24 17:01:00"
 }
