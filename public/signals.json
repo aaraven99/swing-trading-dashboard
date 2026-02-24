@@ -2,65 +2,75 @@
     "marketHealthy": true,
     "signals": [
         {
+            "ticker": "DG",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 153.96,
+            "buyAt": 155.0,
+            "goal": 162.97,
+            "stopLoss": 147.21,
+            "rsi": 62.05
+        },
+        {
             "ticker": "F",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 14.23,
+            "currentPrice": 14.2,
             "buyAt": 14.34,
-            "goal": 14.91,
-            "stopLoss": 13.72,
-            "rsi": 59.43
+            "goal": 14.88,
+            "stopLoss": 13.69,
+            "rsi": 59.0
+        },
+        {
+            "ticker": "HAL",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 35.79,
+            "buyAt": 35.97,
+            "goal": 38.07,
+            "stopLoss": 34.08,
+            "rsi": 64.12
         },
         {
             "ticker": "HII",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 447.24,
+            "currentPrice": 447.73,
             "buyAt": 449.03,
-            "goal": 480.61,
-            "stopLoss": 422.22,
-            "rsi": 64.51
+            "goal": 481.09,
+            "stopLoss": 422.71,
+            "rsi": 64.64
         },
         {
             "ticker": "NVDA",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 192.82,
+            "currentPrice": 192.85,
             "buyAt": 194.49,
-            "goal": 204.75,
-            "stopLoss": 183.88,
-            "rsi": 58.13
+            "goal": 204.78,
+            "stopLoss": 183.9,
+            "rsi": 58.16
         },
         {
-            "ticker": "PPL",
+            "ticker": "SNA",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 37.93,
-            "buyAt": 38.14,
-            "goal": 39.46,
-            "stopLoss": 36.78,
-            "rsi": 64.1
-        },
-        {
-            "ticker": "SLB",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 51.9,
-            "buyAt": 52.4,
-            "goal": 54.96,
-            "stopLoss": 49.62,
-            "rsi": 64.53
+            "currentPrice": 387.04,
+            "buyAt": 390.13,
+            "goal": 402.68,
+            "stopLoss": 375.31,
+            "rsi": 64.26
         },
         {
             "ticker": "HOLX",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.42,
+            "currentPrice": 75.35,
             "buyAt": 75.49,
-            "goal": 75.91,
-            "stopLoss": 75.04,
-            "rsi": 63.75
+            "goal": 75.85,
+            "stopLoss": 74.98,
+            "rsi": 60.98
         }
     ],
-    "lastUpdated": "2026-02-24 20:29:09"
+    "lastUpdated": "2026-02-24 21:29:44"
 }
