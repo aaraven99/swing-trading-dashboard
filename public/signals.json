@@ -5,52 +5,42 @@
             "ticker": "APH",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 152.45,
-            "buyAt": 153.63,
-            "goal": 165.25,
-            "stopLoss": 142.84,
-            "rsi": 57.12
+            "currentPrice": 153.28,
+            "buyAt": 154.05,
+            "goal": 166.26,
+            "stopLoss": 143.55,
+            "rsi": 57.89
         },
         {
             "ticker": "DG",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 155.9,
-            "buyAt": 156.48,
-            "goal": 164.69,
-            "stopLoss": 149.31,
-            "rsi": 64.58
+            "currentPrice": 156.08,
+            "buyAt": 156.53,
+            "goal": 164.88,
+            "stopLoss": 149.48,
+            "rsi": 64.8
         },
         {
             "ticker": "NVDA",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 196.28,
-            "buyAt": 196.56,
-            "goal": 207.89,
-            "stopLoss": 187.58,
-            "rsi": 61.7
-        },
-        {
-            "ticker": "PPL",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 37.82,
-            "buyAt": 38.14,
-            "goal": 39.34,
-            "stopLoss": 36.68,
-            "rsi": 61.81
+            "currentPrice": 196.98,
+            "buyAt": 197.32,
+            "goal": 208.69,
+            "stopLoss": 188.19,
+            "rsi": 62.34
         },
         {
             "ticker": "HOLX",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.34,
+            "currentPrice": 75.36,
             "buyAt": 75.49,
-            "goal": 75.81,
-            "stopLoss": 74.99,
-            "rsi": 60.54
+            "goal": 75.83,
+            "stopLoss": 75.0,
+            "rsi": 61.12
         }
     ],
-    "lastUpdated": "2026-02-25 15:58:41"
+    "lastUpdated": "2026-02-25 17:05:55"
 }
