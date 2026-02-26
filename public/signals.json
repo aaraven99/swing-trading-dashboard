@@ -5,32 +5,32 @@
             "ticker": "PLD",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 141.96,
+            "currentPrice": 141.37,
             "buyAt": 142.4,
-            "goal": 147.22,
-            "stopLoss": 138.01,
-            "rsi": 64.2
+            "goal": 146.65,
+            "stopLoss": 137.41,
+            "rsi": 63.17
         },
         {
             "ticker": "TKO",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 216.28,
-            "buyAt": 217.72,
-            "goal": 229.68,
-            "stopLoss": 206.23,
-            "rsi": 58.37
+            "currentPrice": 221.29,
+            "buyAt": 221.29,
+            "goal": 235.2,
+            "stopLoss": 210.86,
+            "rsi": 61.77
         },
         {
             "ticker": "HOLX",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.35,
+            "currentPrice": 75.32,
             "buyAt": 75.49,
-            "goal": 75.8,
-            "stopLoss": 75.01,
-            "rsi": 60.69
+            "goal": 75.77,
+            "stopLoss": 74.98,
+            "rsi": 59.63
         }
     ],
-    "lastUpdated": "2026-02-26 15:48:52"
+    "lastUpdated": "2026-02-26 16:52:20"
 }
