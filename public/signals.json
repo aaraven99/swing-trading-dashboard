@@ -2,35 +2,35 @@
     "marketHealthy": true,
     "signals": [
         {
+            "ticker": "HAL",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 35.85,
+            "buyAt": 36.18,
+            "goal": 38.23,
+            "stopLoss": 34.08,
+            "rsi": 62.81
+        },
+        {
             "ticker": "PLD",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 141.37,
+            "currentPrice": 141.52,
             "buyAt": 142.4,
-            "goal": 146.65,
-            "stopLoss": 137.41,
-            "rsi": 63.17
-        },
-        {
-            "ticker": "TKO",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 221.29,
-            "buyAt": 221.29,
-            "goal": 235.2,
-            "stopLoss": 210.86,
-            "rsi": 61.77
+            "goal": 146.8,
+            "stopLoss": 137.56,
+            "rsi": 63.44
         },
         {
             "ticker": "HOLX",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.32,
+            "currentPrice": 75.26,
             "buyAt": 75.49,
-            "goal": 75.77,
-            "stopLoss": 74.98,
-            "rsi": 59.63
+            "goal": 75.72,
+            "stopLoss": 74.92,
+            "rsi": 57.24
         }
     ],
-    "lastUpdated": "2026-02-26 16:52:20"
+    "lastUpdated": "2026-02-26 17:55:56"
 }
