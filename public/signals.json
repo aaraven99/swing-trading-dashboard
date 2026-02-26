@@ -5,32 +5,62 @@
             "ticker": "HAL",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 35.85,
+            "currentPrice": 35.96,
             "buyAt": 36.18,
-            "goal": 38.23,
-            "stopLoss": 34.08,
-            "rsi": 62.81
+            "goal": 38.33,
+            "stopLoss": 34.17,
+            "rsi": 63.3
+        },
+        {
+            "ticker": "PFG",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 96.92,
+            "buyAt": 97.88,
+            "goal": 102.05,
+            "stopLoss": 93.07,
+            "rsi": 60.03
         },
         {
             "ticker": "PLD",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 141.52,
+            "currentPrice": 142.15,
             "buyAt": 142.4,
-            "goal": 146.8,
-            "stopLoss": 137.56,
-            "rsi": 63.44
+            "goal": 147.45,
+            "stopLoss": 138.19,
+            "rsi": 64.53
+        },
+        {
+            "ticker": "TKO",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 224.22,
+            "buyAt": 225.39,
+            "goal": 238.72,
+            "stopLoss": 213.35,
+            "rsi": 63.52
+        },
+        {
+            "ticker": "VLO",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 204.79,
+            "buyAt": 206.77,
+            "goal": 217.47,
+            "stopLoss": 195.29,
+            "rsi": 64.33
         },
         {
             "ticker": "HOLX",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.26,
+            "currentPrice": 75.28,
             "buyAt": 75.49,
-            "goal": 75.72,
-            "stopLoss": 74.92,
-            "rsi": 57.24
+            "goal": 75.74,
+            "stopLoss": 74.94,
+            "rsi": 57.87
         }
     ],
-    "lastUpdated": "2026-02-26 17:55:56"
+    "lastUpdated": "2026-02-26 18:44:06"
 }
