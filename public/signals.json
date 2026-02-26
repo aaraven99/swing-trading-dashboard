@@ -5,72 +5,42 @@
             "ticker": "FER",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 74.12,
+            "currentPrice": 74.07,
             "buyAt": 74.79,
-            "goal": 76.95,
-            "stopLoss": 72.0,
-            "rsi": 64.82
-        },
-        {
-            "ticker": "FRT",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 108.56,
-            "buyAt": 109.65,
-            "goal": 112.37,
-            "stopLoss": 105.7,
-            "rsi": 64.77
-        },
-        {
-            "ticker": "HAL",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 35.96,
-            "buyAt": 36.18,
-            "goal": 38.34,
-            "stopLoss": 34.18,
-            "rsi": 63.32
+            "goal": 76.9,
+            "stopLoss": 71.95,
+            "rsi": 64.67
         },
         {
             "ticker": "PFG",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 97.38,
+            "currentPrice": 97.5,
             "buyAt": 97.88,
-            "goal": 102.59,
-            "stopLoss": 93.46,
-            "rsi": 60.93
+            "goal": 102.73,
+            "stopLoss": 93.58,
+            "rsi": 61.17
         },
         {
-            "ticker": "PLD",
+            "ticker": "SPG",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 142.33,
-            "buyAt": 142.51,
-            "goal": 147.67,
-            "stopLoss": 138.33,
-            "rsi": 64.82
-        },
-        {
-            "ticker": "TKO",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 225.75,
-            "buyAt": 226.83,
-            "goal": 240.45,
-            "stopLoss": 214.72,
-            "rsi": 64.37
+            "currentPrice": 202.6,
+            "buyAt": 204.05,
+            "goal": 210.07,
+            "stopLoss": 197.0,
+            "rsi": 64.92
         },
         {
             "ticker": "HOLX",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.27,
+            "currentPrice": 75.23,
             "buyAt": 75.49,
-            "goal": 75.73,
-            "stopLoss": 74.93,
-            "rsi": 57.61
+            "goal": 75.7,
+            "stopLoss": 74.88,
+            "rsi": 55.82
         }
     ],
-    "lastUpdated": "2026-02-26 20:33:05"
+    "lastUpdated": "2026-02-26 21:29:00"
 }
