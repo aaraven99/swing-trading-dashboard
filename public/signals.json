@@ -5,82 +5,52 @@
             "ticker": "APA",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 29.91,
-            "buyAt": 30.1,
-            "goal": 32.29,
-            "stopLoss": 28.11,
-            "rsi": 64.56
-        },
-        {
-            "ticker": "CAH",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 228.74,
-            "buyAt": 230.81,
-            "goal": 239.1,
-            "stopLoss": 220.97,
-            "rsi": 61.68
-        },
-        {
-            "ticker": "COO",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 83.99,
-            "buyAt": 84.62,
-            "goal": 87.58,
-            "stopLoss": 81.3,
-            "rsi": 57.77
+            "currentPrice": 29.98,
+            "buyAt": 30.19,
+            "goal": 32.38,
+            "stopLoss": 28.18,
+            "rsi": 64.86
         },
         {
             "ticker": "COR",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 371.02,
+            "currentPrice": 370.96,
             "buyAt": 374.25,
-            "goal": 388.35,
-            "stopLoss": 358.02,
-            "rsi": 60.44
-        },
-        {
-            "ticker": "HAL",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 35.85,
-            "buyAt": 36.19,
-            "goal": 38.17,
-            "stopLoss": 34.11,
-            "rsi": 62.84
+            "goal": 388.29,
+            "stopLoss": 357.96,
+            "rsi": 60.4
         },
         {
             "ticker": "HOLX",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.31,
+            "currentPrice": 75.32,
             "buyAt": 75.49,
-            "goal": 75.77,
-            "stopLoss": 74.96,
-            "rsi": 58.21
+            "goal": 75.78,
+            "stopLoss": 74.97,
+            "rsi": 58.51
         },
         {
             "ticker": "JBHT",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 232.75,
+            "currentPrice": 232.55,
             "buyAt": 234.82,
-            "goal": 247.26,
-            "stopLoss": 221.87,
-            "rsi": 63.51
+            "goal": 247.09,
+            "stopLoss": 221.65,
+            "rsi": 63.37
         },
         {
-            "ticker": "TKO",
+            "ticker": "NEM",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 224.88,
-            "buyAt": 226.94,
-            "goal": 240.32,
-            "stopLoss": 213.3,
-            "rsi": 63.94
+            "currentPrice": 130.04,
+            "buyAt": 131.21,
+            "goal": 140.91,
+            "stopLoss": 121.9,
+            "rsi": 61.96
         }
     ],
-    "lastUpdated": "2026-02-27 18:35:53"
+    "lastUpdated": "2026-02-27 19:30:38"
 }
