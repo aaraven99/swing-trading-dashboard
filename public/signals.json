@@ -2,55 +2,65 @@
     "marketHealthy": true,
     "signals": [
         {
-            "ticker": "APA",
+            "ticker": "ADM",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 29.98,
-            "buyAt": 30.19,
-            "goal": 32.38,
-            "stopLoss": 28.18,
-            "rsi": 64.86
+            "currentPrice": 69.0,
+            "buyAt": 69.57,
+            "goal": 72.86,
+            "stopLoss": 66.11,
+            "rsi": 61.48
         },
         {
             "ticker": "COR",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 370.96,
+            "currentPrice": 370.95,
             "buyAt": 374.25,
-            "goal": 388.29,
-            "stopLoss": 357.96,
-            "rsi": 60.4
+            "goal": 388.28,
+            "stopLoss": 357.94,
+            "rsi": 60.39
+        },
+        {
+            "ticker": "HAL",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 36.09,
+            "buyAt": 36.19,
+            "goal": 38.41,
+            "stopLoss": 34.35,
+            "rsi": 64.06
+        },
+        {
+            "ticker": "JBHT",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 233.66,
+            "buyAt": 234.82,
+            "goal": 248.28,
+            "stopLoss": 222.69,
+            "rsi": 64.11
+        },
+        {
+            "ticker": "NEM",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 130.48,
+            "buyAt": 131.21,
+            "goal": 141.34,
+            "stopLoss": 122.33,
+            "rsi": 62.35
         },
         {
             "ticker": "HOLX",
-            "score": 100,
+            "score": 80,
             "pattern": "Conservative VCP",
             "currentPrice": 75.32,
             "buyAt": 75.49,
             "goal": 75.78,
             "stopLoss": 74.97,
             "rsi": 58.51
-        },
-        {
-            "ticker": "JBHT",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 232.55,
-            "buyAt": 234.82,
-            "goal": 247.09,
-            "stopLoss": 221.65,
-            "rsi": 63.37
-        },
-        {
-            "ticker": "NEM",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 130.04,
-            "buyAt": 131.21,
-            "goal": 140.91,
-            "stopLoss": 121.9,
-            "rsi": 61.96
         }
     ],
-    "lastUpdated": "2026-02-27 19:30:38"
+    "lastUpdated": "2026-02-27 20:23:17"
 }
