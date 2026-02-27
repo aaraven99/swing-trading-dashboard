@@ -5,42 +5,32 @@
             "ticker": "COO",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 84.01,
+            "currentPrice": 83.86,
             "buyAt": 84.62,
-            "goal": 87.6,
-            "stopLoss": 81.32,
-            "rsi": 57.88
-        },
-        {
-            "ticker": "COR",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 370.58,
-            "buyAt": 374.25,
-            "goal": 387.68,
-            "stopLoss": 357.75,
-            "rsi": 60.17
+            "goal": 87.45,
+            "stopLoss": 81.17,
+            "rsi": 57.07
         },
         {
             "ticker": "NEM",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 130.44,
+            "currentPrice": 130.31,
             "buyAt": 130.95,
-            "goal": 141.26,
-            "stopLoss": 122.32,
-            "rsi": 62.32
+            "goal": 141.13,
+            "stopLoss": 122.19,
+            "rsi": 62.2
         },
         {
             "ticker": "HOLX",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.32,
+            "currentPrice": 75.35,
             "buyAt": 75.49,
-            "goal": 75.78,
-            "stopLoss": 74.97,
-            "rsi": 58.51
+            "goal": 75.81,
+            "stopLoss": 75.0,
+            "rsi": 59.39
         }
     ],
-    "lastUpdated": "2026-02-27 16:34:30"
+    "lastUpdated": "2026-02-27 17:31:10"
 }
