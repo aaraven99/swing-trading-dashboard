@@ -2,25 +2,15 @@
     "marketHealthy": true,
     "signals": [
         {
-            "ticker": "COR",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 373.83,
-            "buyAt": 376.92,
-            "goal": 390.84,
-            "stopLoss": 361.07,
-            "rsi": 62.13
-        },
-        {
             "ticker": "HOLX",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.28,
+            "currentPrice": 75.35,
             "buyAt": 75.49,
-            "goal": 75.73,
-            "stopLoss": 74.94,
-            "rsi": 56.23
+            "goal": 75.8,
+            "stopLoss": 75.01,
+            "rsi": 59.15
         }
     ],
-    "lastUpdated": "2026-03-02 15:37:47"
+    "lastUpdated": "2026-03-02 16:38:22"
 }
