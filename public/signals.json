@@ -56,10 +56,10 @@
             "score": 100,
             "pattern": "Conservative VCP",
             "currentPrice": 289.12,
-            "buyAt": 292.02,
-            "goal": 303.55,
-            "stopLoss": 278.3,
-            "rsi": 62.59
+            "buyAt": 291.29,
+            "goal": 303.52,
+            "stopLoss": 278.32,
+            "rsi": 63.14
         },
         {
             "ticker": "NEM",
@@ -82,5 +82,5 @@
             "rsi": 59.81
         }
     ],
-    "lastUpdated": "2026-02-27 23:20:55"
+    "lastUpdated": "2026-03-02 01:24:09"
 }
