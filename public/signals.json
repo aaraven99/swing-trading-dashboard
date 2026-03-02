@@ -2,15 +2,25 @@
     "marketHealthy": true,
     "signals": [
         {
-            "ticker": "HOLX",
+            "ticker": "SPG",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.35,
+            "currentPrice": 203.09,
+            "buyAt": 205.12,
+            "goal": 210.38,
+            "stopLoss": 197.62,
+            "rsi": 64.58
+        },
+        {
+            "ticker": "HOLX",
+            "score": 80,
+            "pattern": "Conservative VCP",
+            "currentPrice": 75.36,
             "buyAt": 75.49,
-            "goal": 75.8,
-            "stopLoss": 75.01,
-            "rsi": 59.15
+            "goal": 75.81,
+            "stopLoss": 75.02,
+            "rsi": 59.59
         }
     ],
-    "lastUpdated": "2026-03-02 16:38:22"
+    "lastUpdated": "2026-03-02 17:42:07"
 }
