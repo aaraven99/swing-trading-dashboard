@@ -2,25 +2,45 @@
     "marketHealthy": true,
     "signals": [
         {
-            "ticker": "SPG",
+            "ticker": "ODFL",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 203.09,
-            "buyAt": 205.12,
-            "goal": 210.38,
-            "stopLoss": 197.62,
-            "rsi": 64.58
+            "currentPrice": 206.91,
+            "buyAt": 208.95,
+            "goal": 221.71,
+            "stopLoss": 195.82,
+            "rsi": 64.75
+        },
+        {
+            "ticker": "TKO",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 224.68,
+            "buyAt": 226.94,
+            "goal": 240.23,
+            "stopLoss": 213.02,
+            "rsi": 63.86
+        },
+        {
+            "ticker": "TXT",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 100.6,
+            "buyAt": 101.57,
+            "goal": 105.57,
+            "stopLoss": 96.87,
+            "rsi": 62.92
         },
         {
             "ticker": "HOLX",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.36,
+            "currentPrice": 75.38,
             "buyAt": 75.49,
-            "goal": 75.81,
-            "stopLoss": 75.02,
-            "rsi": 59.59
+            "goal": 75.84,
+            "stopLoss": 75.04,
+            "rsi": 60.4
         }
     ],
-    "lastUpdated": "2026-03-02 17:42:07"
+    "lastUpdated": "2026-03-02 18:40:39"
 }
