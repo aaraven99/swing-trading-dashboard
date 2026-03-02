@@ -2,25 +2,65 @@
     "marketHealthy": true,
     "signals": [
         {
-            "ticker": "COR",
+            "ticker": "ABBV",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 373.33,
-            "buyAt": 376.92,
-            "goal": 390.94,
-            "stopLoss": 360.13,
-            "rsi": 61.84
+            "currentPrice": 234.26,
+            "buyAt": 235.66,
+            "goal": 246.16,
+            "stopLoss": 225.33,
+            "rsi": 60.91
+        },
+        {
+            "ticker": "COO",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 83.92,
+            "buyAt": 84.62,
+            "goal": 87.53,
+            "stopLoss": 81.21,
+            "rsi": 57.13
+        },
+        {
+            "ticker": "SPG",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 203.16,
+            "buyAt": 205.12,
+            "goal": 210.54,
+            "stopLoss": 197.62,
+            "rsi": 64.76
+        },
+        {
+            "ticker": "TKO",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 224.96,
+            "buyAt": 226.94,
+            "goal": 240.51,
+            "stopLoss": 213.3,
+            "rsi": 64.03
+        },
+        {
+            "ticker": "TXT",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 100.68,
+            "buyAt": 101.57,
+            "goal": 105.65,
+            "stopLoss": 96.95,
+            "rsi": 63.08
         },
         {
             "ticker": "HOLX",
-            "score": 100,
+            "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.44,
+            "currentPrice": 75.45,
             "buyAt": 75.49,
-            "goal": 75.91,
-            "stopLoss": 75.09,
-            "rsi": 62.09
+            "goal": 75.92,
+            "stopLoss": 75.1,
+            "rsi": 62.35
         }
     ],
-    "lastUpdated": "2026-03-02 20:31:00"
+    "lastUpdated": "2026-03-02 21:29:41"
 }
