@@ -2,45 +2,65 @@
     "marketHealthy": true,
     "signals": [
         {
-            "ticker": "ODFL",
+            "ticker": "ABBV",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 206.91,
-            "buyAt": 208.95,
-            "goal": 221.71,
-            "stopLoss": 195.82,
-            "rsi": 64.75
+            "currentPrice": 234.26,
+            "buyAt": 235.66,
+            "goal": 246.16,
+            "stopLoss": 225.33,
+            "rsi": 60.91
         },
         {
-            "ticker": "TKO",
+            "ticker": "COO",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 224.68,
-            "buyAt": 226.94,
-            "goal": 240.23,
-            "stopLoss": 213.02,
-            "rsi": 63.86
+            "currentPrice": 83.88,
+            "buyAt": 84.62,
+            "goal": 87.46,
+            "stopLoss": 81.19,
+            "rsi": 56.97
+        },
+        {
+            "ticker": "PFG",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 97.2,
+            "buyAt": 97.88,
+            "goal": 102.84,
+            "stopLoss": 92.97,
+            "rsi": 58.86
+        },
+        {
+            "ticker": "TJX",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 161.43,
+            "buyAt": 162.68,
+            "goal": 167.85,
+            "stopLoss": 156.6,
+            "rsi": 64.88
         },
         {
             "ticker": "TXT",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 100.6,
+            "currentPrice": 100.62,
             "buyAt": 101.57,
-            "goal": 105.57,
-            "stopLoss": 96.87,
-            "rsi": 62.92
+            "goal": 105.59,
+            "stopLoss": 96.89,
+            "rsi": 62.96
         },
         {
             "ticker": "HOLX",
             "score": 80,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.38,
+            "currentPrice": 75.42,
             "buyAt": 75.49,
-            "goal": 75.84,
-            "stopLoss": 75.04,
-            "rsi": 60.4
+            "goal": 75.88,
+            "stopLoss": 75.07,
+            "rsi": 61.4
         }
     ],
-    "lastUpdated": "2026-03-02 18:40:39"
+    "lastUpdated": "2026-03-02 19:37:06"
 }
