@@ -5,12 +5,22 @@
             "ticker": "HOLX",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.38,
+            "currentPrice": 75.36,
             "buyAt": 75.49,
-            "goal": 75.83,
-            "stopLoss": 75.03,
-            "rsi": 59.01
+            "goal": 75.82,
+            "stopLoss": 75.02,
+            "rsi": 58.59
+        },
+        {
+            "ticker": "TGT",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 119.26,
+            "buyAt": 119.65,
+            "goal": 126.38,
+            "stopLoss": 113.93,
+            "rsi": 63.85
         }
     ],
-    "lastUpdated": "2026-03-03 15:44:26"
+    "lastUpdated": "2026-03-03 16:40:38"
 }
