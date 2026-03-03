@@ -2,25 +2,25 @@
     "marketHealthy": true,
     "signals": [
         {
+            "ticker": "ABBV",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 233.55,
+            "buyAt": 235.66,
+            "goal": 245.29,
+            "stopLoss": 224.75,
+            "rsi": 59.8
+        },
+        {
             "ticker": "HOLX",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.38,
+            "currentPrice": 75.44,
             "buyAt": 75.49,
-            "goal": 75.83,
-            "stopLoss": 75.03,
-            "rsi": 59.01
-        },
-        {
-            "ticker": "TGT",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 119.71,
-            "buyAt": 120.03,
-            "goal": 126.89,
-            "stopLoss": 114.34,
-            "rsi": 64.43
+            "goal": 75.9,
+            "stopLoss": 75.1,
+            "rsi": 62.11
         }
     ],
-    "lastUpdated": "2026-03-03 17:40:31"
+    "lastUpdated": "2026-03-03 18:40:38"
 }
