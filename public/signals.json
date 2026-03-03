@@ -5,62 +5,32 @@
             "ticker": "ABBV",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 234.26,
+            "currentPrice": 234.15,
             "buyAt": 235.66,
-            "goal": 246.16,
-            "stopLoss": 225.33,
-            "rsi": 60.91
-        },
-        {
-            "ticker": "COO",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 83.92,
-            "buyAt": 84.62,
-            "goal": 87.53,
-            "stopLoss": 81.21,
-            "rsi": 57.13
-        },
-        {
-            "ticker": "SPG",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 203.16,
-            "buyAt": 205.12,
-            "goal": 210.54,
-            "stopLoss": 197.62,
-            "rsi": 64.76
-        },
-        {
-            "ticker": "TKO",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 224.96,
-            "buyAt": 226.94,
-            "goal": 240.51,
-            "stopLoss": 213.3,
-            "rsi": 64.03
-        },
-        {
-            "ticker": "TXT",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 100.68,
-            "buyAt": 101.57,
-            "goal": 105.69,
-            "stopLoss": 96.92,
-            "rsi": 63.08
+            "goal": 245.58,
+            "stopLoss": 225.58,
+            "rsi": 60.73
         },
         {
             "ticker": "HOLX",
-            "score": 80,
+            "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.45,
+            "currentPrice": 75.44,
             "buyAt": 75.49,
-            "goal": 75.92,
+            "goal": 75.89,
             "stopLoss": 75.1,
-            "rsi": 62.35
+            "rsi": 61.88
+        },
+        {
+            "ticker": "TGT",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 118.93,
+            "buyAt": 118.98,
+            "goal": 125.95,
+            "stopLoss": 113.66,
+            "rsi": 63.41
         }
     ],
-    "lastUpdated": "2026-03-03 13:57:33"
+    "lastUpdated": "2026-03-03 14:41:16"
 }
