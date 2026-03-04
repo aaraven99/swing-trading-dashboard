@@ -5,22 +5,32 @@
             "ticker": "ABBV",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 235.85,
-            "buyAt": 236.08,
-            "goal": 247.41,
-            "stopLoss": 227.18,
-            "rsi": 62.36
+            "currentPrice": 235.63,
+            "buyAt": 236.31,
+            "goal": 247.22,
+            "stopLoss": 226.93,
+            "rsi": 62.14
         },
         {
             "ticker": "ALL",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 214.36,
+            "currentPrice": 214.1,
             "buyAt": 215.66,
-            "goal": 224.48,
-            "stopLoss": 206.77,
-            "rsi": 61.95
+            "goal": 224.22,
+            "stopLoss": 206.51,
+            "rsi": 61.65
+        },
+        {
+            "ticker": "JBHT",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 233.74,
+            "buyAt": 236.0,
+            "goal": 248.13,
+            "stopLoss": 222.94,
+            "rsi": 63.09
         }
     ],
-    "lastUpdated": "2026-03-04 18:41:05"
+    "lastUpdated": "2026-03-04 19:35:27"
 }
