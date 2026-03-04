@@ -5,42 +5,52 @@
             "ticker": "ABBV",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 235.96,
-            "buyAt": 236.52,
-            "goal": 247.58,
-            "stopLoss": 227.24,
-            "rsi": 62.47
+            "currentPrice": 236.19,
+            "buyAt": 237.11,
+            "goal": 247.9,
+            "stopLoss": 227.41,
+            "rsi": 62.7
         },
         {
             "ticker": "ALL",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 214.12,
+            "currentPrice": 214.18,
             "buyAt": 215.66,
-            "goal": 224.24,
-            "stopLoss": 206.53,
-            "rsi": 61.68
+            "goal": 224.34,
+            "stopLoss": 206.56,
+            "rsi": 61.74
+        },
+        {
+            "ticker": "JBHT",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 234.92,
+            "buyAt": 236.0,
+            "goal": 249.32,
+            "stopLoss": 224.12,
+            "rsi": 63.97
         },
         {
             "ticker": "SPG",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 203.15,
+            "currentPrice": 203.1,
             "buyAt": 205.12,
-            "goal": 210.63,
-            "stopLoss": 197.54,
-            "rsi": 63.5
+            "goal": 210.58,
+            "stopLoss": 197.49,
+            "rsi": 63.42
         },
         {
             "ticker": "TJX",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 161.35,
+            "currentPrice": 161.73,
             "buyAt": 162.68,
-            "goal": 167.95,
-            "stopLoss": 156.4,
-            "rsi": 62.96
+            "goal": 168.36,
+            "stopLoss": 156.76,
+            "rsi": 63.63
         }
     ],
-    "lastUpdated": "2026-03-04 20:28:00"
+    "lastUpdated": "2026-03-04 21:30:07"
 }
