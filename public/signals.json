@@ -2,35 +2,35 @@
     "marketHealthy": true,
     "signals": [
         {
-            "ticker": "ABBV",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 233.86,
-            "buyAt": 235.71,
-            "goal": 245.7,
-            "stopLoss": 224.98,
-            "rsi": 60.28
-        },
-        {
-            "ticker": "ALL",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 213.61,
-            "buyAt": 215.66,
-            "goal": 223.82,
-            "stopLoss": 205.95,
-            "rsi": 61.08
-        },
-        {
             "ticker": "HOLX",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.46,
+            "currentPrice": 75.44,
             "buyAt": 75.49,
-            "goal": 75.92,
-            "stopLoss": 75.12,
-            "rsi": 62.63
+            "goal": 75.88,
+            "stopLoss": 75.11,
+            "rsi": 61.63
+        },
+        {
+            "ticker": "JBHT",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 234.67,
+            "buyAt": 236.0,
+            "goal": 249.07,
+            "stopLoss": 223.87,
+            "rsi": 63.78
+        },
+        {
+            "ticker": "SPG",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 203.36,
+            "buyAt": 205.12,
+            "goal": 210.79,
+            "stopLoss": 197.78,
+            "rsi": 63.81
         }
     ],
-    "lastUpdated": "2026-03-04 13:54:52"
+    "lastUpdated": "2026-03-04 14:36:39"
 }
