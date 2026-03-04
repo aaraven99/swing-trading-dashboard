@@ -5,21 +5,11 @@
             "ticker": "ABBV",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 234.82,
+            "currentPrice": 234.54,
             "buyAt": 236.08,
-            "goal": 246.38,
-            "stopLoss": 226.15,
-            "rsi": 61.31
-        },
-        {
-            "ticker": "ALL",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 213.93,
-            "buyAt": 215.66,
-            "goal": 224.05,
-            "stopLoss": 206.34,
-            "rsi": 61.46
+            "goal": 246.11,
+            "stopLoss": 225.87,
+            "rsi": 61.02
         },
         {
             "ticker": "HOLX",
@@ -32,25 +22,15 @@
             "rsi": 63.51
         },
         {
-            "ticker": "SPG",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 203.4,
-            "buyAt": 205.12,
-            "goal": 210.88,
-            "stopLoss": 197.78,
-            "rsi": 63.87
-        },
-        {
             "ticker": "TJX",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 161.21,
+            "currentPrice": 161.2,
             "buyAt": 162.68,
-            "goal": 167.81,
-            "stopLoss": 156.25,
-            "rsi": 62.7
+            "goal": 167.8,
+            "stopLoss": 156.24,
+            "rsi": 62.68
         }
     ],
-    "lastUpdated": "2026-03-04 16:37:10"
+    "lastUpdated": "2026-03-04 17:36:25"
 }
