@@ -1,26 +1,5 @@
 {
     "marketHealthy": true,
-    "signals": [
-        {
-            "ticker": "HOLX",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 75.56,
-            "buyAt": 75.69,
-            "goal": 76.04,
-            "stopLoss": 75.19,
-            "rsi": 62.69
-        },
-        {
-            "ticker": "JBHT",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 233.84,
-            "buyAt": 236.0,
-            "goal": 247.62,
-            "stopLoss": 223.51,
-            "rsi": 62.51
-        }
-    ],
-    "lastUpdated": "2026-03-05 14:46:42"
+    "signals": [],
+    "lastUpdated": "2026-03-05 15:45:48"
 }
