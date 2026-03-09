@@ -1,5 +1,16 @@
 {
     "marketHealthy": true,
-    "signals": [],
-    "lastUpdated": "2026-03-09 14:03:21"
+    "signals": [
+        {
+            "ticker": "HOLX",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 75.62,
+            "buyAt": 75.75,
+            "goal": 76.11,
+            "stopLoss": 75.26,
+            "rsi": 63.42
+        }
+    ],
+    "lastUpdated": "2026-03-09 15:55:22"
 }
