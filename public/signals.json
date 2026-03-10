@@ -12,15 +12,35 @@
             "rsi": 56.97
         },
         {
+            "ticker": "PSA",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 310.36,
+            "buyAt": 312.86,
+            "goal": 325.51,
+            "stopLoss": 298.99,
+            "rsi": 62.65
+        },
+        {
+            "ticker": "PWR",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 572.07,
+            "buyAt": 576.86,
+            "goal": 614.25,
+            "stopLoss": 540.43,
+            "rsi": 64.49
+        },
+        {
             "ticker": "SBUX",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 100.16,
+            "currentPrice": 100.08,
             "buyAt": 100.55,
-            "goal": 105.52,
-            "stopLoss": 96.15,
-            "rsi": 63.5
+            "goal": 105.47,
+            "stopLoss": 96.04,
+            "rsi": 63.3
         }
     ],
-    "lastUpdated": "2026-03-10 14:47:33"
+    "lastUpdated": "2026-03-10 15:57:20"
 }
