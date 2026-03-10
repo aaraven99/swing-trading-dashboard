@@ -5,42 +5,42 @@
             "ticker": "HOLX",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.48,
+            "currentPrice": 75.47,
             "buyAt": 75.75,
-            "goal": 75.96,
-            "stopLoss": 75.12,
-            "rsi": 56.97
+            "goal": 75.95,
+            "stopLoss": 75.11,
+            "rsi": 56.56
         },
         {
             "ticker": "PSA",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 310.36,
+            "currentPrice": 310.33,
             "buyAt": 312.86,
-            "goal": 325.51,
-            "stopLoss": 298.99,
-            "rsi": 62.65
-        },
-        {
-            "ticker": "PWR",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 572.07,
-            "buyAt": 576.86,
-            "goal": 614.25,
-            "stopLoss": 540.43,
-            "rsi": 64.49
+            "goal": 325.5,
+            "stopLoss": 298.96,
+            "rsi": 62.63
         },
         {
             "ticker": "SBUX",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 100.08,
+            "currentPrice": 100.2,
             "buyAt": 100.55,
-            "goal": 105.47,
-            "stopLoss": 96.04,
-            "rsi": 63.3
+            "goal": 105.59,
+            "stopLoss": 96.16,
+            "rsi": 63.59
+        },
+        {
+            "ticker": "TJX",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 161.41,
+            "buyAt": 162.68,
+            "goal": 168.36,
+            "stopLoss": 156.2,
+            "rsi": 59.99
         }
     ],
-    "lastUpdated": "2026-03-10 15:57:20"
+    "lastUpdated": "2026-03-10 16:53:41"
 }
