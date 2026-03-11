@@ -2,25 +2,15 @@
     "marketHealthy": true,
     "signals": [
         {
-            "ticker": "DLR",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 183.24,
-            "buyAt": 184.79,
-            "goal": 192.38,
-            "stopLoss": 176.39,
-            "rsi": 63.85
-        },
-        {
             "ticker": "HOLX",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.42,
+            "currentPrice": 75.38,
             "buyAt": 75.75,
-            "goal": 75.89,
-            "stopLoss": 75.06,
-            "rsi": 54.08
+            "goal": 75.86,
+            "stopLoss": 75.03,
+            "rsi": 52.8
         }
     ],
-    "lastUpdated": "2026-03-11 16:45:12"
+    "lastUpdated": "2026-03-11 17:45:55"
 }
