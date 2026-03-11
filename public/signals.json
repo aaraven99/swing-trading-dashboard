@@ -5,12 +5,12 @@
             "ticker": "HOLX",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.39,
+            "currentPrice": 75.41,
             "buyAt": 75.75,
-            "goal": 75.86,
-            "stopLoss": 75.03,
-            "rsi": 52.92
+            "goal": 75.88,
+            "stopLoss": 75.05,
+            "rsi": 53.89
         }
     ],
-    "lastUpdated": "2026-03-11 19:40:27"
+    "lastUpdated": "2026-03-11 20:31:14"
 }
