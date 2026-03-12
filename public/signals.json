@@ -6,31 +6,61 @@
             "score": 100,
             "pattern": "Conservative VCP",
             "currentPrice": 45.97,
-            "buyAt": 46.15,
-            "goal": 48.82,
-            "stopLoss": 43.83,
-            "rsi": 64.15
+            "buyAt": 46.36,
+            "goal": 48.85,
+            "stopLoss": 43.8,
+            "rsi": 64.13
+        },
+        {
+            "ticker": "ED",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 113.91,
+            "buyAt": 114.36,
+            "goal": 118.39,
+            "stopLoss": 110.55,
+            "rsi": 64.44
         },
         {
             "ticker": "HOLX",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.39,
+            "currentPrice": 75.44,
             "buyAt": 75.75,
-            "goal": 75.85,
-            "stopLoss": 75.05,
-            "rsi": 53.26
+            "goal": 75.9,
+            "stopLoss": 75.1,
+            "rsi": 54.95
         },
         {
             "ticker": "LNT",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 72.01,
+            "currentPrice": 72.07,
             "buyAt": 72.65,
-            "goal": 74.43,
-            "stopLoss": 70.2,
-            "rsi": 62.89
+            "goal": 74.5,
+            "stopLoss": 70.25,
+            "rsi": 63.2
+        },
+        {
+            "ticker": "PPL",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 38.43,
+            "buyAt": 38.8,
+            "goal": 40.01,
+            "stopLoss": 37.25,
+            "rsi": 60.6
+        },
+        {
+            "ticker": "PWR",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 572.65,
+            "buyAt": 576.86,
+            "goal": 614.12,
+            "stopLoss": 541.55,
+            "rsi": 64.11
         }
     ],
-    "lastUpdated": "2026-03-12 14:55:18"
+    "lastUpdated": "2026-03-12 15:55:34"
 }
