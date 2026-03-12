@@ -2,15 +2,35 @@
     "marketHealthy": true,
     "signals": [
         {
+            "ticker": "DVN",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 45.97,
+            "buyAt": 46.15,
+            "goal": 48.82,
+            "stopLoss": 43.83,
+            "rsi": 64.15
+        },
+        {
             "ticker": "HOLX",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 75.43,
+            "currentPrice": 75.39,
             "buyAt": 75.75,
-            "goal": 75.88,
-            "stopLoss": 75.1,
-            "rsi": 54.77
+            "goal": 75.85,
+            "stopLoss": 75.05,
+            "rsi": 53.26
+        },
+        {
+            "ticker": "LNT",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 72.01,
+            "buyAt": 72.65,
+            "goal": 74.43,
+            "stopLoss": 70.2,
+            "rsi": 62.89
         }
     ],
-    "lastUpdated": "2026-03-12 14:01:15"
+    "lastUpdated": "2026-03-12 14:55:18"
 }
