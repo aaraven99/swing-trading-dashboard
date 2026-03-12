@@ -5,12 +5,22 @@
             "ticker": "DVN",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 46.01,
+            "currentPrice": 46.06,
             "buyAt": 46.4,
-            "goal": 48.91,
-            "stopLoss": 43.84,
-            "rsi": 64.31
+            "goal": 48.95,
+            "stopLoss": 43.88,
+            "rsi": 64.45
+        },
+        {
+            "ticker": "ED",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 113.28,
+            "buyAt": 114.36,
+            "goal": 117.76,
+            "stopLoss": 109.92,
+            "rsi": 62.78
         }
     ],
-    "lastUpdated": "2026-03-12 18:45:15"
+    "lastUpdated": "2026-03-12 19:40:10"
 }
