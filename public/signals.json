@@ -22,35 +22,35 @@
             "rsi": 64.29
         },
         {
-            "ticker": "DVN",
+            "ticker": "CTRA",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 46.13,
-            "buyAt": 46.41,
-            "goal": 48.95,
-            "stopLoss": 44.02,
-            "rsi": 64.55
+            "currentPrice": 32.15,
+            "buyAt": 32.43,
+            "goal": 34.12,
+            "stopLoss": 30.67,
+            "rsi": 64.08
         },
         {
             "ticker": "NI",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 47.31,
+            "currentPrice": 47.39,
             "buyAt": 47.7,
-            "goal": 49.17,
-            "stopLoss": 45.9,
-            "rsi": 61.29
+            "goal": 49.26,
+            "stopLoss": 45.99,
+            "rsi": 61.81
         },
         {
             "ticker": "WEC",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 117.46,
+            "currentPrice": 117.35,
             "buyAt": 118.0,
-            "goal": 121.62,
-            "stopLoss": 114.34,
-            "rsi": 62.77
+            "goal": 121.51,
+            "stopLoss": 114.23,
+            "rsi": 62.47
         }
     ],
-    "lastUpdated": "2026-03-13 19:28:48"
+    "lastUpdated": "2026-03-13 20:28:07"
 }
