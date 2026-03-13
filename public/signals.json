@@ -5,62 +5,62 @@
             "ticker": "AEE",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 111.93,
+            "currentPrice": 112.14,
             "buyAt": 112.87,
-            "goal": 115.76,
-            "stopLoss": 109.06,
-            "rsi": 63.02
+            "goal": 116.01,
+            "stopLoss": 109.24,
+            "rsi": 63.66
         },
         {
             "ticker": "CMS",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 77.7,
+            "currentPrice": 77.89,
             "buyAt": 78.47,
-            "goal": 80.27,
-            "stopLoss": 75.77,
-            "rsi": 63.7
+            "goal": 80.48,
+            "stopLoss": 75.95,
+            "rsi": 64.56
         },
         {
             "ticker": "DVN",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 45.96,
+            "currentPrice": 46.05,
             "buyAt": 46.41,
-            "goal": 48.76,
-            "stopLoss": 43.86,
-            "rsi": 63.39
+            "goal": 48.85,
+            "stopLoss": 43.95,
+            "rsi": 63.98
         },
         {
             "ticker": "NI",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 47.41,
+            "currentPrice": 47.47,
             "buyAt": 47.7,
-            "goal": 49.28,
-            "stopLoss": 46.01,
-            "rsi": 61.93
+            "goal": 49.34,
+            "stopLoss": 46.07,
+            "rsi": 62.29
         },
         {
             "ticker": "PPL",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 38.72,
+            "currentPrice": 38.79,
             "buyAt": 38.85,
-            "goal": 40.32,
-            "stopLoss": 37.53,
-            "rsi": 62.9
+            "goal": 40.38,
+            "stopLoss": 37.6,
+            "rsi": 63.33
         },
         {
             "ticker": "WEC",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 117.2,
+            "currentPrice": 117.49,
             "buyAt": 117.71,
-            "goal": 121.32,
-            "stopLoss": 114.11,
-            "rsi": 62.06
+            "goal": 121.61,
+            "stopLoss": 114.4,
+            "rsi": 62.84
         }
     ],
-    "lastUpdated": "2026-03-13 15:38:13"
+    "lastUpdated": "2026-03-13 16:34:09"
 }
