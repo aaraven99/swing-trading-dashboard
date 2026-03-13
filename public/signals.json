@@ -5,52 +5,52 @@
             "ticker": "AEE",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 112.19,
+            "currentPrice": 112.04,
             "buyAt": 112.87,
-            "goal": 116.07,
-            "stopLoss": 109.28,
-            "rsi": 63.79
+            "goal": 115.95,
+            "stopLoss": 109.11,
+            "rsi": 63.35
         },
         {
             "ticker": "CMS",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 77.89,
+            "currentPrice": 77.83,
             "buyAt": 78.47,
-            "goal": 80.5,
-            "stopLoss": 75.93,
-            "rsi": 64.56
+            "goal": 80.45,
+            "stopLoss": 75.86,
+            "rsi": 64.29
         },
         {
             "ticker": "DVN",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 46.16,
+            "currentPrice": 46.13,
             "buyAt": 46.41,
-            "goal": 48.97,
-            "stopLoss": 44.05,
-            "rsi": 64.72
+            "goal": 48.95,
+            "stopLoss": 44.02,
+            "rsi": 64.55
         },
         {
             "ticker": "NI",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 47.36,
+            "currentPrice": 47.31,
             "buyAt": 47.7,
-            "goal": 49.23,
-            "stopLoss": 45.96,
-            "rsi": 61.63
+            "goal": 49.17,
+            "stopLoss": 45.9,
+            "rsi": 61.29
         },
         {
             "ticker": "WEC",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 117.64,
-            "buyAt": 117.86,
-            "goal": 121.78,
-            "stopLoss": 114.53,
-            "rsi": 63.25
+            "currentPrice": 117.46,
+            "buyAt": 118.0,
+            "goal": 121.62,
+            "stopLoss": 114.34,
+            "rsi": 62.77
         }
     ],
-    "lastUpdated": "2026-03-13 18:34:20"
+    "lastUpdated": "2026-03-13 19:28:48"
 }
