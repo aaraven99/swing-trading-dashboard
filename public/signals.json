@@ -5,52 +5,52 @@
             "ticker": "AEE",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 112.38,
+            "currentPrice": 112.19,
             "buyAt": 112.87,
-            "goal": 116.26,
-            "stopLoss": 109.46,
-            "rsi": 64.31
+            "goal": 116.07,
+            "stopLoss": 109.28,
+            "rsi": 63.79
+        },
+        {
+            "ticker": "CMS",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 77.89,
+            "buyAt": 78.47,
+            "goal": 80.5,
+            "stopLoss": 75.93,
+            "rsi": 64.56
         },
         {
             "ticker": "DVN",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 46.09,
+            "currentPrice": 46.16,
             "buyAt": 46.41,
-            "goal": 48.9,
-            "stopLoss": 43.99,
-            "rsi": 64.25
+            "goal": 48.97,
+            "stopLoss": 44.05,
+            "rsi": 64.72
         },
         {
             "ticker": "NI",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 47.53,
+            "currentPrice": 47.36,
             "buyAt": 47.7,
-            "goal": 49.39,
-            "stopLoss": 46.12,
-            "rsi": 62.62
-        },
-        {
-            "ticker": "PPL",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 38.79,
-            "buyAt": 38.96,
-            "goal": 40.4,
-            "stopLoss": 37.59,
-            "rsi": 63.36
+            "goal": 49.23,
+            "stopLoss": 45.96,
+            "rsi": 61.63
         },
         {
             "ticker": "WEC",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 117.69,
+            "currentPrice": 117.64,
             "buyAt": 117.86,
-            "goal": 121.84,
-            "stopLoss": 114.59,
-            "rsi": 63.4
+            "goal": 121.78,
+            "stopLoss": 114.53,
+            "rsi": 63.25
         }
     ],
-    "lastUpdated": "2026-03-13 17:31:03"
+    "lastUpdated": "2026-03-13 18:34:20"
 }
