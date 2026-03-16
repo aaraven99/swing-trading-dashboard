@@ -5,42 +5,32 @@
             "ticker": "AEE",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 112.15,
+            "currentPrice": 112.56,
             "buyAt": 112.99,
-            "goal": 116.03,
-            "stopLoss": 109.24,
-            "rsi": 63.7
-        },
-        {
-            "ticker": "CMS",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 77.95,
-            "buyAt": 78.47,
-            "goal": 80.46,
-            "stopLoss": 76.06,
-            "rsi": 64.86
+            "goal": 116.44,
+            "stopLoss": 109.65,
+            "rsi": 64.93
         },
         {
             "ticker": "NI",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 47.48,
+            "currentPrice": 47.61,
             "buyAt": 47.96,
-            "goal": 49.3,
-            "stopLoss": 46.12,
-            "rsi": 62.39
+            "goal": 49.43,
+            "stopLoss": 46.25,
+            "rsi": 63.2
         },
         {
             "ticker": "PPL",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 38.59,
+            "currentPrice": 38.79,
             "buyAt": 38.96,
-            "goal": 40.14,
-            "stopLoss": 37.43,
-            "rsi": 62.01
+            "goal": 40.35,
+            "stopLoss": 37.63,
+            "rsi": 63.51
         }
     ],
-    "lastUpdated": "2026-03-16 17:04:24"
+    "lastUpdated": "2026-03-16 18:55:04"
 }
