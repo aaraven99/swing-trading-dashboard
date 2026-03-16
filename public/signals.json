@@ -2,35 +2,25 @@
     "marketHealthy": true,
     "signals": [
         {
-            "ticker": "NI",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 47.57,
-            "buyAt": 47.96,
-            "goal": 49.39,
-            "stopLoss": 46.21,
-            "rsi": 62.96
-        },
-        {
             "ticker": "PPL",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 38.83,
+            "currentPrice": 38.74,
             "buyAt": 38.96,
-            "goal": 40.39,
-            "stopLoss": 37.66,
-            "rsi": 63.75
+            "goal": 40.3,
+            "stopLoss": 37.57,
+            "rsi": 63.12
         },
         {
             "ticker": "PWR",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 575.09,
+            "currentPrice": 574.02,
             "buyAt": 576.86,
-            "goal": 616.06,
-            "stopLoss": 544.36,
-            "rsi": 63.41
+            "goal": 614.99,
+            "stopLoss": 543.29,
+            "rsi": 63.11
         }
     ],
-    "lastUpdated": "2026-03-16 19:52:13"
+    "lastUpdated": "2026-03-16 20:33:15"
 }
