@@ -1,36 +1,5 @@
 {
     "marketHealthy": true,
-    "signals": [
-        {
-            "ticker": "PFE",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 27.61,
-            "buyAt": 27.67,
-            "goal": 28.87,
-            "stopLoss": 26.67,
-            "rsi": 59.03
-        },
-        {
-            "ticker": "PPL",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 38.62,
-            "buyAt": 38.99,
-            "goal": 40.14,
-            "stopLoss": 37.49,
-            "rsi": 61.63
-        },
-        {
-            "ticker": "WDC",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 306.72,
-            "buyAt": 309.75,
-            "goal": 345.18,
-            "stopLoss": 277.87,
-            "rsi": 63.61
-        }
-    ],
-    "lastUpdated": "2026-03-17 18:55:56"
+    "signals": [],
+    "lastUpdated": "2026-03-17 19:54:37"
 }
