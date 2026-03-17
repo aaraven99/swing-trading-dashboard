@@ -5,21 +5,21 @@
             "ticker": "CTVA",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 80.29,
+            "currentPrice": 80.53,
             "buyAt": 80.9,
-            "goal": 83.85,
-            "stopLoss": 77.62,
-            "rsi": 62.56
+            "goal": 84.09,
+            "stopLoss": 77.86,
+            "rsi": 63.19
         },
         {
             "ticker": "NI",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 47.55,
+            "currentPrice": 47.49,
             "buyAt": 47.96,
-            "goal": 49.28,
-            "stopLoss": 46.25,
-            "rsi": 62.87
+            "goal": 49.22,
+            "stopLoss": 46.19,
+            "rsi": 62.47
         },
         {
             "ticker": "PPL",
@@ -29,8 +29,8 @@
             "buyAt": 38.99,
             "goal": 40.21,
             "stopLoss": 37.58,
-            "rsi": 62.72
+            "rsi": 62.66
         }
     ],
-    "lastUpdated": "2026-03-17 16:01:10"
+    "lastUpdated": "2026-03-17 17:06:40"
 }
