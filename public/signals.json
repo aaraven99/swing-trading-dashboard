@@ -5,22 +5,12 @@
             "ticker": "AKAM",
             "score": 100,
             "pattern": "Conservative VCP",
-            "currentPrice": 109.6,
-            "buyAt": 109.9,
-            "goal": 118.69,
-            "stopLoss": 102.78,
-            "rsi": 62.41
-        },
-        {
-            "ticker": "PWR",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 578.4,
-            "buyAt": 583.73,
-            "goal": 618.09,
-            "stopLoss": 548.62,
-            "rsi": 64.02
+            "currentPrice": 110.39,
+            "buyAt": 110.96,
+            "goal": 119.64,
+            "stopLoss": 103.46,
+            "rsi": 63.31
         }
     ],
-    "lastUpdated": "2026-03-18 14:21:17"
+    "lastUpdated": "2026-03-18 16:05:39"
 }
