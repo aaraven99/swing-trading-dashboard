@@ -1,16 +1,5 @@
 {
     "marketHealthy": true,
-    "signals": [
-        {
-            "ticker": "AKAM",
-            "score": 100,
-            "pattern": "Conservative VCP",
-            "currentPrice": 111.66,
-            "buyAt": 111.98,
-            "goal": 121.05,
-            "stopLoss": 104.62,
-            "rsi": 64.69
-        }
-    ],
-    "lastUpdated": "2026-03-18 17:58:06"
+    "signals": [],
+    "lastUpdated": "2026-03-18 18:52:45"
 }
