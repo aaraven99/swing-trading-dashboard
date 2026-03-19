@@ -1,5 +1,26 @@
 {
     "marketHealthy": true,
-    "signals": [],
-    "lastUpdated": "2026-03-19 12:47:17"
+    "signals": [
+        {
+            "ticker": "EXE",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 109.84,
+            "buyAt": 110.77,
+            "goal": 117.1,
+            "stopLoss": 104.39,
+            "rsi": 57.03
+        },
+        {
+            "ticker": "OKE",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 88.65,
+            "buyAt": 89.0,
+            "goal": 93.17,
+            "stopLoss": 85.27,
+            "rsi": 64.56
+        }
+    ],
+    "lastUpdated": "2026-03-19 14:06:49"
 }
