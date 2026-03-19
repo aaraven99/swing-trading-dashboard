@@ -1,5 +1,26 @@
 {
-    "marketHealthy": false,
-    "signals": [],
-    "lastUpdated": "2026-03-19 18:47:48"
+    "marketHealthy": true,
+    "signals": [
+        {
+            "ticker": "DOC",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 17.81,
+            "buyAt": 17.84,
+            "goal": 18.67,
+            "stopLoss": 17.15,
+            "rsi": 60.58
+        },
+        {
+            "ticker": "PFE",
+            "score": 100,
+            "pattern": "Conservative VCP",
+            "currentPrice": 27.65,
+            "buyAt": 27.76,
+            "goal": 28.9,
+            "stopLoss": 26.71,
+            "rsi": 59.16
+        }
+    ],
+    "lastUpdated": "2026-03-19 19:45:23"
 }
